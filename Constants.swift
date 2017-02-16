@@ -73,10 +73,15 @@ let KCHECKING_ID = "FROM COMPANY ID"
 let KERROR_RETRY = "Sorry, this barcode already used or please try after sometime"
 
 let KCHANGEPHOTO = "Change Photo"
+let KADDMEMBER = "Add Member"
 let KTAKEPHOTO = "Take Photo"
 let KPHOTO_GALLERY = "Choose From Gallery"
 let KPHOTO_AVATAR = "Change From Avatar"
 let KCANCEL = "Cancel"
+let KADDNEWMEMBER = "Add New Member"
+let KCHOOSEFROMCONTACTS = "Choose From Contacts"
+
+
 
 
 
