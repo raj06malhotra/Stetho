@@ -116,12 +116,6 @@
 		BB37E84F1D3E3B74001FEE00 /* MyFamilyMemberInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37E84E1D3E3B74001FEE00 /* MyFamilyMemberInfoViewController.swift */; };
 		BB383CF41DCB819400B7ABFE /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB383CF21DCB819400B7ABFE /* AGPushNoteView.m */; };
 		BB383CF51DCB819400B7ABFE /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB383CF31DCB819400B7ABFE /* AGPushNoteView.xib */; };
-		BB3926581D48EDA600BBD5DC /* avatar1.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926521D48EDA600BBD5DC /* avatar1.png */; };
-		BB3926591D48EDA600BBD5DC /* avatar2.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926531D48EDA600BBD5DC /* avatar2.png */; };
-		BB39265A1D48EDA600BBD5DC /* avatar3.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926541D48EDA600BBD5DC /* avatar3.png */; };
-		BB39265B1D48EDA600BBD5DC /* avatar4.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926551D48EDA600BBD5DC /* avatar4.png */; };
-		BB39265C1D48EDA600BBD5DC /* avatar5.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926561D48EDA600BBD5DC /* avatar5.png */; };
-		BB39265D1D48EDA600BBD5DC /* avatar6.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3926571D48EDA600BBD5DC /* avatar6.png */; };
 		BB3DB9E51D12C6AF00CC2B3C /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3DB9E41D12C6AF00CC2B3C /* app_logo.png */; };
 		BB3DC1DE1D58A4B400BDF65E /* PickupAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */; };
 		BB41384D1D1D2D5000BE0069 /* shot_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB41384C1D1D2D5000BE0069 /* shot_icon.png */; };
@@ -585,12 +579,6 @@
 		BB383CF11DCB819400B7ABFE /* AGPushNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPushNoteView.h; sourceTree = "<group>"; };
 		BB383CF21DCB819400B7ABFE /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPushNoteView.m; sourceTree = "<group>"; };
 		BB383CF31DCB819400B7ABFE /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGPushNoteView.xib; sourceTree = "<group>"; };
-		BB3926521D48EDA600BBD5DC /* avatar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar1.png; sourceTree = "<group>"; };
-		BB3926531D48EDA600BBD5DC /* avatar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar2.png; sourceTree = "<group>"; };
-		BB3926541D48EDA600BBD5DC /* avatar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar3.png; sourceTree = "<group>"; };
-		BB3926551D48EDA600BBD5DC /* avatar4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar4.png; sourceTree = "<group>"; };
-		BB3926561D48EDA600BBD5DC /* avatar5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar5.png; sourceTree = "<group>"; };
-		BB3926571D48EDA600BBD5DC /* avatar6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar6.png; sourceTree = "<group>"; };
 		BB3DB9E41D12C6AF00CC2B3C /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
 		BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupAddressInfo.swift; sourceTree = "<group>"; };
 		BB41384C1D1D2D5000BE0069 /* shot_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_icon.png; sourceTree = "<group>"; };
@@ -1270,12 +1258,6 @@
 				BB2841711D4A0B6800FEB7AF /* home_add_records.jpg */,
 				BB2841721D4A0B6800FEB7AF /* home_reminder.jpg */,
 				BB2841731D4A0B6800FEB7AF /* home_visit.png */,
-				BB3926521D48EDA600BBD5DC /* avatar1.png */,
-				BB3926531D48EDA600BBD5DC /* avatar2.png */,
-				BB3926541D48EDA600BBD5DC /* avatar3.png */,
-				BB3926551D48EDA600BBD5DC /* avatar4.png */,
-				BB3926561D48EDA600BBD5DC /* avatar5.png */,
-				BB3926571D48EDA600BBD5DC /* avatar6.png */,
 				BB35D0DD1D3FAEF1007EB3C3 /* nonselectedcheckbox_icon.png */,
 				BB35D0DE1D3FAEF1007EB3C3 /* nonselectedradio_icon.png */,
 				BB35D0DF1D3FAEF1007EB3C3 /* selectedcheckbox_icon.png */,
@@ -1794,7 +1776,6 @@
 				BB383CF51DCB819400B7ABFE /* AGPushNoteView.xib in Resources */,
 				BBEF19621E447751004E12B1 /* ç.jpg in Resources */,
 				BBDDFEC01DD48D7800EA35AB /* HomeTableViewCell.xib in Resources */,
-				BB39265C1D48EDA600BBD5DC /* avatar5.png in Resources */,
 				BBF670561E1CCF5B002B3A73 /* corp_checkin.png in Resources */,
 				BB7CC3391DED3D96006E1779 /* high_circle.png in Resources */,
 				BB0BDEBF1E0E676E00018F8F /* phlebo_icon.png in Resources */,
@@ -1852,7 +1833,6 @@
 				BB1AD3A51DF6ACCD002DFD83 /* CreditAndDebitCardCell.xib in Resources */,
 				BB3786CB1D59E91100B9ACAB /* app_credits_left.png in Resources */,
 				BBF6705B1E1CCF5B002B3A73 /* corp_name_icon.png in Resources */,
-				BB39265D1D48EDA600BBD5DC /* avatar6.png in Resources */,
 				BBC84D8E1D82E9CE006E623F /* package_price.png in Resources */,
 				BB41384D1D1D2D5000BE0069 /* shot_icon.png in Resources */,
 				BBB56BA51D8D6A2C0058860F /* roboto_regular.ttf in Resources */,
@@ -1889,7 +1869,6 @@
 				BBAC4A491E111AC600F68FE1 /* red_phlebo_reached_icon.png in Resources */,
 				BBF572561E14F330005D06E7 /* health_trend.png in Resources */,
 				BBE6D5F21D7D2C9800AF322A /* report.png in Resources */,
-				BB39265B1D48EDA600BBD5DC /* avatar4.png in Resources */,
 				BBED84291D92902400C776E4 /* back_icon.png in Resources */,
 				BBF158B81D150C2D0053398E /* camera_icon.png in Resources */,
 				BB35D0DC1D3FAEE5007EB3C3 /* share_icon.png in Resources */,
@@ -1919,7 +1898,6 @@
 				BB1AD3A11DF6ACCD002DFD83 /* Config.plist in Resources */,
 				BBE9540F1D1BE428009A2947 /* add_records_icon.png in Resources */,
 				BB1AD3A61DF6ACCD002DFD83 /* CreditCardCell.xib in Resources */,
-				BB39265A1D48EDA600BBD5DC /* avatar3.png in Resources */,
 				BB0BDEC61E0E6E1000018F8F /* phlebo_call_icon.png in Resources */,
 				BB7CC33E1DED62F2006E1779 /* add_records.png in Resources */,
 				BBE954061D1BB5B3009A2947 /* user_icon.png in Resources */,
@@ -1938,7 +1916,6 @@
 				BB0451BB1D5DFF77009497E7 /* package_name.png in Resources */,
 				BB1AD3B01DF6ACCD002DFD83 /* check@2x.png in Resources */,
 				BBACF1A61DDD920A0012669F /* medium_circle.png in Resources */,
-				BB3926581D48EDA600BBD5DC /* avatar1.png in Resources */,
 				BB4138551D1D39A700BE0069 /* plus_icon.png in Resources */,
 				BBC504B81DCE330C0016D4AD /* package_book.png in Resources */,
 				BBAC4A421E110BD000F68FE1 /* red_orderbooked_icon.png in Resources */,
@@ -1952,7 +1929,6 @@
 				BB2841751D4A0B6800FEB7AF /* home_reminder.jpg in Resources */,
 				BBC2EBCB1E2A22B20032A399 /* corp_department_icon.png in Resources */,
 				BBAA977B1D670C680055D4B8 /* reminder_icon_evening_yellow.png in Resources */,
-				BB3926591D48EDA600BBD5DC /* avatar2.png in Resources */,
 				BBF388651D51D9660033170B /* nonselected_yellow_checkbox.png in Resources */,
 				BB7CC33F1DED62F2006E1779 /* reminders.png in Resources */,
 				BBAC4A3D1E110BD000F68FE1 /* expand.png in Resources */,
