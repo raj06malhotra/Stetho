@@ -117,8 +117,13 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
             lblMobileNo.font = UIFont(name: KROBOTO_LIGHT, size: 16)
             cell.addSubview(lblMobileNo)
             //Set Back ground image on Cell
-            cell.backgroundView = UIImageView(image: UIImage(named: "drawer_background.png")!)
-           
+            
+            let imgView = UIImageView(image: UIImage(named: "drawer_background"))
+            imgView.tintColor = UIColor.gray
+//            let theImageView = UIImageView(image: UIImage(named:"drawer_background.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))
+//            theImageView.tintColor = UIColor.redColor()
+            cell.backgroundView = imgView//UIImageView(image: UIImage(named: "drawer_background.png")!)
+//           cell.backgroundView?.tintColor = UIColor.blue
             if (myFamilyObject.memberPhoto != "") {
                 let imageString = myFamilyObject.memberPhoto
                 let data = Data(base64Encoded: imageString, options: NSData.Base64DecodingOptions(rawValue: 0))
@@ -310,12 +315,13 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
     
     func openAvatarPopup()  {
         
-        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width  , height: self.view.frame.height))
-        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        self.view.addSubview(shadowBackGround)
+//        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width  , height: self.view.frame.height))
+//        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        self.view.addSubview(shadowBackGround)
         var xPos:CGFloat = 10
         var yPos:CGFloat = 10
         let controller = UIAlertController(title: "\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        controller.view.tintColor = KRED_COLOR
 
         let popUpView = UIView(frame: CGRect(x: 0, y: 0 ,width: controller.view.bounds.size.width-20 ,height: 160))
 
