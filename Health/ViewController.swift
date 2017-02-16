@@ -55,13 +55,38 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
         self.navigationController!.navigationBar.titleTextAttributes = appDelegate.navigationTitalFontSize
         self .setStatusBarBackgroundColor(UIColor(red: 193.0/255, green: 38.0/255, blue: 33.0/255, alpha: 1))
         self.title = "LOGIN / SIGN UP"
-        
         let defaults = UserDefaults.standard
+        let slide1 : UIImage!
+        let slide2 : UIImage!
+        let slide3 : UIImage!
+        let slide4 : UIImage!
+
         if (defaults .object(forKey: "into_screen_viewed") == nil) {
-            let item1 = RMParallaxItem(image: UIImage(named: "slide_1")!, text: "")
-            let item2 = RMParallaxItem(image: UIImage(named: "slide_2")!, text: "")
-            let item3 = RMParallaxItem(image: UIImage(named: "slide_3")!, text: "")
-            let item4 = RMParallaxItem(image: UIImage(named: "slide_4")!, text: "")
+            
+            switch UIScreen.main.bounds.size.width {
+            case 320:
+                slide1 = #imageLiteral(resourceName: "slide_1_5s")
+                slide2 = #imageLiteral(resourceName: "slide_2_5s")
+                slide3 = #imageLiteral(resourceName: "slide_3_5s")
+                slide4 = #imageLiteral(resourceName: "slide_4_5s")
+            case 375:
+                slide1 = #imageLiteral(resourceName: "slide_1_6")
+                slide2 = #imageLiteral(resourceName: "slide_2_6")
+                slide3 = #imageLiteral(resourceName: "slide_3_6")
+                slide4 = #imageLiteral(resourceName: "slide_4_6")
+                
+            default:
+                slide1 = #imageLiteral(resourceName: "slide_1_6")
+                slide2 = #imageLiteral(resourceName: "slide_2_6")
+                slide3 = #imageLiteral(resourceName: "slide_3_6")
+                slide4 = #imageLiteral(resourceName: "slide_4_6")
+            }
+            
+            
+            let item1 = RMParallaxItem(image: slide1, text: "")
+            let item2 = RMParallaxItem(image: slide2, text: "")
+            let item3 = RMParallaxItem(image: slide3, text: "")
+            let item4 = RMParallaxItem(image: slide4, text: "")
             
             let rmParallaxViewController = RMParallax(items: [item1, item2, item3, item4], motion: true)
             rmParallaxViewController.completionHandler = {

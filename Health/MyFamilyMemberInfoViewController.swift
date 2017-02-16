@@ -260,53 +260,24 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     
     func OpenChangeImagePopUp()   {
         
-        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
-        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        self.view.addSubview(shadowBackGround)
-        let xPos:CGFloat = 10
-        var yPos:CGFloat = 5
+        let alertSheet = GlobalInfo.sharedInfo.getPhotoSelectionAlertSheet()
         
+        alertSheet.addAction(UIAlertAction(title: KTAKEPHOTO, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnTakephotoOnClick()
+        }))
         
-        
-        let popUpView = UIView(frame: CGRect(x: 20, y: (self.view.frame.height/2) - 70 ,width: self.view.frame.width-40 ,height: 130))
-        popUpView.layer.cornerRadius = 4
-        popUpView.backgroundColor = UIColor.white
-        shadowBackGround .addSubview(popUpView)
-        
-        let lblChangePhoto = BaseUIController().ALabelFrame(CGRect(x: xPos ,y: yPos , width: 200 , height: 21), withString: "Change Photo")as! UILabel
-        lblChangePhoto.font = UIFont().largeFont
-        popUpView.addSubview(lblChangePhoto)
-        
-        yPos += 21 + 5
-        
-        let btnTakePhoto = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Take Photo")as! UIButton
-        btnTakePhoto.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnTakephotoOnClick), for: .touchUpInside)
-        btnTakePhoto.titleLabel?.font = UIFont().mediumFont
-        btnTakePhoto.contentHorizontalAlignment = .left
-        popUpView.addSubview(btnTakePhoto)
-       
-        yPos += 25 + 5
-        
-        let btnChooseFormGallery = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Choose from Gallery") as! UIButton
-        btnChooseFormGallery.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnChooseFromGalleryOnClick), for: .touchUpInside)
-        btnChooseFormGallery.titleLabel!.font = UIFont().mediumFont
-        btnChooseFormGallery.contentHorizontalAlignment = .left
-        popUpView.addSubview(btnChooseFormGallery)
-        
-        yPos += 25 + 5
-        
-        let btnChoseAvatar = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Choose Avatar") as! UIButton
-        btnChoseAvatar.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnChooseAvatarOnClick), for: .touchUpInside)
-        btnChoseAvatar.titleLabel!.font = UIFont().mediumFont
-        btnChoseAvatar.contentHorizontalAlignment = .left
-        popUpView.addSubview(btnChoseAvatar)
-        
-        // add Tapgestue  on shadowBackGround
-        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
-        tapped.numberOfTapsRequired = 1
-        tapped.delegate = self
-        shadowBackGround.addGestureRecognizer(tapped)
+        alertSheet.addAction(UIAlertAction(title: KPHOTO_GALLERY, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnChooseFromGalleryOnClick()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KPHOTO_AVATAR, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnChooseAvatarOnClick()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KCANCEL, style: .cancel, handler: { (alert: UIAlertAction!) in
+            alertSheet.dismiss(animated: true, completion: nil)
+        }))
+        present(alertSheet, animated: true, completion: nil)
     }
+    
     func openAvatarPopup()  {
         
         shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
@@ -878,3 +849,52 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     }
     
 }
+
+//MARK: UNUSED CODE
+
+//        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
+//        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        self.view.addSubview(shadowBackGround)
+//        let xPos:CGFloat = 10
+//        var yPos:CGFloat = 5
+//
+//
+//
+//        let popUpView = UIView(frame: CGRect(x: 20, y: (self.view.frame.height/2) - 70 ,width: self.view.frame.width-40 ,height: 130))
+//        popUpView.layer.cornerRadius = 4
+//        popUpView.backgroundColor = UIColor.white
+//        shadowBackGround .addSubview(popUpView)
+//
+//        let lblChangePhoto = BaseUIController().ALabelFrame(CGRect(x: xPos ,y: yPos , width: 200 , height: 21), withString: "Change Photo")as! UILabel
+//        lblChangePhoto.font = UIFont().largeFont
+//        popUpView.addSubview(lblChangePhoto)
+//
+//        yPos += 21 + 5
+//
+//        let btnTakePhoto = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Take Photo")as! UIButton
+//        btnTakePhoto.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnTakephotoOnClick), for: .touchUpInside)
+//        btnTakePhoto.titleLabel?.font = UIFont().mediumFont
+//        btnTakePhoto.contentHorizontalAlignment = .left
+//        popUpView.addSubview(btnTakePhoto)
+//
+//        yPos += 25 + 5
+//
+//        let btnChooseFormGallery = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Choose from Gallery") as! UIButton
+//        btnChooseFormGallery.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnChooseFromGalleryOnClick), for: .touchUpInside)
+//        btnChooseFormGallery.titleLabel!.font = UIFont().mediumFont
+//        btnChooseFormGallery.contentHorizontalAlignment = .left
+//        popUpView.addSubview(btnChooseFormGallery)
+//
+//        yPos += 25 + 5
+//
+//        let btnChoseAvatar = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: self.view.frame.width-20, height: 25 ), withButtonTital: "Choose Avatar") as! UIButton
+//        btnChoseAvatar.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnChooseAvatarOnClick), for: .touchUpInside)
+//        btnChoseAvatar.titleLabel!.font = UIFont().mediumFont
+//        btnChoseAvatar.contentHorizontalAlignment = .left
+//        popUpView.addSubview(btnChoseAvatar)
+//
+//        // add Tapgestue  on shadowBackGround
+//        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
+//        tapped.numberOfTapsRequired = 1
+//        tapped.delegate = self
+//        shadowBackGround.addGestureRecognizer(tapped)

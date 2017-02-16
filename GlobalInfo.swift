@@ -26,6 +26,7 @@ class GlobalInfo: NSObject {
         let matched: Bool = mobileNumberPred.evaluate(with: value)
         return matched
     }
+    
     func getTitleView(title : String) -> UILabel {
         let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         lbl.text = title
@@ -34,6 +35,11 @@ class GlobalInfo: NSObject {
         lbl.adjustsFontSizeToFitWidth = true
         lbl.backgroundColor = UIColor.clear
         return lbl
-        
+    }
+    
+    func getPhotoSelectionAlertSheet() -> UIAlertController{
+        let alertSheet = UIAlertController(title: KCHANGEPHOTO, message: nil, preferredStyle: .actionSheet)
+        alertSheet.view.tintColor = KRED_COLOR
+        return alertSheet
     }
 }
