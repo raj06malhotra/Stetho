@@ -673,10 +673,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
        // selectedMemeberName.titleEdgeInsets.left = 10;
         
-        let lblIndicator = BaseUIController().ALabelFrame(CGRect(x: baseScrollView.frame.width - 15 , y: 10,width: 10, height: 20), withString: ">")as! UILabel
-        lblIndicator.textColor = UIColor (red: (224/255), green: (83/255), blue: (0/255), alpha: 1)
-        lblIndicator.font = UIFont(name: KROBOTO_REGULAR, size: 18)
-        btnselectedMemeberName.addSubview(lblIndicator)
+       let imgArrowIndicator = UIImageView(frame: CGRect(x: baseScrollView.frame.width - 20, y: ((btnselectedMemeberName.frame.size.height/2) - (15/2)), width: 15, height: 15))
+        imgArrowIndicator.image = UIImage(named: "rightarr_orange")
+        btnselectedMemeberName.addSubview(imgArrowIndicator)
         
         
         let arrButtonTitalName = ["BOOK AN ORDER","ADD RECORDS","REMINDERS"]
@@ -711,10 +710,20 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             lblSubTital.font = UIFont(name: KROBOTO_LIGHTITALIC, size: 12)
             lblSubTital.textColor = UIColor.gray //UIColor (red: (89/255), green: (89/255), blue: (89/255), alpha: 1)
             buttonLayoutView.addSubview(lblSubTital)
-            let lblIndicator = BaseUIController().ALabelFrame(CGRect(x: baseScrollView.frame.width - 15 , y: (h - 20)/2,width: 10, height: 20), withString: ">")as! UILabel
-            lblIndicator.textColor = UIColor (red: (132/255), green: (132/255), blue: (132/255), alpha: 1)
-            lblIndicator.font = UIFont(name: KROBOTO_REGULAR, size: 18)
-            buttonLayoutView.addSubview(lblIndicator)
+            
+            
+            let imgArrowIndicator = UIImageView(frame: CGRect(x: baseScrollView.frame.width - 20, y: ((buttonLayoutView.frame.size.height/2) - (15/2)), width: 15, height: 15))
+            imgArrowIndicator.image = UIImage(named: "rightarr_gray")
+            //        let lblIndicator = BaseUIController().ALabelFrame(CGRect(x: baseScrollView.frame.width - 25 , y: 10,width: 20, height: 20), withString: ">")as! UILabel
+            //        lblIndicator.textColor = UIColor (red: (224/255), green: (83/255), blue: (0/255), alpha: 1)
+            //        lblIndicator.font = UIFont(name: KROBOTO_REGULAR, size: 18)
+            buttonLayoutView.addSubview(imgArrowIndicator)
+            
+            
+//            let lblIndicator = BaseUIController().ALabelFrame(CGRect(x: baseScrollView.frame.width - 15 , y: (h - 20)/2,width: 10, height: 20), withString: ">")as! UILabel
+//            lblIndicator.textColor = UIColor (red: (132/255), green: (132/255), blue: (132/255), alpha: 1)
+//            lblIndicator.font = UIFont(name: KROBOTO_REGULAR, size: 18)
+//            buttonLayoutView.addSubview(lblIndicator)
             
             let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0, y: h - 2, width: self.view.frame.width, height: 1), withString: "")as! UILabel
             lblLine.backgroundColor = UIColor (red: (238/255), green: (238/255), blue: (238/255), alpha: 1)
@@ -1428,17 +1437,21 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     func btnSelectMemberNameOnClick()  {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let familyMemberListViewController = mainStoryboard.instantiateViewController(withIdentifier: "FamilyMemberListViewController") as! FamilyMemberListViewController
-//        familyMemberListViewController.providesPresentationContextTransitionStyle = true;
-//        familyMemberListViewController.definesPresentationContext = true;
-//        self.view.modalPresentationStyle  = .overCurrentContext
         familyMemberListViewController.modalPresentationStyle = .overCurrentContext
         self.navigationController?.present(familyMemberListViewController, animated: true, completion: nil)
-//        self.present(familyMemberListViewController, animated: true, completion: nil)
-        print("member name select ")
-//        self.getMyFamilyList()
-//        self.showMemberList()
         
-        
+        familyMemberListViewController.selectedMemberInfo = { info in
+            print(info.memberName)
+            self.getAllTestByMember(info: info)
+        }
+    }
+    
+    func getAllTestByMember(info: MyFamilyInfo){
+        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+        self.view.addSubview(activityIndicator!)
+        activityIndicator?.start()
+        myFamilyMemberObj = info
+        self.getAllTestsByFamily(myFamilyMemberObj.memberId)
     }
     
     //MARK: - SyncData
@@ -2287,7 +2300,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
     }
     //MARK: ACTIONSHEET DELEGATE
-    
+
     func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int)
     {
         switch (buttonIndex){
@@ -2517,7 +2530,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             tblView.addSubview(activityIndicator!)
             activityIndicator?.start()
             myFamilyMemberObj = tempDataFamily[(indexPath as NSIndexPath).row]as! MyFamilyInfo
-//            myFamilyMemberObj = arrMyFamilyList[(indexPath as NSIndexPath).row]as! MyFamilyInfo
             self.getAllTestsByFamily(myFamilyMemberObj.memberId)
         }
     }

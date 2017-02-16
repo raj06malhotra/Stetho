@@ -72,6 +72,15 @@ let KCHECKING_ID = "FROM COMPANY ID"
 
 let KERROR_RETRY = "Sorry, this barcode already used or please try after sometime"
 
+let KCHANGEPHOTO = "Change Photo"
+let KTAKEPHOTO = "Take Photo"
+let KPHOTO_GALLERY = "Choose From Gallery"
+let KPHOTO_AVATAR = "Change From Avatar"
+let KCANCEL = "Cancel"
+
+
+
+
 let KRED_COLOR = UIColor(red: 196/255.0, green: 35/255.0, blue: 24/255.0, alpha: 1)
 let KDISABLE_TEXTCOLOR = UIColor.lightGray
 

@@ -15,6 +15,8 @@ class FamilyMemberListViewController: UIViewController, UITableViewDataSource, U
     var searchBar : UISearchBar!
     var myFamilyList = [MyFamilyInfo]()
     var tempDataFamily = [MyFamilyInfo]()
+    //completionHandler: (Data?, URLResponse?, Error?) -> Void
+    var selectedMemberInfo: ((MyFamilyInfo) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,7 @@ class FamilyMemberListViewController: UIViewController, UITableViewDataSource, U
         
 
         familyTableView.register(FamilyHeaderCell.self, forCellReuseIdentifier: "FamilyHeaderCell")
+        self.familyTableView.tableFooterView = UIView()
 //        self.modalPresentationStyle = .overCurrentContext
 
         // Do any additional setup after loading the view.
@@ -88,19 +91,11 @@ class FamilyMemberListViewController: UIViewController, UITableViewDataSource, U
         searchBar.delegate = self
         searchBar.placeholder = "Name"
     }
-//    {
-//        let familyHeaderCell = tableView.dequeueReusableCell(withIdentifier: "FamilyHeaderCell") as! FamilyHeaderCell
-//        
-//        familyHeaderCell.cancelButton.addTarget(self, action: #selector(FamilyMemberListViewController.cancelButtonClicked(_:)), for: .touchUpInside)
-//       // familyHeaderCell.searchBar.delegate = self
-//        return familyHeaderCell
-//    }
-  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let familyMemberTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FamilyMemberTableViewCell", for: indexPath) as! FamilyMemberTableViewCell
-        
+        familyMemberTableViewCell.selectionStyle = .none
         let familyMemberInfo = tempDataFamily[indexPath.row]
 
         familyMemberTableViewCell.lblMemberName.text = familyMemberInfo.memberName
@@ -120,40 +115,21 @@ class FamilyMemberListViewController: UIViewController, UITableViewDataSource, U
         return familyMemberTableViewCell
     }
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        if tableView == memberListTableView {
-//            bgView.removeFromSuperview()
-//            //set activity on view
-//            activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-//            activityIndicator?.frame = CGRect(x: tableView.frame.width/2 - 30, y: 100, width: 60, height: 60)
-//            tblView.addSubview(activityIndicator!)
-//            activityIndicator?.start()
-//            myFamilyMemberObj = tempDataFamily[(indexPath as NSIndexPath).row]as! MyFamilyInfo
-//            //            myFamilyMemberObj = arrMyFamilyList[(indexPath as NSIndexPath).row]as! MyFamilyInfo
-//            self.getAllTestsByFamily(myFamilyMemberObj.memberId)
-//        }
-//    }
-//
-
-//    
-//
-//    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if Reachability.isConnectedToNetwork(){
+            let info = tempDataFamily[indexPath.row]
+            selectedMemberInfo!(info)
+            self.dismiss(animated: true, completion: nil)
+        }else{
+            self.present(BaseUIController().showAlertView("Please check the internet connection and try again."), animated: true, completion: nil)
+        }
+    }
+   
     func cancelButtonClicked(_ sender: AnyObject){
         self.dismiss(animated: true, completion: nil)
-//        bgView.removeFromSuperview()
     }
-//
-//    func configureSearchBar() {
-//        searchBar = UISearchBar()
-//        searchBar.showsCancelButton = false
-//        searchBar.isSearchResultsButtonSelected = true
-//        let textField = searchBar.value(forKey: "searchField") as! UITextField
-//        textField.clearButtonMode = .never
-//        searchBar.delegate = self
-//        searchBar.placeholder = "Name"
-//    }
-//    
+
+    
     //MARK: Search Bar Delegates
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
         var completeString = ""
@@ -184,12 +160,6 @@ class FamilyMemberListViewController: UIViewController, UITableViewDataSource, U
         tempDataFamily = filteredArray
         familyTableView.reloadData()
         return true
-        
-//        myFamilyList.fil
-//        tempDataFamily = (arrMyFamilyList.filtered(using: searchPredicate) as? NSMutableArray)!
-//        print(tempDataFamily)
-//        memberListTableView.reloadData()
-//        return true
     }
 
 //MARK: Custom Methods
