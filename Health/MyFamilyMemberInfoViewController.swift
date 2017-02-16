@@ -11,8 +11,8 @@ import MobileCoreServices
 
 class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate , UITableViewDataSource , UIGestureRecognizerDelegate ,serverTaskComplete , UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     //MARK: VariableDeclaration
-    var maleImageView: UIImageView = UIImageView()
-    var femaleImageView: UIImageView = UIImageView()
+//    var maleImageView: UIImageView = UIImageView()
+//    var femaleImageView: UIImageView = UIImageView()
     var btnMale: UIButton = UIButton()
     var btnFemale: UIButton = UIButton()
     var familyMemberDetails : MyFamilyInfo = MyFamilyInfo()
@@ -67,16 +67,19 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     func createALayout()  {
         var yPos = CGFloat()
         
-        yPos = 10
-        let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+        yPos = 20
+//        TPKeyboardAvoidingScrollView(f)
+        let scrollView = TPKeyboardAvoidingScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 40))
         self.view.addSubview(scrollView)
         
-        let imageSize = self.view.frame.width/5 // for daynamic height & width 
+        let imageSize = self.view.frame.height/6 // for daynamic height & width
         
          userImageView = BaseUIController().AImageViewFrame(CGRect(x: (self.view.frame.width/2 - imageSize/2), y:yPos , width: imageSize ,height: imageSize), withImageName: "avatar1.png")as! UIImageView
         userImageView.layer.cornerRadius = userImageView.frame.width/2
         userImageView.layer.masksToBounds = true
         userImageView.isUserInteractionEnabled = true
+        userImageView.layer.borderWidth = 1
+        userImageView.layer.borderColor = KRED_COLOR.cgColor
         scrollView.addSubview(userImageView)
         
         let tappedOnImage = UITapGestureRecognizer.init(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnUserImageView(_:)))
@@ -86,49 +89,55 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         yPos += imageSize + 20
         
         for i in 0..<5 {
-            let textField = BaseUIController().ATextFiedlFrame(CGRect(x: 10, y: yPos, width:self.view.frame.width - 20 , height: 35 ), withPlaceHolder:arrTextPlaceHolder.object(at: i) as! String)as! UITextField
+            let textField = BaseUIController().ATextFiedlFrame(CGRect(x: 15, y: yPos, width:self.view.frame.width - 30 , height: 40 ), withPlaceHolder:arrTextPlaceHolder.object(at: i) as! String)as! UITextField
             textField.tag = 100 + i
             textField.delegate = self
-            textField.font = UIFont().mediumFont
+            textField.font = KROBOTO_Regular_17
             textField.textAlignment = .left
-            textField.borderStyle = .roundedRect
-           // textField.backgroundColor = UIColor .init(red: (230.0/255.0), green: (231.0/255.0), blue: (232.0/255.0), alpha: 1)
+           textField.borderStyle = .none
+            textField.textColor = UIColor.darkGray
             scrollView.addSubview(textField)
             print(i)
-            yPos += 50
+            let lblLine = UILabel.init(frame: CGRect(x: 15, y: textField.frame.origin.y + 37, width: self.view.frame.width - 30, height: 1))
+            lblLine.backgroundColor = KRED_COLOR
+            lblLine.textColor = UIColor.clear
+                scrollView.addSubview(lblLine)
+            
+            
+            
+            yPos += 40 + 20
+            
         }
         
-        let lblGender:UILabel = BaseUIController().ALabelFrame(CGRect(x: 10 , y: yPos, width: 100, height: 21), withString: "Gender :")as! UILabel
+        let lblGender:UILabel = BaseUIController().ALabelFrame(CGRect(x: 15 , y: yPos, width: 100, height: 21), withString: "Gender :")as! UILabel
+        lblGender.font = KROBOTO_Regular_17
+        lblGender.textColor = UIColor.darkGray
         scrollView.addSubview(lblGender)
+        yPos += 40
         
-        btnMale = BaseUIController().AButtonFrame(CGRect (x: 80
-            , y: yPos, width: 80, height: 25), withButtonTital: "Male")as! UIButton
-        btnMale.titleLabel?.font = UIFont().mediumFont
-        btnMale.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnMaleOnClick(_:)), for: .touchUpInside)
+        btnMale = BaseUIController().AButtonFrame(CGRect (x: (self.view.frame.width - 150)/2
+            , y: yPos, width: 60, height: 60), withButtonTital: "")as! UIButton
+        btnMale.addTarget(self, action: #selector(self.btnMaleOnClick(_:)), for: .touchUpInside)
+        btnMale.setImage(#imageLiteral(resourceName: "male_selected"), for: .normal)
         scrollView.addSubview(btnMale)
-        maleImageView = BaseUIController().AImageViewFrame(CGRect (x: 0 , y: 5 , width: 15 , height: 15), withImageName: "")as! UIImageView
-        maleImageView.image = UIImage(named: "selectedradio_icon")
         btnMale.isSelected = true
         selectedGender = "M"
-        btnMale.addSubview(maleImageView)
-        
-        btnFemale = BaseUIController().AButtonFrame(CGRect (x: btnMale.frame.origin.x+90 , y: yPos, width: 90, height: 25), withButtonTital: "Female")as! UIButton
+    
+        btnFemale = BaseUIController().AButtonFrame(CGRect (x: btnMale.frame.origin.x+90 , y: yPos, width: 60, height: 60), withButtonTital: "Female")as! UIButton
+        btnFemale.setImage(#imageLiteral(resourceName: "female_nonselected"), for: .normal)
         btnFemale.titleLabel?.font = UIFont().mediumFont
-        btnFemale.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnFeMaleOnClick(_:)), for: .touchUpInside)
+        btnFemale.addTarget(self, action: #selector(self.btnFeMaleOnClick(_:)), for: .touchUpInside)
         scrollView.addSubview(btnFemale)
-        femaleImageView = BaseUIController().AImageViewFrame(CGRect (x: 0 , y: 5 , width: 15 , height: 15), withImageName: "")as! UIImageView
-        femaleImageView.image = UIImage(named: "nonselectedradio_icon")
-        btnFemale.addSubview(femaleImageView)
-        yPos += 25 + 20 ;
+        yPos += 30 + 20 ;
         
-        btnUpdate = BaseUIController().AButtonFrame(CGRect(x: 10 , y: yPos ,width: self.view.frame.width - 20 , height: 30), withButtonTital: "ADD MEMBER")as! UIButton
-        btnUpdate.backgroundColor = UIColor.red
-        btnUpdate.titleLabel?.font = UIFont().mediumFont
+        btnUpdate = BaseUIController().AButtonFrame(CGRect(x: 0 , y: self.view.frame.height - 40 ,width: self.view.frame.width , height: 40), withButtonTital: "ADD MEMBER")as! UIButton
+        btnUpdate.backgroundColor = KRED_COLOR
+        btnUpdate.titleLabel?.font = KROBOTO_Light_18
         btnUpdate.setTitleColor(UIColor.white, for: UIControlState())
         btnUpdate.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnUpdateOnClick), for: .touchUpInside)
-        scrollView.addSubview(btnUpdate)
+        self.view.addSubview(btnUpdate)
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width , height: self.view.frame.height + 100)
+        scrollView.contentSize = CGSize(width: self.view.frame.width , height: yPos + 55 )
         
         // set tag of TextField 
         
@@ -153,7 +162,9 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
             
             if familyMemberDetails.memberId == loginId   && familyMemberDetails.memberRelation == "You" {
                 txtMobileNo.isUserInteractionEnabled = false
+                txtMobileNo.textColor = KDISABLE_TEXTCOLOR
                 txtRelation.isUserInteractionEnabled = false
+                txtRelation.textColor = KDISABLE_TEXTCOLOR
             }else if(familyMemberDetails.memberActiveStatus == "1"){
                 txtName.isUserInteractionEnabled = false
                 txtDateOfBirth.isUserInteractionEnabled = false
@@ -162,19 +173,26 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
                 txtRelation.isUserInteractionEnabled = false
                 btnMale.isUserInteractionEnabled = false
                 btnFemale.isUserInteractionEnabled = false
+                txtName.textColor = KDISABLE_TEXTCOLOR
+                txtDateOfBirth.textColor = KDISABLE_TEXTCOLOR
+                txtMobileNo.textColor = KDISABLE_TEXTCOLOR
+                txtEmail.textColor = KDISABLE_TEXTCOLOR
+                txtRelation.textColor = KDISABLE_TEXTCOLOR
+
             }
             
             // set male or female
             if familyMemberDetails.memberGender == "F" {
-                femaleImageView.image = UIImage(named: "selectedradio_icon")
+                btnFemale.setImage(#imageLiteral(resourceName: "female_selected"), for: .normal)
                 btnFemale.isSelected = true
                 selectedGender = "F"
-                maleImageView.image = UIImage(named: "nonselectedradio_icon")
+                btnMale.setImage(#imageLiteral(resourceName: "male_nonselected"), for: .normal)
             }else{
-                maleImageView.image = UIImage(named: "selectedradio_icon")
+                
+                btnMale.setImage(#imageLiteral(resourceName: "male_selected"), for: .normal)
                 btnMale.isSelected = true
                 selectedGender = "M"
-                femaleImageView.image = UIImage(named: "nonselectedradio_icon")
+                btnFemale.setImage(#imageLiteral(resourceName: "female_nonselected"), for: .normal)
             }
             
             let imageString = familyMemberDetails.memberPhoto
@@ -479,8 +497,8 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     //MARK: - btnOnclickMethod
     func btnMaleOnClick(_ button: UIButton)  {
         if btnMale.isSelected  == false {
-            maleImageView.image = UIImage(named: "selectedradio_icon")
-            femaleImageView.image = UIImage(named: "nonselectedradio_icon")
+            btnMale.setImage(#imageLiteral(resourceName: "male_selected"), for: .normal)
+            btnFemale.setImage(#imageLiteral(resourceName: "female_nonselected"), for: .normal)
             btnFemale.isSelected = false
           
         }else{
@@ -490,8 +508,10 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
      }
     func btnFeMaleOnClick(_ button: UIButton){
         if button.isSelected == false {
-            femaleImageView.image = UIImage(named: "selectedradio_icon")
-            maleImageView.image = UIImage(named: "nonselectedradio_icon")
+
+            btnFemale.setImage(#imageLiteral(resourceName: "female_selected"), for: .normal)
+            btnMale.setImage(#imageLiteral(resourceName: "male_nonselected"), for: .normal)
+
             btnMale.isSelected = false
         }else{
              btnMale.isSelected = false
@@ -793,19 +813,25 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
        // txtRelation.text = arrExistigUserDetails[0].valueForKey("relation")as? String
         // set male or female
         if (arrExistigUserDetails[0] as AnyObject).value(forKey: "gender")as? String == "F" {
-            femaleImageView.image = UIImage(named: "selectedradio_icon")
+          //  femaleImageView.image = UIImage(named: "selectedradio_icon")
+            btnFemale.setImage(UIImage(named: "selectedradio_icon"), for: .normal)
             btnFemale.isSelected = true
             selectedGender = "F"
-            maleImageView.image = UIImage(named: "nonselectedradio_icon")
+         
+            btnMale.setImage(#imageLiteral(resourceName: "male_nonselected"), for: .normal)
         }else{
-            maleImageView.image = UIImage(named: "selectedradio_icon")
+           // maleImageView.image = UIImage(named: "selectedradio_icon")
+            btnMale.setImage(UIImage(named:"selectedradio_icon"), for: .normal)
             btnMale.isSelected = true
             selectedGender = "M"
-            femaleImageView.image = UIImage(named: "nonselectedradio_icon")
+            btnFemale.setImage(#imageLiteral(resourceName: "female_nonselected"), for: .normal)
         }
         txtName.isUserInteractionEnabled = false
         txtDateOfBirth.isUserInteractionEnabled = false
         txtEmail.isUserInteractionEnabled = false
+        txtEmail.textColor = KDISABLE_TEXTCOLOR
+        txtName.textColor = KDISABLE_TEXTCOLOR
+        txtDateOfBirth.textColor = KDISABLE_TEXTCOLOR
     }
     
     //MARK: - ImageResizing

@@ -82,15 +82,22 @@ let KCANCEL = "Cancel"
 
 
 let KRED_COLOR = UIColor(red: 196/255.0, green: 35/255.0, blue: 24/255.0, alpha: 1)
+let KDISABLE_TEXTCOLOR = UIColor.lightGray
 
 //MARK: FontNames
-
+let KROBOTO_Light_14 = UIFont(name: "Roboto-Light", size: 14.0)
+let KROBOTO_Light_15 = UIFont(name: "Roboto-Light", size: 15.0)
+let KROBOTO_Light_16 = UIFont(name: "Roboto-Light", size: 16.0)
 let KROBOTO_Light_17 = UIFont(name: "Roboto-Light", size: 17.0)
 let KROBOTO_Light_18 = UIFont(name: "Roboto-Light", size: 18.0)
 let KROBOTO_Light_19 = UIFont(name: "Roboto-Light", size: 19.0)
 let KROBOTO_Light_20 = UIFont(name: "Roboto-Light", size: 20.0)
 let KROBOTO_Light_21 = UIFont(name: "Roboto-Light", size: 21.0)
 
+let KROBOTO_Regular_14 = UIFont(name: "Roboto-Regular", size: 14.0)
+let KROBOTO_Regular_15 = UIFont(name: "Roboto-Regular", size: 15.0)
+let KROBOTO_Regular_16 = UIFont(name: "Roboto-Regular", size: 16.0)
+let KROBOTO_Regular_17 = UIFont(name: "Roboto-Regular", size: 17.0)
 let KROBOTO_Regular_18 = UIFont(name: "Roboto-Regular", size: 18.0)
 let KROBOTO_Regular_19 = UIFont(name: "Roboto-Regular", size: 19.0)
 let KROBOTO_Regular_20 = UIFont(name: "Roboto-Regular", size: 20.0)

@@ -24,6 +24,7 @@
 #import "GAILogger.h"
 #import "GAITrackedViewController.h"
 #import "GAITracker.h"
+#import "TPKeyboardAvoidingScrollView.h"
 //#import <Google/Analytics.h>
 
 
