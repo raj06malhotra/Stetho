@@ -332,26 +332,41 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     
     func createApopUp() {
         
-        bgView = UIView.init(frame: UIScreen.main.bounds)
-        bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(MyFamilyViewController.tapOnBackGroundView(_:)))
-        bgView.addGestureRecognizer(tapGesture)
-        self.view.addSubview(bgView)
+//        bgView = UIView.init(frame: UIScreen.main.bounds)
+//        bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(MyFamilyViewController.tapOnBackGroundView(_:)))
+//        bgView.addGestureRecognizer(tapGesture)
+//        self.view.addSubview(bgView)
+//        
+//        let popUpView = UIView(frame: CGRect(x: 20, y: self.view.center.y ,width: self.view.frame.width-40 ,height: 80))
+//        popUpView.layer.cornerRadius = 4
+//        popUpView.backgroundColor = UIColor.white
+//        bgView .addSubview(popUpView)
+//        
+//        let btnAddNewMember = BaseUIController().AButtonFrame(CGRect(x: 10, y: 0, width: popUpView.frame.width-20, height: 35 ), withButtonTital: "Add New Member")as! UIButton
+//        btnAddNewMember.addTarget(self, action: #selector(MyFamilyViewController.btnAddNewMemberOnClick), for: .touchUpInside)
+//        btnAddNewMember.titleLabel?.font = UIFont().mediumFont
+//        popUpView.addSubview(btnAddNewMember)
+//        
+//        let btnChooseFromContacts = BaseUIController().AButtonFrame(CGRect(x: 10, y: 40, width: popUpView.frame.width-20, height: 25 ), withButtonTital: "Choose from Contacts") as! UIButton
+//        btnChooseFromContacts.addTarget(self, action: #selector(self.btnChooseFromContactsOnclick), for: .touchUpInside)
+//        btnChooseFromContacts.titleLabel!.font = UIFont().mediumFont
+//        popUpView.addSubview(btnChooseFromContacts)
+        let alertSheet = UIAlertController(title: KADDMEMBER, message: nil, preferredStyle: .actionSheet)
+        alertSheet.view.tintColor = KRED_COLOR
         
-        let popUpView = UIView(frame: CGRect(x: 20, y: self.view.center.y ,width: self.view.frame.width-40 ,height: 80))
-        popUpView.layer.cornerRadius = 4
-        popUpView.backgroundColor = UIColor.white
-        bgView .addSubview(popUpView)
+    
         
-        let btnAddNewMember = BaseUIController().AButtonFrame(CGRect(x: 10, y: 0, width: popUpView.frame.width-20, height: 35 ), withButtonTital: "Add New Member")as! UIButton
-        btnAddNewMember.addTarget(self, action: #selector(MyFamilyViewController.btnAddNewMemberOnClick), for: .touchUpInside)
-        btnAddNewMember.titleLabel?.font = UIFont().mediumFont
-        popUpView.addSubview(btnAddNewMember)
-        
-        let btnChooseFromContacts = BaseUIController().AButtonFrame(CGRect(x: 10, y: 40, width: popUpView.frame.width-20, height: 25 ), withButtonTital: "Choose from Contacts") as! UIButton
-        btnChooseFromContacts.addTarget(self, action: #selector(self.btnChooseFromContactsOnclick), for: .touchUpInside)
-        btnChooseFromContacts.titleLabel!.font = UIFont().mediumFont
-        popUpView.addSubview(btnChooseFromContacts)
+        alertSheet.addAction(UIAlertAction(title: KADDNEWMEMBER, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnAddNewMemberOnClick()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KCHOOSEFROMCONTACTS, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnChooseFromContactsOnclick()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KCANCEL, style: .cancel, handler: { (alert: UIAlertAction!) in
+            alertSheet.dismiss(animated: true, completion: nil)
+        }))
+        present(alertSheet, animated: true, completion: nil)
     }
     func openInvitePopup() {
         shadowBackGround.removeFromSuperview()
