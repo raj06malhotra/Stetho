@@ -315,8 +315,10 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
         self.view.addSubview(shadowBackGround)
         var xPos:CGFloat = 10
         var yPos:CGFloat = 10
-        
-        let popUpView = UIView(frame: CGRect(x: 20, y: self.view.center.y - 75 ,width: self.view.frame.width-40 ,height: 150))
+        let controller = UIAlertController(title: "\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+
+        let popUpView = UIView(frame: CGRect(x: 0, y: 0 ,width: controller.view.bounds.size.width-20 ,height: 160))
+
         popUpView.layer.cornerRadius = 4
         popUpView.backgroundColor = UIColor.white
         shadowBackGround .addSubview(popUpView)
@@ -338,12 +340,19 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
             btnAvatarImage.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnAvatarImageOnClick(_:)), for: .touchUpInside)
             
         }
+        controller.view.addSubview(popUpView)
+        controller.view.bringSubview(toFront: popUpView)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(alert: UIAlertAction!) in controller.dismiss(animated: true, completion: nil)})
+        controller.addAction(cancelAction)
+
+
+        self.present(controller, animated: true, completion: nil)
         
         // add Tapgestue  on shadowBackGround
-        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
-        tapped.numberOfTapsRequired = 1
-        tapped.delegate = self
-        shadowBackGround.addGestureRecognizer(tapped)
+//        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
+//        tapped.numberOfTapsRequired = 1
+//        tapped.delegate = self
+//        shadowBackGround.addGestureRecognizer(tapped)
         
     }
 
