@@ -80,6 +80,26 @@ let KPHOTO_AVATAR = "Change From Avatar"
 let KCANCEL = "Cancel"
 let KADDNEWMEMBER = "Add New Member"
 let KCHOOSEFROMCONTACTS = "Choose From Contacts"
+// famliy relation 
+
+let SELECTRELATION = "Select Relation"
+
+//let KYOU = "You"
+//let KSPOUSE = "Spouse"
+//let KFATHER = "Father"
+//let KMOTHER = "Mother"
+//let KSIBLING = "Sibling"
+//let KCHILD = "Child"
+//let KOTHERS = "Others"
+
+//share 
+let KSHARE = "SHARE"
+let KSHARE_LINK = "Share Link"
+let KSHARE_PDF = "Share PDF"
+
+
+
+
 
 
 

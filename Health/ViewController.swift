@@ -358,7 +358,9 @@ extension UIViewController: UITextFieldDelegate{
        // toolBar.backgroundColor = UIColor .redColor()
         textField.delegate = self
         textField.inputAccessoryView = toolBar
+
     }
+    
     func donePressed(){
       //  view.endEditing(true)
          view.window!.endEditing(true)

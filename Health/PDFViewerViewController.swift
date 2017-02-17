@@ -207,21 +207,21 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
          var arrLabelName = NSArray()
         
         if recordObject.recordType == "R" {
-            arrLabelName = ["Lab:" , "Test:", "Date:"]
+            arrLabelName = ["Lab" , "Test", "Date"]
         }else if(recordObject.recordType == "P"){
             // Prescription
-           arrLabelName = ["Doctor:" , "Disease:", "Date:"]
+           arrLabelName = ["Doctor" , "Disease", "Date"]
         }else if(recordObject.recordType == "I"){
             //Invoice
-            arrLabelName = ["Disease:", "Date:"]
+            arrLabelName = ["Disease", "Date"]
         }else{
             //Diet Charts
-           arrLabelName = ["Dietitian:", "Date:"]
+           arrLabelName = ["Dietitian", "Date"]
         }
         showEditView(arrLabelName)
     }
     
-    func btnShareLinkOnClick(_ button : UIButton)  {
+    func btnShareLinkOnClick()  {
         var pdfLink = ""
         pdfLink = pdfLink + String(format: "%@", recordObject.recordLink)
         if recordObject.recordLink == "" {
@@ -233,7 +233,7 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
         let activityViewController = HomeTabSwipeViewController().shareTextImageAndURL(pdfLink, sharingImage: nil, sharingURL: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
-    func btnSharePdfOnClikc(_ button : UIButton)  {
+    func btnSharePdfOnClikc()  {
         actionButton.toggleMenu()
         self.view.window!.viewWithTag(405)?.isHidden = true
         self.view.window!.viewWithTag(405)?.removeFromSuperview()
@@ -332,18 +332,23 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
     func keyboardWillShow(_ notification:Notification){
         
         if(recordObject.recordType == "I" || recordObject.recordType == "D"){
-             editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2)-160, width: self.view.bounds.width-20, height: 160)
+          //   editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2 - ((editPopupView.frame.height/2) + 50)), width: self.view.bounds.width-20, height: editPopupView.frame.height)
+             editPopupView.frame = CGRect(x: 10, y: (UIScreen.main.bounds.height/2 - ((editPopupView.frame.height/2) + 50)), width: UIScreen.main.bounds.width-20, height: editPopupView.frame.height)
+            
         }else{
-            editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2)-180, width: self.view.bounds.width-20, height: 200)
+           // editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2 - ((editPopupView.frame.height/2) + 50)), width: self.view.bounds.width-20, height: editPopupView.frame.height)
+            editPopupView.frame = CGRect(x: 10, y: (UIScreen.main.bounds.height/2 - ((editPopupView.frame.height/2) + 50)), width: UIScreen.main.bounds.width-20, height: editPopupView.frame.height)
         }
        
     }
     
     func keyboardWillHide(_ notification:Notification){
        if(recordObject.recordType == "I" || recordObject.recordType == "D"){
-        editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2) - 80, width: self.view.bounds.width-20, height: 160.00)
+       // editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2) - (editPopupView.frame.height/2 - 32), width: self.view.bounds.width-20, height: editPopupView.frame.height)
+         editPopupView.frame = CGRect(x: 10, y: (UIScreen.main.bounds.height/2 - (editPopupView.frame.height/2 - 32)), width: UIScreen.main.bounds.width - 20 , height:  editPopupView.frame.height)
        }else{
-        editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2) - 100, width: self.view.bounds.width-20, height: 200.00)
+      //  editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2) - (editPopupView.frame.height/2 - 32), width: self.view.bounds.width-20, height: editPopupView.frame.height)
+         editPopupView.frame = CGRect(x: 10, y: (UIScreen.main.bounds.height/2 - (editPopupView.frame.height/2 - 32)), width: UIScreen.main.bounds.width - 20 , height: editPopupView.frame.height)
         }
         
         
@@ -375,34 +380,39 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
         self.view.addSubview(mainBGView)
         
     
-     editPopupView = UIView(frame: CGRect(x: 10, y: (self.view.frame.height/2)-80, width: self.view.bounds.width-20, height: 200.00));
+     editPopupView = UIView(frame: CGRect(x: 10, y: (self.view.frame.height/2)-98, width: self.view.bounds.width-20, height: 260.00));
      editPopupView.backgroundColor = UIColor.white
      editPopupView.layer.cornerRadius = 2
      mainBGView.addSubview(editPopupView)
         if recordObject.recordType == "I" || recordObject.recordType == "D"{
-            editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2)-60, width: self.view.bounds.width-20, height: 160.00)
+            editPopupView.frame = CGRect(x: 10, y: (self.view.frame.height/2)-68, width: self.view.bounds.width-20, height: 200.00)
         }
-    let xPos : CGFloat = 5.0
-    var yPos : CGFloat = 10.0
+    let xPos : CGFloat = 15.0
+    var yPos : CGFloat = 20.0
     for i in (0..<totalTextField.count) {
-    let label = BaseUIController().ALabelFrame(CGRect(x: xPos , y: yPos , width: 60, height: 30), withString: totalTextField[i] as! String)as! UILabel
-        label.font = UIFont().regularMediumFont
-    editPopupView.addSubview(label)
     
-    let textField = BaseUIController().ATextFiedlFrame(CGRect(x: xPos + 70 , y: yPos , width: editPopupView.frame.width - (xPos + 80) , height: 30 ), withPlaceHolder: "")as! UITextField
-    textField.borderStyle = .roundedRect
+    let placeHolder = "Enter " + String(totalTextField[i] as! String) + " Name"
+        
+    let textField = BaseUIController().ATextFiedlFrame(CGRect(x: xPos , y: yPos , width: editPopupView.frame.width - (xPos * 2) , height: 40 ), withPlaceHolder: placeHolder)as! UITextField
+    textField.borderStyle = .none
+    textField.textColor = UIColor.darkGray
+    textField.font = KROBOTO_Light_18
     textField.textAlignment = .left
     textField.delegate = self
     textField.tag = 200 + i
     editPopupView.addSubview(textField)
-    yPos += 50
+        
+    let labelLine = BaseUIController().ALabelFrame(CGRect(x: xPos , y: yPos + 38 , width: editPopupView.frame.width - (xPos * 2), height: 1), withString:totalTextField[i] as! String)as! UILabel
+    labelLine.backgroundColor = KRED_COLOR
+        editPopupView.addSubview(labelLine)
+    yPos += 40 + 20
     }
     
-    let btnSave = BaseUIController().AButtonFrame(CGRect(x: 5, y: editPopupView.frame.height - 35 ,width:editPopupView.frame.width - 10 , height: 30), withButtonTital: "SAVE RECORD DETAILS")as! UIButton
-    btnSave.layer.borderWidth = 2.0
+    let btnSave = BaseUIController().AButtonFrame(CGRect(x: 0, y: editPopupView.frame.height - 40 ,width:editPopupView.frame.width  , height: 40), withButtonTital: "SAVE RECORD DETAILS")as! UIButton
     btnSave.addTarget(self, action: #selector(self.btnSaveOnClick(_:)), for: .touchUpInside)
-    btnSave.titleLabel?.font = UIFont().regularMediumFont
-    btnSave.layer.borderColor = UIColor.black.cgColor
+    btnSave.titleLabel?.font = KROBOTO_Light_18
+    btnSave.backgroundColor = KRED_COLOR
+    btnSave.setTitleColor(UIColor.white, for: .normal)
     editPopupView.addSubview(btnSave)
         
     
@@ -462,31 +472,48 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
     
     func openPDFPopup()  {
         
-        let  mainBGView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.window!.frame.width, height: self.view.window!.frame.height))
-        mainBGView.tag = 405
-        mainBGView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        self.view.window! .addSubview(mainBGView)
-        pdfPopupView = UIView(frame: CGRect(x: 10, y:(self.view.window!.frame.height/2 - (50)), width: self.view.window!.frame.width - 20, height: 100.00));
-        pdfPopupView.backgroundColor = UIColor.white
-        pdfPopupView.layer.cornerRadius = 2.0
-        mainBGView.addSubview(pdfPopupView)
-        var yPos:CGFloat = 10
+//        let  mainBGView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.window!.frame.width, height: self.view.window!.frame.height))
+//        mainBGView.tag = 405
+//        mainBGView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        self.view.window! .addSubview(mainBGView)
+//        pdfPopupView = UIView(frame: CGRect(x: 10, y:(self.view.window!.frame.height/2 - (50)), width: self.view.window!.frame.width - 20, height: 100.00));
+//        pdfPopupView.backgroundColor = UIColor.white
+//        pdfPopupView.layer.cornerRadius = 2.0
+//        mainBGView.addSubview(pdfPopupView)
+//        var yPos:CGFloat = 10
+//        
+//        let btnShareLink = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: mainBGView.frame.width - 20, height: 35), withButtonTital: "Share link")as! UIButton
+//        btnShareLink.contentHorizontalAlignment = .left
+//        btnShareLink.titleLabel?.font = UIFont().mediumFont
+//        btnShareLink.addTarget(self, action: #selector(self.btnShareLinkOnClick(_:)), for: .touchUpInside)
+//        pdfPopupView.addSubview(btnShareLink)
+//        yPos += 10 + 35
+//        let btnSharePdf = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: mainBGView.frame.width - 20, height: 35), withButtonTital: "Share pdf")as! UIButton
+//        btnSharePdf.contentHorizontalAlignment = .left
+//        btnSharePdf.titleLabel?.font = UIFont().mediumFont
+//        btnSharePdf.addTarget(self, action: #selector(self.btnSharePdfOnClikc(_:)), for: .touchUpInside)
+//        pdfPopupView.addSubview(btnSharePdf)
+//        // add tapgesture on view
+//        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedOnBGView2(_:)))
+//        tapped.numberOfTapsRequired = 1
+//        mainBGView.addGestureRecognizer(tapped)
         
-        let btnShareLink = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: mainBGView.frame.width - 20, height: 35), withButtonTital: "Share link")as! UIButton
-        btnShareLink.contentHorizontalAlignment = .left
-        btnShareLink.titleLabel?.font = UIFont().mediumFont
-        btnShareLink.addTarget(self, action: #selector(self.btnShareLinkOnClick(_:)), for: .touchUpInside)
-        pdfPopupView.addSubview(btnShareLink)
-        yPos += 10 + 35
-        let btnSharePdf = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: mainBGView.frame.width - 20, height: 35), withButtonTital: "Share pdf")as! UIButton
-        btnSharePdf.contentHorizontalAlignment = .left
-        btnSharePdf.titleLabel?.font = UIFont().mediumFont
-        btnSharePdf.addTarget(self, action: #selector(self.btnSharePdfOnClikc(_:)), for: .touchUpInside)
-        pdfPopupView.addSubview(btnSharePdf)
-        // add tapgesture on view
-        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedOnBGView2(_:)))
-        tapped.numberOfTapsRequired = 1
-        mainBGView.addGestureRecognizer(tapped)
+        let alertSheet = UIAlertController(title: KSHARE, message: nil, preferredStyle: .actionSheet)
+        alertSheet.view.tintColor = KRED_COLOR
+        
+        
+        
+        alertSheet.addAction(UIAlertAction(title: KSHARE_LINK, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnShareLinkOnClick()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KSHARE_PDF, style: .default, handler: { (alert: UIAlertAction!) in
+            self.btnSharePdfOnClikc()
+        }))
+        alertSheet.addAction(UIAlertAction(title: KCANCEL, style: .cancel, handler: { (alert: UIAlertAction!) in
+            alertSheet.dismiss(animated: true, completion: nil)
+        }))
+        present(alertSheet, animated: true, completion: nil)
+        
         
     }
 

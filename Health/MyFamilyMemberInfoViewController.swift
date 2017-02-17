@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate , UITableViewDataSource , UIGestureRecognizerDelegate ,serverTaskComplete , UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate , UITableViewDataSource , UIGestureRecognizerDelegate ,serverTaskComplete , UIImagePickerControllerDelegate , UINavigationControllerDelegate , UIPickerViewDelegate , UIPickerViewDataSource{
     //MARK: VariableDeclaration
 //    var maleImageView: UIImageView = UIImageView()
 //    var femaleImageView: UIImageView = UIImageView()
@@ -23,7 +23,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     var txtRelation : UITextField = UITextField()
     var tableView : UITableView = UITableView()
     var inviteTableView : UITableView = UITableView()
-    var arrRelationCategory = NSArray()
+    var arrRelationCategory:[String] = []
     var arrTextPlaceHolder = NSArray()
     var shadowBackGround : UIView = UIView()
     var selectedGender: String = ""
@@ -38,12 +38,14 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     var member_Name = ""
     var dictContactDetails = NSMutableDictionary()
     let datePickerView  : UIDatePicker = UIDatePicker()
+    let relationPickerView : UIPickerView = UIPickerView()
     
     //MARK: - ViewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         arrRelationCategory = ["Spouse" , "Father", "Mother" , "Sibling","Child","Others","You"]
+        
         arrTextPlaceHolder = ["Full Name","Date of Birth","Mobile Number","Email","Select Relation"]
         arrAvatarImage = ["avatar1","avatar2","avatar3","avatar4","avatar5","avatar6"]
         self.createALayout()
@@ -215,29 +217,33 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         OpenDatePicker(txtDateOfBirth)
         addToolBar(txtDateOfBirth)
         addToolBar(txtMobileNo)
+        relationPickerView.delegate = self
+        relationPickerView.dataSource = self
+        txtRelation.inputView = relationPickerView
+        addToolBar(txtRelation)
         
     }
     
     func openRelationPopup() {
-        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
-        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        self.view.addSubview(shadowBackGround)
-        // create A tableView
-        tableView = UITableView(frame:CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(120)),width: (UIScreen.main.bounds.width-20), height: 240))
-        tableView.delegate      =   self
-        tableView.dataSource    =   self
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        tableView.layer.cornerRadius = 4.0
-        tableView.tag = 501
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = UIColor.clear
-        shadowBackGround.addSubview(self.tableView)
-        // add Tapgestue  on shadowBackGround
-        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
-        tapped.numberOfTapsRequired = 1
-        tapped.delegate = self
-        shadowBackGround.addGestureRecognizer(tapped)
+//        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
+//        shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//        self.view.addSubview(shadowBackGround)
+//        // create A tableView
+//        tableView = UITableView(frame:CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(120)),width: (UIScreen.main.bounds.width-20), height: 240))
+//        tableView.delegate      =   self
+//        tableView.dataSource    =   self
+//        tableView.separatorStyle = .none
+//        tableView.isScrollEnabled = false
+//        tableView.layer.cornerRadius = 4.0
+//        tableView.tag = 501
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        tableView.backgroundColor = UIColor.clear
+//        shadowBackGround.addSubview(self.tableView)
+//        // add Tapgestue  on shadowBackGround
+//        let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
+//        tapped.numberOfTapsRequired = 1
+//        tapped.delegate = self
+//        shadowBackGround.addGestureRecognizer(tapped)
     }
     func openInvitePopup() {
         shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
@@ -342,12 +348,9 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if tableView == inviteTableView {
-            return arrExistingUser.count
-        }else{
-             return arrRelationCategory.count
-        }
        
+            return arrExistingUser.count
+            
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -362,25 +365,14 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         cell.textLabel!.font = UIFont().mediumFont
        
         cell.textLabel?.textColor = UIColor (red: (55.0/255.0), green: (54/255.0), blue: (54.0/255.0), alpha: 1)
-        if tableView == inviteTableView {
+       
             cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
-        }else{
-            cell.textLabel?.text = arrRelationCategory[(indexPath as NSIndexPath).row] as? String
-        }
-        
         return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if tableView == inviteTableView {
             self.getUserInfo((arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "ca_id")as! String)
-            
-            
-        }else{
-            txtRelation.text = arrRelationCategory[(indexPath as NSIndexPath).row] as? String
-            
-        }
         shadowBackGround.isHidden = true
         shadowBackGround.removeFromSuperview()
         
@@ -401,15 +393,49 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
         headerView.backgroundColor = UIColor.white
         
-         let lblSelectRelation = BaseUIController().ALabelFrame(CGRect(x: 10 ,y:5 ,width: tableView.frame.width , height: 20), withString: "Select Relation.") as! UILabel
+         let lblSelectRelation = BaseUIController().ALabelFrame(CGRect(x: 10 ,y:5 ,width: tableView.frame.width , height: 20), withString: "Invite Existing Member.") as! UILabel
         lblSelectRelation.font = UIFont().largeFont
         headerView.addSubview(lblSelectRelation)
-        if tableView == inviteTableView {
-            lblSelectRelation.text = "Invite Existing Member."
-        }
         return headerView
     }
+    //MARK: PickerViewDelegate
     
+    // returns the number of 'columns' to display.
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return arrRelationCategory.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+            return arrRelationCategory[row]
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        txtRelation.text = arrRelationCategory[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = arrRelationCategory[row]
+        pickerLabel.font = KROBOTO_Regular_17
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
+    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
+    {
+            return 40;
+        
+    }
+
     //MARK: - GestureRecognizerDelegate
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
        
@@ -432,8 +458,8 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     func textFieldDidBeginEditing(_ textField: UITextField){
         
         if textField == txtRelation {
-            textField .resignFirstResponder()
-            self.openRelationPopup()
+//            textField .resignFirstResponder()
+//            self.openRelationPopup()
            
             
         }

@@ -26,7 +26,7 @@ enum ScrlDirection {
     case ScrollDirectionDown
     case ScrollDirectionUp
 }
-class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPickerDelegate , UITableViewDelegate ,UITableViewDataSource , UIGestureRecognizerDelegate {
+class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPickerDelegate , UITableViewDelegate ,UITableViewDataSource , UIGestureRecognizerDelegate , UIPickerViewDataSource , UIPickerViewDelegate {
     //MARK: - VariableDeclaration
     var total = 0
     fileprivate var activityIndicator : ProgressViewController?
@@ -61,6 +61,8 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     var isComingFromaddReminder = false
     var lblAddMember: UILabel!
     var initialPoint : CGPoint!
+    var relationPickerView = UIPickerView()
+    
     
     
   //  MARK: - viewLifeCycleMethod
@@ -410,23 +412,55 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
         shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(shadowBackGround)
-        // create A tableView
-        tableView = UITableView(frame:CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(120)),width: (UIScreen.main.bounds.width-20), height: 240))
-        tableView.delegate      =   self
-        tableView.dataSource    =   self
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        tableView.layer.cornerRadius = 4.0
-        tableView.tag = 501
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = UIColor.clear
-        shadowBackGround.addSubview(self.tableView)
+//        // create A tableView
+//        tableView = UITableView(frame:CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(120)),width: (UIScreen.main.bounds.width-20), height: 240))
+//        tableView.delegate      =   self
+//        tableView.dataSource    =   self
+//        tableView.separatorStyle = .none
+//        tableView.isScrollEnabled = false
+//        tableView.layer.cornerRadius = 4.0
+//        tableView.tag = 501
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        tableView.backgroundColor = UIColor.clear
+//        shadowBackGround.addSubview(self.tableView)
         // add Tapgestue  on shadowBackGround
         let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedOnShadowBG(_:)))
         tapped.numberOfTapsRequired = 1
         tapped.delegate = self
         shadowBackGround.addGestureRecognizer(tapped)
+        
+        relationPickerView = UIPickerView(frame: CGRect(x: 0 , y: self.view.frame.height - 216 , width: self.view.frame.width, height: 216 ))
+        relationPickerView.showsSelectionIndicator = true
+        relationPickerView.selectRow(0, inComponent: 0, animated: true)
+        //relationPickerView.selectRow(timeIndex, inComponent: 1, animated: true)
+        relationPickerView.dataSource = self
+        relationPickerView.backgroundColor = UIColor(red: 210.0/255.0, green: 213.0/255.0, blue: 219.0/255.0, alpha: 1)
+        relationPickerView.delegate = self
+        shadowBackGround.addSubview(relationPickerView)
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.height - 256, width: self.view.frame.width, height: 40))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.tintColor = UIColor.red
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.toolBarDoneOnClick))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.toolBarCancelOnClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        shadowBackGround.addSubview(toolBar)
+
     }
+    
+    func toolBarDoneOnClick(){
+         self.UpdateMyFamilyRelation(relation)
+        shadowBackGround.removeFromSuperview()
+        
+    }
+    func toolBarCancelOnClick(){
+        shadowBackGround.removeFromSuperview()
+    }
+
     
     func openOTPView() {
         shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
@@ -468,6 +502,54 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         tapped.delegate = self
         shadowBackGround.addGestureRecognizer(tapped)
     }
+    
+    //MARK: PickerViewDelegate
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return arrRelationCategory.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return arrRelationCategory[row]
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+//        txtRelation.text = arrRelationCategory[row]
+        
+        if selectedMemberId == "" {
+            relation = arrRelationCategory[row]
+            self.showAlertController("add")
+        }else{
+            relation = arrRelationCategory[row]
+            //self.UpdateMyFamilyRelation(relation)
+        }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = arrRelationCategory[row]
+        pickerLabel.font = KROBOTO_Regular_17
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
+    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
+    {
+        return 40;
+        
+    }
+
    
     //MARK: - TableViewDelegate
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -500,7 +582,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
             cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
         }else{
             
-            let _ = cell.textLabel?.text = arrRelationCategory[(indexPath as NSIndexPath).row] as? String
+            let _ = cell.textLabel?.text = arrRelationCategory[(indexPath as NSIndexPath).row] 
         }
         
         return cell;

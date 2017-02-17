@@ -141,7 +141,8 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         let myFamilyObject = DrawerViewController().loadMyProfile()
         selectedMemberName = myFamilyObject.memberName
         
-        arrPakageData = UserDefaults.standard.value(forKey: "allpackages") as! NSMutableArray
+        arrPakageData = NSMutableArray(array: UserDefaults.standard.value(forKey: "allpackages") as! NSArray)
+        //UserDefaults.standard.value(forKey: "allpackages") as! NSMutableArray
         
         
         // add back butotn on Navigaiton

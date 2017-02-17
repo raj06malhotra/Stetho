@@ -138,9 +138,12 @@ class Cancel_RecheduleViewController: UIViewController , UIPickerViewDelegate , 
         }
         
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
-        pickerLabel.font = UIFont().mediumFont // In this use your custom font
+        pickerLabel.font = KROBOTO_Light_16 // In this use your custom font
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
+    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 40
     }
 
     func btnReschedule(_ button : UIButton)  {
@@ -158,22 +161,42 @@ class Cancel_RecheduleViewController: UIViewController , UIPickerViewDelegate , 
         bgView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(bgView)
-        timePickerView = UIPickerView(frame: CGRect(x: 20 , y: self.view.center.y - 80 , width: self.view.frame.width - 40, height: 160 ))
-        timePickerView.backgroundColor = UIColor.white
+        timePickerView = UIPickerView(frame: CGRect(x: 0 , y: self.view.frame.height - 216 , width: self.view.frame.width, height: 216 ))
+        timePickerView.backgroundColor = UIColor(red: 210.0/255.0, green: 213.0/255.0, blue: 219.0/255.0, alpha: 1)
+        timePickerView.showsSelectionIndicator = true
+         timePickerView.selectRow(0, inComponent: 0, animated: true)
+//        let dayIndex = Int(arrDay.index(of: pickupDay)!)
+//        let timeIndex = Int(arrTime.index(of: pickupTime)!)
+//        timePickerView.selectRow(0, inComponent: 0, animated: true)
+//        timePickerView.selectRow(0, inComponent: 1, animated: true)
         timePickerView.dataSource = self
         timePickerView.delegate = self
         bgView.addSubview(timePickerView)
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.height - 256, width: self.view.frame.width, height: 40))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.tintColor = UIColor.red
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.toolBarDoneOnClick))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.toolBarCancelOnClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        bgView.addSubview(toolBar)
+        
+
         
 //        let okView = UIView.init(frame: CGRectMake(20, (timePickerView.frame.height + timePickerView.frame.origin.y), timePickerView.frame.width, 25))
 //        okView.backgroundColor = UIColor.blueColor()
 //        bgView.addSubview(okView)
         
-        let btnOk = BaseUIController().AButtonFrame(CGRect(x: 20 , y: (timePickerView.frame.height + timePickerView.frame.origin.y), width: timePickerView.frame.width, height: 60), withButtonTital: "Ok")as! UIButton
-        btnOk.titleLabel?.font = UIFont().regularMediumFont
-        btnOk.titleEdgeInsets = UIEdgeInsetsMake(0, btnOk.frame.width - 100, 0, 0)
-        btnOk.backgroundColor = UIColor.white
-        btnOk.addTarget(self, action: #selector(Cancel_RecheduleViewController.btnOkOnclick(_:)), for: .touchUpInside)
-        bgView.addSubview(btnOk)
+//        let btnOk = BaseUIController().AButtonFrame(CGRect(x: 20 , y: (timePickerView.frame.height + timePickerView.frame.origin.y), width: timePickerView.frame.width, height: 60), withButtonTital: "Ok")as! UIButton
+//        btnOk.titleLabel?.font = UIFont().regularMediumFont
+//        btnOk.titleEdgeInsets = UIEdgeInsetsMake(0, btnOk.frame.width - 100, 0, 0)
+//        btnOk.backgroundColor = UIColor.white
+//        btnOk.addTarget(self, action: #selector(Cancel_RecheduleViewController.btnOkOnclick(_:)), for: .touchUpInside)
+//        bgView.addSubview(btnOk)
         
         
         
@@ -183,9 +206,16 @@ class Cancel_RecheduleViewController: UIViewController , UIPickerViewDelegate , 
         
     }
     func tappedOnBGView(_ sender: UITapGestureRecognizer)  {
-        
         bgView.isHidden = true
         bgView.removeFromSuperview()
+    }
+    
+    func toolBarDoneOnClick(){
+        bgView.removeFromSuperview()
+        self.RescheduleOrder()
+    }
+    func toolBarCancelOnClick(){
+       bgView.removeFromSuperview()
     }
     
     func btnOkOnclick(_ button : UIButton)  {
