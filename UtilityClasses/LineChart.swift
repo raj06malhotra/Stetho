@@ -290,8 +290,8 @@ open class LineChart: UIView {
             } else {
                 dot = dotsData[index]
             }
-            dot.dotInnerColor = UIColor.red
-            dot.backgroundColor =  UIColor.red.cgColor //Helpers.lightenUIColor(colors[lineIndex]).CGColor
+            dot.dotInnerColor = KRED_COLOR
+            dot.backgroundColor =  KRED_COLOR.cgColor //Helpers.lightenUIColor(colors[lineIndex]).CGColor
         }
     }
     
@@ -348,7 +348,7 @@ open class LineChart: UIView {
                 
                 let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 15, y: 2, width: 200, height: 15), withString: "")as! UILabel
                 lblHeading.text = test_Name
-                lblHeading.textColor = UIColor.red
+                lblHeading.textColor = KRED_COLOR
                 lblHeading.font = UIFont.boldSystemFont(ofSize: 12)
                 self.addSubview(lblHeading)
             }

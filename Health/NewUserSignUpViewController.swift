@@ -77,7 +77,7 @@ class NewUserSignUpViewController: UIViewController , XMLParserDelegate ,serverT
         yPos += 35 + 20
         
         let btnProcess = BaseUIController().AButtonFrame(CGRect(x: 20, y: yPos , width: self.view.frame.width - 40 , height: 35), withButtonTital: "PROCEED")as! UIButton
-        btnProcess.backgroundColor = UIColor.red
+        btnProcess.backgroundColor = KRED_COLOR
         btnProcess.setTitleColor(UIColor.white, for: UIControlState())
        
         btnProcess.addTarget(self, action: #selector(NewUserSignUpViewController().btnProcessOnClick), for: .touchUpInside)

@@ -51,7 +51,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         }
         
         self.createALayout()
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.title = "ADD REMINDER"
         
         // add barbutton on navigation bar 
@@ -191,7 +191,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         yPos += 100 + 10
         let btnChangeTiming = BaseUIController().AButtonFrame(CGRect(x: xPos, y: yPos, width: width, height: 30), withButtonTital: "Change timing for reminder >")as! UIButton
         btnChangeTiming.addTarget(self, action: #selector(AddReminderViewController.btnChangeTimingForReminder(_:)), for: .touchUpInside)
-        btnChangeTiming.setTitleColor(UIColor.red, for: UIControlState())
+        btnChangeTiming.setTitleColor(KRED_COLOR, for: UIControlState())
         btnChangeTiming.titleLabel?.font = UIFont().regularMediumFont
         btnChangeTiming.contentHorizontalAlignment = .left
         scrollView.addSubview(btnChangeTiming)
@@ -210,7 +210,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         scrollView.addSubview(lblDurationTime)
         yPos += 20 + 5
         slider = UISlider.init(frame: CGRect(x: xPos, y: yPos, width: width, height: 20))
-        slider.minimumTrackTintColor = UIColor.red
+        slider.minimumTrackTintColor = KRED_COLOR
         slider.maximumValue = 12
         slider.minimumValue = 1
         slider.setValue(5, animated: true)
@@ -225,7 +225,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         lblQuantity.textColor = textColor
         scrollView.addSubview(lblQuantity)
         let btnMinus = BaseUIController().AButtonFrame(CGRectMake(width - 80 , yPos, 20, 30), withButtonTital: "-")as! UIButton
-        btnMinus.setTitleColor(UIColor.redColor(), forState:.Normal)
+        btnMinus.setTitleColor(KRED_COLORColor(), forState:.Normal)
         btnMinus.addTarget(self, action:#selector(AddReminderViewController.btnMinusOnClick(_:)), forControlEvents: .TouchUpInside)
         btnMinus.titleLabel?.font = UIFont.systemFontOfSize(12)
         scrollView.addSubview(btnMinus)
@@ -236,7 +236,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         lblQuantity.addSubview(lblCount)
         
         let btnPlus = BaseUIController().AButtonFrame(CGRectMake(width - 20 , yPos, 20, 30), withButtonTital: "+")as! UIButton
-        btnPlus.setTitleColor(UIColor.redColor(), forState: .Normal)
+        btnPlus.setTitleColor(KRED_COLORColor(), forState: .Normal)
         btnPlus.addTarget(self, action:#selector(AddReminderViewController.btnPlusOnClick(_:)), forControlEvents: .TouchUpInside)
         btnPlus.titleLabel?.font = UIFont.systemFontOfSize(12)
         scrollView.addSubview(btnPlus)
@@ -252,7 +252,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         scrollView.addSubview(btnSelectMember)
         
         let lblSelectMember = BaseUIController().ALabelFrame(CGRect(x: xPos, y: 0, width: width/2, height: 30), withString: "Select Member")as! UILabel
-        lblSelectMember.textColor = UIColor.red
+        lblSelectMember.textColor = KRED_COLOR
         lblSelectMember.font = UIFont().regularMediumFont
         btnSelectMember.addSubview(lblSelectMember)
         
@@ -266,7 +266,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         yPos += 10
         if appDelegate.isOldReminder == true {
             let btnRemoveReminder = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: self.view.frame.width, height: 30), withButtonTital: "Remove Reminder")as! UIButton
-            btnRemoveReminder.setTitleColor(UIColor.red, for: UIControlState())
+            btnRemoveReminder.setTitleColor(KRED_COLOR, for: UIControlState())
             btnRemoveReminder.titleLabel?.font = UIFont().regularMediumFont
             btnRemoveReminder.contentHorizontalAlignment = .left
             btnRemoveReminder.addTarget(self, action:#selector(AddReminderViewController.btnRemoveReminderClick(_:)), for: .touchUpInside)
@@ -306,8 +306,8 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
                 lblTime.text = self.chageTime24FormateTo12(myReminderObj.r_MorningTime)
                 btn.isSelected = true
                 scheduleImageView.image = UIImage(named:"ic_morning_red_imageview.png")
-                lblschedule.textColor = UIColor.red
-                lblTime.textColor = UIColor.red
+                lblschedule.textColor = KRED_COLOR
+                lblTime.textColor = KRED_COLOR
             }
             if myReminderObj.r_AfternoonTime != "" {
                 let btn = self.view.viewWithTag(102)as! UIButton
@@ -493,8 +493,8 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         if tag == 101 {
             if button.isSelected == false {
                 scheduleImageView.image = UIImage(named: "ic_morning_red_imageview.png")
-                lblschedule.textColor = UIColor.red
-                lblTime.textColor = UIColor.red
+                lblschedule.textColor = KRED_COLOR
+                lblTime.textColor = KRED_COLOR
                 button.isSelected = true
             }else{
                 scheduleImageView.image = UIImage(named: "ic_morning_blank_imageview.png")

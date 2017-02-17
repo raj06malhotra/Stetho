@@ -45,7 +45,7 @@ class SetReminderTimeViewController: UIViewController {
         hiddenEveningSlider.setValue(selectedIndexForEvening + 1 , animated: true)
 
         let label_MorningTime = self.view.viewWithTag(101 + Int(selectedIndexForMorning))as! UILabel
-        label_MorningTime.textColor = UIColor.red
+        label_MorningTime.textColor = KRED_COLOR
         let label_AfternoonTime = self.view.viewWithTag(201 + Int(selectedIndexForAfternoon))as! UILabel
         label_AfternoonTime.textColor = UIColor.blue
         let label_EveningTime = self.view.viewWithTag(301 + Int(selectedIndexForEvening))as! UILabel
@@ -93,7 +93,7 @@ class SetReminderTimeViewController: UIViewController {
         morningSlider.maximumValue = 6
         morningSlider.minimumValue = 1
       //  morningSlider.continuous = true
-        morningSlider.minimumTrackTintColor = UIColor.red
+        morningSlider.minimumTrackTintColor = KRED_COLOR
         morningSlider.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
         morningSlider.addTarget(self, action: #selector(SetReminderTimeViewController.morningSliderChange(_:)), for: .valueChanged)
         morningSlider.addTarget(self, action: #selector(SetReminderTimeViewController.morningSliderTouchEndEvent(_:)), for:.touchUpInside)
@@ -116,7 +116,7 @@ class SetReminderTimeViewController: UIViewController {
             scrollView.addSubview(lblTime)
             yPos += sliderWidth/6
 //            if i == 1 {
-//                lblTime.textColor = UIColor.redColor()
+//                lblTime.textColor = KRED_COLORColor()
 //            }else{
 //               lblTime.textColor = textColor
 //            }
@@ -202,7 +202,7 @@ class SetReminderTimeViewController: UIViewController {
         for i in 0..<6 {
             if lblTag + 100 == arrTag[i] {
                 let label = self.view.viewWithTag(arrTag[i])as! UILabel
-                label.textColor = UIColor.red
+                label.textColor = KRED_COLOR
                  appDelegate.morningAlarmTime = arrMorningTimeList[i]
             }else{
                 let label = self.view.viewWithTag(arrTag[i])as! UILabel

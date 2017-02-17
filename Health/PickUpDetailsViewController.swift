@@ -36,7 +36,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
     var cityPickerView : UIPickerView = UIPickerView()
     var memberNamePickerView : UIPickerView = UIPickerView()
     
-    var scrollView:UIScrollView = UIScrollView()
+    var scrollView = TPKeyboardAvoidingScrollView()
     
     var arrCityName = ["Delhi" , "New Delhi" , "Faridabad", "Ballabhgarh", "Gurgaon" , "Ghaziabad" , "Noida" ,"Greater Noida", "Meerut", "Sonipat","Bahadurgarh"]
     var autocompleteTableView = UITableView()
@@ -84,8 +84,8 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         // Do any additional setup after loading the view.
         self.createALayout()
         self.getPickupAddressDetails()
-        NotificationCenter.default.addObserver(self, selector: #selector(PickUpDetailsViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(PickUpDetailsViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(PickUpDetailsViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(PickUpDetailsViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         
 //        
@@ -122,17 +122,17 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
       //MARK: createALayoutDesign
     func createALayout()  {
         
-        scrollView = UIScrollView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height - (64+tabBarHeight+40+40))) //nav + topborder + segment + continue
+        scrollView = TPKeyboardAvoidingScrollView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height - (64+tabBarHeight+40+40))) //nav + topborder + segment + continue
         self.view .addSubview(scrollView)
         var xPos:CGFloat = 20
-        var yPos:CGFloat = 30
+        var yPos:CGFloat = 40
         
         let btnEdit: UIButton = BaseUIController().AButtonFrame(CGRect(x:self.view.frame.width - 40, y: 10 ,width: 20 ,height: 20), withButtonTital: "")as! UIButton
         btnEdit.setImage(#imageLiteral(resourceName: "edit_red_icon"), for: UIControlState())
         btnEdit.addTarget(self, action: #selector(PickUpDetailsViewController.btnEditOnClick(_:)), for: .touchUpInside)
         scrollView.addSubview(btnEdit)
         
-        var labelName: [String] = ["Address Line 1 :" , "Address Line 2 :" , "Landmark :", "City :", "Locality :"]
+        var labelName: [String] = ["Address Line 1" , "Address Line 2" , "Landmark", "City", "Locality"]
         
         let lblSaved = BaseUIController().ALabelFrame(CGRect(x: btnEdit.frame.origin.x - 130 , y: 10 , width: 120 , height: 21), withString: "Saved Addresses")as! UILabel
         
@@ -141,23 +141,39 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
         
         for i in (0..<labelName.count) {
-            let label = BaseUIController().ALabelFrame(CGRect(x:xPos , y: yPos ,width: 200 , height: 30 ), withString: labelName[i])as! UILabel
-            label.font = KROBOTO_Light_18//UIFont().mediumFont
-            scrollView.addSubview(label)
-            yPos += 21+4;
+//            let label = BaseUIController().ALabelFrame(CGRect(x:xPos , y: yPos ,width: 200 , height: 30 ), withString: labelName[i])as! UILabel
+//            label.font = KROBOTO_Light_18//UIFont().mediumFont
+//            scrollView.addSubview(label)
+//            yPos += 21+4;
             let textField = BaseUIController().ATextFiedlFrame(CGRect(x:xPos , y: yPos ,width: self.view.frame.width-40 , height: 35 ), withPlaceHolder: "")as! UITextField
             textField.tag = 200 + i
             textField.delegate = self
             textField.font = KROBOTO_Light_17
             textField.textAlignment = .left
-            textField.borderStyle = .roundedRect
+            textField.borderStyle = .none
+            textField.placeholder = labelName[i]
+            textField.autocorrectionType = .no
+            textField.textColor = UIColor.darkGray
+            if i == 0 || i == 1 {
+                textField.returnKeyType = .next
+            }
+            
+           let lineLabel = UILabel(frame: CGRect(x: textField.frame.origin.x, y: textField.frame.size.height + textField.frame.origin.y, width: textField.frame.size.width, height: 1))
+            lineLabel.textColor = UIColor.clear
+            lineLabel.backgroundColor = KRED_COLOR
+
+            
             scrollView.addSubview(textField)
             
-            yPos += 35+5;
+            scrollView.addSubview(lineLabel)
+
+            
+            yPos += 35 + 20;
         }
         yPos += 10;
-        let lblPincode :UILabel = BaseUIController().ALabelFrame(CGRect(x: xPos , y: yPos, width:  80 , height: 21), withString: "Pincode :")as! UILabel
-        lblPincode.font = UIFont().mediumFont
+        
+        let lblPincode :UILabel = BaseUIController().ALabelFrame(CGRect(x: xPos , y: yPos + 5, width:  80 , height: 21), withString: "Pincode :")as! UILabel
+        lblPincode.font = KROBOTO_Light_16//UIFont().mediumFont
         scrollView.addSubview(lblPincode)
         
        
@@ -167,11 +183,16 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
         for i in (0..<6) {
             
-            let textField = BaseUIController().ATextFiedlFrame(CGRect(x: xPos , y: yPos ,width: _width , height: _width ), withPlaceHolder: "")as! UITextField
+            let textField = UITextField(frame: CGRect(x: xPos , y: yPos ,width: _width , height: _width ))
+//            let textField = BaseUIController().ATextFiedlFrame(CGRect(x: xPos , y: yPos ,width: _width , height: _width ), withPlaceHolder: "")as! UITextField
             textField.borderStyle = .line
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor =  UIColor.init(red: (242.0/255.0), green: (237.0/255.0), blue: (237.0/255.0), alpha: 1.0).cgColor
-            textField.font = KROBOTO_Light_19
+            textField.layer.borderWidth = 1.5
+            textField.layer.cornerRadius = 4.0
+            textField.layer.masksToBounds = true
+            textField.layer.borderColor =  UIColor.lightGray.cgColor//UIColor.lightGray.cgColor//UIColor.init(red: (242.0/255.0), green: (237.0/255.0), blue: (237.0/255.0), alpha: 1.0).cgColor
+            textField.font = KROBOTO_Light_21
+            textField.textColor = UIColor.darkGray
+            textField.textAlignment = .center
             scrollView.addSubview(textField)
             textField.tag = 100 + i
             textField.delegate = self
@@ -184,13 +205,12 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
         yPos += 40
         let btnContinue = BaseUIController().AButtonFrame(CGRect(x: 0 , y: scrollView.frame.height , width: self.view.frame.width, height: 40), withButtonTital: "Continue")as! UIButton
-        btnContinue.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
-        btnContinue.titleLabel?.font = UIFont().largeFont
+        btnContinue.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnContinue.titleLabel?.font = KROBOTO_Light_15//UIFont().largeFont
         btnContinue.setTitleColor(UIColor.white, for: UIControlState())
         btnContinue.addTarget(self, action: #selector(PickUpDetailsViewController.btnContinueOnClick(_:)), for: .touchUpInside)
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: scrollView.frame.height + 130)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: scrollView.frame.height + 70)
         
-        print(self.view.frame.height)
         self.view.addSubview(btnContinue)
         
         
@@ -321,14 +341,14 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
         
         let btnNotNow = BaseUIController().AButtonFrame(CGRect(x: 10 , y: UIScreen.main.bounds.height - 50 , width: UIScreen.main.bounds.width / 2 - 12   , height: 40), withButtonTital: "Not Now")as! UIButton
-        btnNotNow.backgroundColor = UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnNotNow.backgroundColor = KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnNotNow.titleLabel?.font = UIFont().largeFont
         btnNotNow.setTitleColor(UIColor.white, for: UIControlState())
         btnNotNow.addTarget(self, action: #selector(PickUpDetailsViewController.btnNotNowOnClick(_:)), for: .touchUpInside)
         bgView.addSubview(btnNotNow)
         
         btnAdd = BaseUIController().AButtonFrame(CGRect(x: btnNotNow.frame.width + 12 , y: UIScreen.main.bounds.height - 50 , width: UIScreen.main.bounds.width / 2 - 12   , height: 40), withButtonTital: String(format: "Add %@ 0",currencySymbol))as! UIButton
-        btnAdd.backgroundColor = UIColor.red //UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnAdd.backgroundColor = KRED_COLOR //UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnAdd.titleLabel?.font = UIFont().largeFont
         btnAdd.setTitleColor(UIColor.white, for: UIControlState())
         btnAdd.addTarget(self, action: #selector(PickUpDetailsViewController.btnAddOnClick(_:)), for: .touchUpInside)
@@ -398,7 +418,18 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
 
     //MARK: TextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        return textField.resignFirstResponder()
+        textField.resignFirstResponder()
+        switch textField {
+        case txtAddressLine1:
+            txtAddressLine2.becomeFirstResponder()
+        case txtAddressLine2:
+            txtLandMark.becomeFirstResponder()
+        case txtAddressLine2:
+            txtLandMark.becomeFirstResponder()
+        default:
+            break
+        }
+        return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
@@ -519,8 +550,8 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         }
        
     }
-    //MARK: - TableViewDelegate
     
+    //MARK: - TableViewDelegate
    
     func numberOfSections(in tableView: UITableView) -> Int {
         if autocompleteTableView == tableView {
@@ -720,7 +751,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         }
         headerView.addSubview(label)
          let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0 , y: 29 ,width: self.view.frame.width , height: 1), withString: "")as! UILabel
-        lblLine.backgroundColor = UIColor.red
+        lblLine.backgroundColor = KRED_COLOR
         headerView.addSubview(lblLine)
         
         return headerView
@@ -768,7 +799,8 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         pickerLabel.textColor = UIColor.black
         if pickerView == cityPickerView {
             pickerLabel.text = arrCityName[row]
-            pickerLabel.font = UIFont().mediumFont
+            pickerLabel.textColor = UIColor.black
+            pickerLabel.font = KROBOTO_Light_17//UIFont().mediumFont
         }else{
             pickerLabel.text = arrMemberNameList[row] as? String
             pickerLabel.font = UIFont().smallFont
@@ -801,34 +833,34 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
     }
 
     // MARK: - KeyboardShow&Hide
-    func keyboardWillShow(_ notification:Notification){
-       
-//        print(notification)
+//    func keyboardWillShow(_ notification:Notification){
+//       
+////        print(notification)
+////        
+////        scrollView.frame = CGRect(x: 0 , y: -30 , width: self.view.frame.width , height: scrollView.frame.height)
+////        scrollView.contentSize = CGSizeMake(self.view.frame.width, scrollView.frame.height + 250)
 //        
-//        scrollView.frame = CGRect(x: 0 , y: -30 , width: self.view.frame.width , height: scrollView.frame.height)
-//        scrollView.contentSize = CGSizeMake(self.view.frame.width, scrollView.frame.height + 250)
-        
-        if activeTextField == txtLandMark || activeTextField == txtCity || activeTextField == txtLocality || activeTextField == txtPin1 || activeTextField == txtPin2 || activeTextField == txtPin3 || activeTextField == txtPin4 || activeTextField == txtPin5 || activeTextField == txtPin6 {
-            scrollView.frame = CGRect(x: 0 , y: -120 , width: scrollView.frame.width , height: scrollView.frame.height)
-        }else{
-            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
-            
-        }
-    }
+//        if activeTextField == txtLandMark || activeTextField == txtCity || activeTextField == txtLocality || activeTextField == txtPin1 || activeTextField == txtPin2 || activeTextField == txtPin3 || activeTextField == txtPin4 || activeTextField == txtPin5 || activeTextField == txtPin6 {
+//            scrollView.frame = CGRect(x: 0 , y: -120 , width: scrollView.frame.width , height: scrollView.frame.height)
+//        }else{
+//            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
+//            
+//        }
+//    }
     
-    func keyboardWillHide(_ notification:Notification){
-//        scrollView.frame = CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: scrollView.frame.height)
-//        scrollView.contentSize = CGSizeMake(self.view.frame.width, scrollView.frame.height + 250)
-        
-        if activeTextField == txtLandMark || activeTextField == txtCity || activeTextField == txtLocality || activeTextField == txtPin1 || activeTextField == txtPin2 || activeTextField == txtPin3 || activeTextField == txtPin4 || activeTextField == txtPin5 || activeTextField == txtPin6  {
-            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
-        }else{
-            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
-            
-        }
-
-        
-    }
+//    func keyboardWillHide(_ notification:Notification){
+////        scrollView.frame = CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: scrollView.frame.height)
+////        scrollView.contentSize = CGSizeMake(self.view.frame.width, scrollView.frame.height + 250)
+//        
+//        if activeTextField == txtLandMark || activeTextField == txtCity || activeTextField == txtLocality || activeTextField == txtPin1 || activeTextField == txtPin2 || activeTextField == txtPin3 || activeTextField == txtPin4 || activeTextField == txtPin5 || activeTextField == txtPin6  {
+//            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
+//        }else{
+//            scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
+//            
+//        }
+//
+//        
+//    }
     
     
     //MARK: textFieldDelegate
@@ -1109,7 +1141,6 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
     }
     
     func btnEditOnClick(_ button : UIButton)  {
-        
         self.getCustomerAddress()
     }
     
@@ -1338,11 +1369,23 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
                      self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)
                 }else{
                     if(methodName == "GetCustomerAddresses"){
-                        self.arrOldPickupAddress = allResponse as! NSMutableArray
+//                        self.arrOldPickupAddress = allResponse as! NSArray
+                        
                         self.arrOldPickupAddress = NSMutableArray(array: self.arrOldPickupAddress.reverseObjectEnumerator().allObjects)
-                        if self.arrOldPickupAddress.count > 0{
-                            self.showOldPickAddress()
+                        
+                         let saveAddressViewController =  KMAINSTORYBOARD.instantiateViewController(withIdentifier: "SavedAddressTableViewController") as! SavedAddressTableViewController
+                        saveAddressViewController.arrOldPickupAddress = NSArray(array: (allResponse as! NSArray).reverseObjectEnumerator().allObjects)
+                        //allResponse as! NSArray
+                         let navigationController = UINavigationController(rootViewController: saveAddressViewController)
+                         self.navigationController?.present(navigationController, animated: true, completion: nil)
+                        
+                        saveAddressViewController.selectedAddress = {(addressDict:NSDictionary) in
+                          self.fillSelectedDatafrom(addressDict: addressDict)
                         }
+                
+//                        if self.arrOldPickupAddress.count > 0{
+//                            self.showOldPickAddress()
+//                        }
                     }else{
                         self.arrGetExtraPackage = allResponse as! NSMutableArray
                        // self.extraTestPkgTableView.reloadData()
@@ -1351,5 +1394,35 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
                 }
             });
         }); 
+    }
+    
+    func fillSelectedDatafrom(addressDict: NSDictionary){
+        let address_line1 = addressDict.value(forKey: "a_address_line_1")as? String
+        let address_line2 = addressDict.value(forKey: "a_address_line_2")as? String
+        let landmark = addressDict.value(forKey: "a_landmark")as? String
+        let pinCode = (addressDict.value(forKey: "a_pincode")as? String)!
+        let cityName = addressDict.value(forKey: "city_name")as? String
+        let geo_address = addressDict.value(forKey: "geo_address")as? String
+        txtAddressLine1.text = address_line1
+        txtAddressLine2.text = address_line2
+        txtLandMark.text = landmark
+        txtCity.text = cityName
+        txtLocality.text = geo_address
+        
+        if pinCode != "" && pinCode.characters.count == 6 {
+            txtPin1.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 0)])
+            txtPin2.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 1)])
+            txtPin3.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 2)])
+            txtPin4.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 3)])
+            txtPin5.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 4)])
+            txtPin6.text = String(pinCode[pinCode.characters.index(pinCode.startIndex, offsetBy: 5)])
+        }else{
+            txtPin1.text = ""
+            txtPin2.text = ""
+            txtPin3.text = ""
+            txtPin4.text = ""
+            txtPin5.text = ""
+            txtPin6.text = ""
+        }
     }
 }

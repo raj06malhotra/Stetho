@@ -80,6 +80,7 @@ let KPHOTO_AVATAR = "Change From Avatar"
 let KCANCEL = "Cancel"
 let KADDNEWMEMBER = "Add New Member"
 let KCHOOSEFROMCONTACTS = "Choose From Contacts"
+let KSAVEDADDRESSES = "SAVED ADDRESSES" 
 
 
 
@@ -108,7 +109,9 @@ let KROBOTO_Regular_19 = UIFont(name: "Roboto-Regular", size: 19.0)
 let KROBOTO_Regular_20 = UIFont(name: "Roboto-Regular", size: 20.0)
 let KROBOTO_Regular_21 = UIFont(name: "Roboto-Regular", size: 21.0)
 
+//MARK: STORYBOARDS
 
+let KMAINSTORYBOARD = UIStoryboard(name: "Main", bundle: nil)
 
 
 

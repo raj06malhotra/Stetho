@@ -15,12 +15,14 @@ class saveAddressTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMobileNo: UILabel!
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
+    @IBOutlet weak var bgView: UIView!
+
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-     //   lblAddress.backgroundColor = UIColor.redColor()
+     //   lblAddress.backgroundColor = KRED_COLORColor()
         
     }
 

@@ -81,7 +81,7 @@ class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UI
         
         let lblCompanyName = BaseUIController().ALabelFrame(CGRect(x: 0, y: 64 + 15, width: self.view.frame.width, height: 0), withString: "HINDUSTAN WELLNESS Pvt. Ltd.")as! UILabel
         lblCompanyName.textAlignment = .center
-        lblCompanyName.textColor = UIColor.red
+        lblCompanyName.textColor = KRED_COLOR
         lblCompanyName.font = UIFont.boldSystemFont(ofSize: 14)
         //self.view.addSubview(lblCompanyName)
         

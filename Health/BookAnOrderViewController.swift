@@ -150,7 +150,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
         self.view .addSubview(lblTestSelectd)
         btnContinue = UIButton(frame: CGRect(x: self.view.frame.width/2, y: tableView.frame.height + 50 ,width: self.view.frame.width/2,height: 40))
         btnContinue.setTitle("Continue", for: UIControlState())
-        btnContinue.backgroundColor = UIColor.red
+        btnContinue.backgroundColor = KRED_COLOR
         btnContinue.titleLabel?.font = UIFont().mediumFont
         btnContinue.addTarget(self, action: #selector(BookAnOrderViewController.btnContinueOnClick(_:)), for: .touchUpInside)
         self.view .addSubview(btnContinue)
@@ -208,7 +208,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
 //        mainView.addSubview(lblPackageDetails)
 //        yPos += 20 + 5
         let lblLine1 = BaseUIController().ALabelFrame(CGRect(x: 0, y: yPos, width: width, height: 1), withString: "")as! UILabel
-        lblLine1.backgroundColor = UIColor.red
+        lblLine1.backgroundColor = KRED_COLOR
         mainView.addSubview(lblLine1)
         yPos += 5
         let pckImageView = BaseUIController().AImageViewFrame(CGRect(x: 5, y: yPos, width: 30, height: 30), withImageName: "package_name.png")as! UIImageView
@@ -229,7 +229,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
         lblPckDetails.sizeToFit()
         yPos += lblPckDetails.frame.height + 10
         let lblLine2 = BaseUIController().ALabelFrame(CGRect(x: 0, y: yPos, width: width, height: 1), withString: "")as! UILabel
-        lblLine2.backgroundColor = UIColor.red
+        lblLine2.backgroundColor = KRED_COLOR
         mainView.addSubview(lblLine2)
         yPos += 2
         let scrollView = UIScrollView.init(frame: CGRect(x: 0, y: yPos, width: width, height: UIScreen.main.bounds.height - (yPos + 40)))
@@ -247,7 +247,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
         scrollView.addSubview(lblAmount)
         scrollYpos += 21 + 5 
         let lblLine3 = BaseUIController().ALabelFrame(CGRect(x: 0, y: scrollYpos, width: width, height: 1), withString: "")as! UILabel
-        lblLine3.backgroundColor = UIColor.red
+        lblLine3.backgroundColor = KRED_COLOR
         scrollView.addSubview(lblLine3)
         scrollYpos += 10
         let testImageView = BaseUIController().AImageViewFrame(CGRect(x: 5, y: scrollYpos, width: 30, height: 30), withImageName: "test_report_icon.png")as! UIImageView
@@ -409,7 +409,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
                 pkg_id = (arrFilterPakageData[(indexPath as NSIndexPath).row] as! NSDictionary).value(forKey: "pkg_id")as! String
             }
             if (pkgOrderInfo.packageId == pkg_id) && pkgOrderInfo.orderId == selectedMemberId  {
-                btnAdd.backgroundColor = UIColor.red
+                btnAdd.backgroundColor = KRED_COLOR
                 btnAdd.setTitleColor(UIColor.white, for: UIControlState())
                 btnAdd.isSelected = true
             }
@@ -535,8 +535,8 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
        
         
         if Sender.isSelected == false {
-            Sender.backgroundColor = UIColor.red
-            Sender.layer.borderColor = UIColor.red.cgColor
+            Sender.backgroundColor = KRED_COLOR
+            Sender.layer.borderColor = KRED_COLOR.cgColor
             Sender.setTitleColor(UIColor.white, for: UIControlState())
             Sender.isSelected = true
             if searchController.isActive == false  {
@@ -548,7 +548,7 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
         }else{
             Sender.backgroundColor = UIColor.clear
             Sender.layer.borderColor = UIColor.orange.cgColor
-            Sender.setTitleColor(UIColor.red, for: UIControlState())
+            Sender.setTitleColor(KRED_COLOR, for: UIControlState())
             Sender.isSelected = false
             if searchController.isActive == false  {
                 self.deleteOrderPackageFromDB(arrPakageData.object(at: ((indexPath as NSIndexPath?)?.row)!) as! NSDictionary)
@@ -577,8 +577,8 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
     }
     func btnBookOnClick(_ button : UIButton)  {
         if buttonAdd.isSelected == false {
-            buttonAdd.backgroundColor = UIColor.red
-            buttonAdd.layer.borderColor = UIColor.red.cgColor
+            buttonAdd.backgroundColor = KRED_COLOR
+            buttonAdd.layer.borderColor = KRED_COLOR.cgColor
             buttonAdd.setTitleColor(UIColor.white, for: UIControlState())
             buttonAdd.isSelected = true
             if searchController.isActive == false  {

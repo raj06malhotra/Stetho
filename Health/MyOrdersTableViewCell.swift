@@ -25,22 +25,22 @@ class MyOrdersTableViewCell: UITableViewCell {
         btnDetails.layer.cornerRadius = 4
         btnDetails.layer.masksToBounds = true
         btnDetails.layer.borderWidth = 1
-        btnDetails.layer.borderColor = UIColor.red.cgColor
+        btnDetails.layer.borderColor = KRED_COLOR.cgColor//KRED_COLOR.cgColor
         
         btnTrackOrder.layer.cornerRadius = 4
         btnTrackOrder.layer.masksToBounds = true
         btnTrackOrder.layer.borderWidth = 1
-        btnTrackOrder.layer.borderColor = UIColor.red.cgColor
+        btnTrackOrder.layer.borderColor = KRED_COLOR.cgColor//KRED_COLOR.cgColor
         
 //        btnTrackFhlebo.layer.cornerRadius = 4
 //        btnTrackFhlebo.layer.masksToBounds = true
 //        btnTrackFhlebo.layer.borderWidth = 1
-//        btnTrackFhlebo.layer.borderColor = UIColor.redColor().CGColor
+//        btnTrackFhlebo.layer.borderColor = KRED_COLORColor().CGColor
         
         btnPayNow.layer.cornerRadius = 4
         btnPayNow.layer.masksToBounds = true
         btnPayNow.layer.borderWidth = 1
-        btnPayNow.layer.borderColor = UIColor.red.cgColor
+        btnPayNow.layer.borderColor = KRED_COLOR.cgColor//KRED_COLOR.cgColor
         
 
     }

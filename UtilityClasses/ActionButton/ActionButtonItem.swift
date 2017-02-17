@@ -80,7 +80,7 @@ open class ActionButtonItem: NSObject {
         self.button.layer.shadowRadius = 2
         self.button.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.button.layer.shadowColor = UIColor.gray.cgColor
-        self.button.backgroundColor = UIColor.red
+        self.button.backgroundColor = KRED_COLOR
         self.button.layer.cornerRadius = self.button.frame.width/2
         self.button.addTarget(self, action: #selector(ActionButtonItem.buttonPressed(_:)), for: .touchUpInside)
 

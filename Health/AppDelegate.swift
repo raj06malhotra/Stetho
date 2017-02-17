@@ -440,7 +440,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let nav = UINavigationController(rootViewController: controller)
-        nav.navigationBar.tintColor = UIColor.red
+        nav.navigationBar.tintColor = KRED_COLOR
         appdelegate.window!.rootViewController = nav
         
         

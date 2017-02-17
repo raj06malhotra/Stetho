@@ -47,7 +47,7 @@ class WalletViewController: UIViewController {
         
         let lblreferalCodeText = BaseUIController().ALabelFrame(CGRect(x: self.view.center.x - 80, y: yPox, width: 160, height: 21), withString: "REFERRAL CODE")as! UILabel
         lblreferalCodeText.textAlignment = .center
-        lblreferalCodeText.textColor = UIColor.red
+        lblreferalCodeText.textColor = KRED_COLOR
         scrollView.addSubview(lblreferalCodeText)
         yPox += 20 + 20
         
@@ -93,7 +93,7 @@ class WalletViewController: UIViewController {
         let lblWalletBalanceText = BaseUIController().ALabelFrame(CGRect(x: self.view.center.x - 100, y: yPox,width: 200 ,height: 20), withString: "YOUR WALLET BALANCE")as! UILabel
         lblWalletBalanceText.textAlignment = .center
         lblWalletBalanceText.font = UIFont().regularMediumFont
-        lblWalletBalanceText.textColor = UIColor.red
+        lblWalletBalanceText.textColor = KRED_COLOR
         scrollView.addSubview(lblWalletBalanceText)
         yPox += 50
         let lblWalletBalance = BaseUIController().ALabelFrame(CGRect(x: self.view.center.x - 100, y: yPox, width: 200, height: 50), withString: "₹566")as! UILabel
@@ -108,7 +108,7 @@ class WalletViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
      }
 //    func setRedTextColor()  {
-//        lblreferalCode.textColor = UIColor.redColor()
+//        lblreferalCode.textColor = KRED_COLORColor()
 //        let triggerTime = (Int64(NSEC_PER_SEC) * 1)
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
 //            self.setBlueTextColor()

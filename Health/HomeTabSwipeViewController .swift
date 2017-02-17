@@ -112,23 +112,27 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
     func style() {
        
         self.navigationController!.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.red
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: KRED_COLOR]//KRED_COLOR]
         self.navigationController!.navigationBar.barTintColor = UIColor.white
        // self.navigationController!.navigationBar.barStyle = .BlackTranslucent
         //set width of segment control
         carbonTabSwipeNavigation.carbonSegmentedControl?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30)
-        carbonTabSwipeNavigation.carbonSegmentedControl?.layer.cornerRadius = 4.0 // for backgorund color
+        //carbonTabSwipeNavigation.carbonSegmentedControl?.layer.cornerRadius = 0.0 // for backgorund color
         carbonTabSwipeNavigation.carbonSegmentedControl?.clipsToBounds = true
         carbonTabSwipeNavigation.toolbar.isTranslucent = false
-        carbonTabSwipeNavigation.setIndicatorColor(UIColor.red)
+        carbonTabSwipeNavigation.setIndicatorColor(KRED_COLOR)
         carbonTabSwipeNavigation.setTabExtraWidth(0)
         carbonTabSwipeNavigation.setTabBarHeight(40)
         carbonTabSwipeNavigation.carbonSegmentedControl?.tintColor = UIColor.white
-        carbonTabSwipeNavigation.carbonSegmentedControl?.backgroundColor = UIColor.red
+        carbonTabSwipeNavigation.carbonSegmentedControl?.backgroundColor = KRED_COLOR
        // carbonTabSwipeNavigation.setNormalColor(UIColor .whiteColor())
-        carbonTabSwipeNavigation.setSelectedColor(UIColor.red, font: UIFont().largeFont)
+        carbonTabSwipeNavigation.setSelectedColor(KRED_COLOR, font: UIFont().largeFont)
         carbonTabSwipeNavigation.setNormalColor(UIColor.white, font: UIFont().largeFont)
+        carbonTabSwipeNavigation.carbonTabSwipeScrollView.isScrollEnabled = false
+
+        
+        
         
 //        carbonTabSwipeNavigation.carbonSegmentedControl!.setWidth(120, forSegmentAtIndex: 0)
 //        carbonTabSwipeNavigation.carbonSegmentedControl!.setWidth(120, forSegmentAtIndex: 1)
@@ -400,7 +404,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
                 btnProfileimage.frame = CGRect(x: xPos, y: yPos, width: heightOFTopsScrollView - 20, height: heightOFTopsScrollView - 20)
                 btnProfileimage.layer.cornerRadius = (btnProfileimage.bounds.width/2);
                 selectedbutton = btnProfileimage
-                btnProfileimage.backgroundColor = UIColor.red
+                btnProfileimage.backgroundColor = KRED_COLOR
                 // btnProfileimage.setImage(UIImage(named: "user_icon"), forState: .Normal)
                 lblUserName.isHidden = true
             }
@@ -409,7 +413,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
                 btnProfileimage.frame = CGRect(x: xPos, y: yPos, width: heightOFTopsScrollView - 20, height: heightOFTopsScrollView - 20)
                 btnProfileimage.layer.cornerRadius = (btnProfileimage.bounds.width/2);
                 selectedbutton = btnProfileimage
-                btnProfileimage.backgroundColor = UIColor.red
+                btnProfileimage.backgroundColor = KRED_COLOR
                 // btnProfileimage.setImage(UIImage(named: "user_icon"), forState: .Normal)
                 lblUserName.isHidden = true
                  UserDefaults.standard.setValue(isComingFromAddRecordViewWithMemberId, forKey: "selectedMemberId")
@@ -469,7 +473,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         lblCart.font = UIFont().smallFont
         lblCart.textAlignment = .center
         lblCart.textColor = UIColor.white
-        lblCart.backgroundColor = UIColor.red
+        lblCart.backgroundColor = KRED_COLOR
         rightBarView.addSubview(lblCart)
         
         
@@ -487,7 +491,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
             }
         lblNotifications.layer.cornerRadius = 8
         lblNotifications.layer.masksToBounds = true
-        lblNotifications.backgroundColor = UIColor.red
+        lblNotifications.backgroundColor = KRED_COLOR
         lblNotifications.font = UIFont().smallFont
         lblNotifications.textAlignment = .center
         lblNotifications.textColor = UIColor.white
@@ -562,7 +566,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
                 
                 sender.frame = CGRect(x: sender.frame.origin.x - 10, y: sender.frame.origin.y-5, width: heightOFTopsScrollView - 20 , height: heightOFTopsScrollView - 20)
                 sender.layer.cornerRadius = (sender.frame.width/2)
-                sender.backgroundColor = UIColor.red
+                sender.backgroundColor = KRED_COLOR
             }
             
             selectedbutton = sender
@@ -610,7 +614,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         actionButton.setTitle("+", forState: UIControlState())
         
         
-        actionButton.backgroundColor =  UIColor.red //UIColor(red: 238.0/255.0, green: 130.0/255.0, blue: 34.0/255.0, alpha:1.0)
+        actionButton.backgroundColor =  KRED_COLOR //UIColor(red: 238.0/255.0, green: 130.0/255.0, blue: 34.0/255.0, alpha:1.0)
         // assing databaseId
         //selectedDatabaseID = recordObject.dataBaseId
         
@@ -684,7 +688,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: self.view.frame.width, height: 40), withString: "My Profile")as! UILabel
         baseView.addSubview(lblHeading)
         let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0, y: 41, width: self.view.frame.width, height: 1), withString: "")as! UILabel
-        lblLine.backgroundColor = UIColor.red
+        lblLine.backgroundColor = KRED_COLOR
         baseView.addSubview(lblLine)
         
         
@@ -741,7 +745,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         xPos =  90
         
         let btnCancel = BaseUIController().AButtonFrame(CGRect(x: 1 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "CANCEL")as! UIButton
-        btnCancel.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnCancel.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnCancel.titleLabel?.font = UIFont().largeFont
         btnCancel.setTitleColor(UIColor.white, for: UIControlState())
           btnCancel.addTarget(self, action: #selector(self.btnCancelOnClick(_:)), for: .touchUpInside)
@@ -750,7 +754,7 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         
         
         let btnDone = BaseUIController().AButtonFrame(CGRect(x: (baseView.frame.width)/2 + 2 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "DONE")as! UIButton
-        btnDone.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnDone.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnDone.titleLabel?.font = UIFont().largeFont
         btnDone.setTitleColor(UIColor.white, for: UIControlState())
            btnDone.addTarget(self, action: #selector(self.btnDoneOnclick(_:)), for: .touchUpInside)

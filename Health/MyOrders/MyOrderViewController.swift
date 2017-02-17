@@ -59,7 +59,7 @@ class MyOrderViewController: UIViewController , UITableViewDelegate , UITableVie
             self.navigationItem.leftBarButtonItem = barButtonBack;
            
         }
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.navigationController?.navigationBar.isTranslucent = true
         // call google analytics for screen tracking
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -330,13 +330,13 @@ class MyOrderViewController: UIViewController , UITableViewDelegate , UITableVie
             var lblRightSideSepratorLine = UILabel()
             if i == 0 {
                 lblRightSideSepratorLine = BaseUIController().ALabelFrame(CGRect(x: 25, y: 0, width: 1, height: 12), withString: "")as! UILabel
-                lblRightSideSepratorLine.backgroundColor = UIColor.red
+                lblRightSideSepratorLine.backgroundColor = KRED_COLOR
                let  lblRightSideSepratorLine2 = BaseUIController().ALabelFrame(CGRect(x: 25, y: 38, width: 1, height: lblTrackSubTital.frame.height + 40), withString: "")as! UILabel
-                lblRightSideSepratorLine2.backgroundColor = UIColor.red
+                lblRightSideSepratorLine2.backgroundColor = KRED_COLOR
                 scrollView.addSubview(lblRightSideSepratorLine2)
             }else{
                 lblRightSideSepratorLine = BaseUIController().ALabelFrame(CGRect(x: 25, y: yPos + 28, width: 1, height: lblTrackSubTital.frame.height + 25), withString: "")as! UILabel
-                lblRightSideSepratorLine.backgroundColor = UIColor.red
+                lblRightSideSepratorLine.backgroundColor = KRED_COLOR
                 
             }
            

@@ -182,7 +182,7 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
         actionButton.action = { button in button.toggleMenu() }
         actionButton.setTitle("+", forState: UIControlState())
         
-        actionButton.backgroundColor = UIColor.red
+        actionButton.backgroundColor = KRED_COLOR
         
         
     }

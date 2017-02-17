@@ -186,7 +186,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
         btnNeedHelp.layer.borderWidth = 1
         btnNeedHelp.titleLabel?.font = UIFont().regularMediumFont
         btnNeedHelp.backgroundColor = UIColor.white
-        btnNeedHelp.setTitleColor(UIColor.red, for: UIControlState())
+        btnNeedHelp.setTitleColor(KRED_COLOR, for: UIControlState())
         btnNeedHelp.layer.borderColor = UIColor.gray.cgColor
         btnNeedHelp.addTarget(self, action: #selector(self.btnNeedHeapOnclick), for: .touchUpInside)
         bottomView.addSubview(btnNeedHelp)
@@ -202,7 +202,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
         
         lblAmount.font = UIFont().regularMediumFont
         lblAmount.text = payableAmount
-        lblAmount.textColor = UIColor.red
+        lblAmount.textColor = KRED_COLOR
         lblAmount.textAlignment = .center
         bottomView.addSubview(lblAmount)
         
@@ -296,7 +296,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
             
             if i == orderStatus {
                 imageView.image = UIImage(named: redTrackingOrderIcon[i])
-                lblTrackTital.textColor = UIColor.red
+                lblTrackTital.textColor = KRED_COLOR
                 
             }else{
                 imageView.image = UIImage(named: grayTrackingOrederIcon[i])
@@ -323,7 +323,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
         btnNeedHelp.titleLabel?.font = UIFont().regularMediumFont
         btnNeedHelp.backgroundColor = UIColor.white
         btnNeedHelp.layer.borderColor = lightGray.cgColor
-        btnNeedHelp.setTitleColor(UIColor.red, for: UIControlState())
+        btnNeedHelp.setTitleColor(KRED_COLOR, for: UIControlState())
         btnNeedHelp.addTarget(self, action: #selector(self.btnNeedHeapOnclick), for: .touchUpInside)
         orderTrakingView.addSubview(btnNeedHelp)
         
@@ -335,7 +335,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
         let payableAmount = (trackPhleboDetailsArray[0] as AnyObject).value(forKey: "o_net_payable")as! String
         lblAmount.text = "TOTAL PAYBLE AMOUNT : Rs." + payableAmount
         lblAmount.textAlignment = .center
-        lblAmount.textColor = UIColor.red
+        lblAmount.textColor = KRED_COLOR
         orderTrakingView.addSubview(lblAmount)
         
         // set multiple color in Label

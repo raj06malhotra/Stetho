@@ -29,6 +29,7 @@ class MyOrderDetailsViewController: UIViewController , UITableViewDataSource , U
         self.view.backgroundColor = UIColor.white
         orderDetailsTableView = UITableView(frame:CGRect(x: 10, y: 0,width: (UIScreen.main.bounds.width) - 20, height: UIScreen.main.bounds.height))
         orderDetailsTableView.backgroundColor = UIColor.white
+        
         orderDetailsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(orderDetailsTableView)
         orderDetailsTableView.tableFooterView = UIView()
@@ -88,6 +89,7 @@ class MyOrderDetailsViewController: UIViewController , UITableViewDataSource , U
        let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
             cell.textLabel?.font  = UIFont().regularMediumFont
             cell.textLabel?.textColor = UIColor .init(red: (109.0/255.0), green: (109.0/255.0), blue: (109.0/255.0), alpha: 1)
+        cell.selectionStyle = .none
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.font  = UIFont().smallFont
         

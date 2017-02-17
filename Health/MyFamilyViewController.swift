@@ -92,7 +92,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     override func viewWillAppear(_ animated: Bool) {
         // add Navigation setup
         self.title = "MY FAMILY"
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.navigationController?.navigationBar.titleTextAttributes = AppDelegate().navigationTitalFontSize
          isInterSects = false
       
@@ -157,7 +157,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         lblCart.font = UIFont().smallFont
         lblCart.textAlignment = .center
         lblCart.textColor = UIColor.white
-        lblCart.backgroundColor = UIColor.red
+        lblCart.backgroundColor = KRED_COLOR
         rightBarView.addSubview(lblCart)
         
         
@@ -175,7 +175,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         }
         lblNotifications.layer.cornerRadius = 8
         lblNotifications.layer.masksToBounds = true
-        lblNotifications.backgroundColor = UIColor.red
+        lblNotifications.backgroundColor = KRED_COLOR
         lblNotifications.font = UIFont().smallFont
         lblNotifications.textAlignment = .center
         lblNotifications.textColor = UIColor.white
@@ -300,7 +300,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
                 lblVerifyOrNot.frame = CGRect(x: (userView.frame.width - 35)/2,y: (lblRelation.frame.height + lblRelation.frame.origin.y + 5) , width: 35, height: 15)
                 verifyImageView.frame = CGRect(x: lblVerifyOrNot.frame.origin.x - 20 , y: (lblRelation.frame.height + lblRelation.frame.origin.y + 5), width: 16, height: 16)
             }else{
-                lblVerifyOrNot.textColor = UIColor.red
+                lblVerifyOrNot.textColor = KRED_COLOR
                 lblVerifyOrNot.text = "Not Verified"
                 verifyImageView.image = UIImage(named: "verified_no.png")
                 lblVerifyOrNot.frame = CGRect(x: (userView.frame.width - 65)/2,y: (lblRelation.frame.height + lblRelation.frame.origin.y + 5) , width: 75, height: 15)
@@ -452,14 +452,14 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         let btnResendOTP = BaseUIController().AButtonFrame(CGRect(x:20  , y:bgView.frame.height - 40 ,width:(bgView.frame.width - 60)/2  ,height: 35 ), withButtonTital: "RESEND OTP")as! UIButton
         btnResendOTP.titleLabel?.font = UIFont().regularMediumFont
         btnResendOTP.setTitleColor(UIColor.white, for: UIControlState())
-        btnResendOTP.backgroundColor = UIColor.red
+        btnResendOTP.backgroundColor = KRED_COLOR
         btnResendOTP.addTarget(self, action: #selector(self.btnResendOTPOnClick), for: .touchUpInside)
         bgView.addSubview(btnResendOTP)
         
         let btnSubmitOTP = BaseUIController().AButtonFrame(CGRect(x:btnResendOTP.frame.origin.x + btnResendOTP.frame.width + 20  , y:bgView.frame.height - 40 ,width:(bgView.frame.width - 60)/2  ,height: 35 ), withButtonTital: "SUBMIT OTP")as! UIButton
         btnSubmitOTP.titleLabel?.font = UIFont().regularMediumFont
         btnSubmitOTP.setTitleColor(UIColor.white, for: UIControlState())
-        btnSubmitOTP.backgroundColor = UIColor.red
+        btnSubmitOTP.backgroundColor = KRED_COLOR
         btnSubmitOTP.addTarget(self, action: #selector(self.btnSubmitOTPOnClick), for: .touchUpInside)
         bgView.addSubview(btnSubmitOTP)
         // add Tapgestue  on shadowBackGround
@@ -753,7 +753,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
                 dropableImageView!.layer.borderWidth = 1
                 dropableImageView!.layer.masksToBounds = false
                 dropableImageView!.clipsToBounds = true
-                dropableImageView!.layer.borderColor = UIColor.red.cgColor
+                dropableImageView!.layer.borderColor = KRED_COLOR.cgColor
             }
         }
         let longPressView = scrollView.viewWithTag(clickedTag! )

@@ -25,7 +25,7 @@ class SubmitQueryViewController: UIViewController , UITextViewDelegate ,UIImageP
         self.view.backgroundColor = UIColor.white
         self.createALayout()
         self.addLeftBarButton()
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.title = "SUBMIT QUERY"
         // add progress on View
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
@@ -74,7 +74,7 @@ class SubmitQueryViewController: UIViewController , UITextViewDelegate ,UIImageP
         button.addSubview(imageView)
         
         let btnSubmitQuery = BaseUIController().AButtonFrame(CGRect(x: 10, y: self.view.frame.height - 50, width: self.view.frame.width - 20, height: 40), withButtonTital: "SUBMIT QUERY")as! UIButton
-        btnSubmitQuery.backgroundColor = UIColor.red
+        btnSubmitQuery.backgroundColor = KRED_COLOR
         btnSubmitQuery.setTitleColor(UIColor.white, for: UIControlState())
         btnSubmitQuery.titleLabel?.font = UIFont().regularMediumFont
         btnSubmitQuery.layer.cornerRadius = 3

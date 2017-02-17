@@ -45,8 +45,6 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         // Do any additional setup after loading the view.
         //key board hide & show
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -66,7 +64,7 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         // call google analytics for screen tracking
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.trackViewOnGoogleAnalytics("MySavedAddress Screen")
-
+//        saveAddresstableView.register(saveAddressTableViewCell.self, forCellReuseIdentifier: "saveAddress")
         
     }
 
@@ -76,29 +74,34 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
     }
     //MARK: createALayout
     func createALayout()  {
-        let btnAddNewAddress = BaseUIController().AButtonFrame(CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: 40), withButtonTital: "Add a New Address")as! UIButton
-        btnAddNewAddress.layer.borderWidth = 1
-        btnAddNewAddress.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).cgColor //customColor.CGColor
-        btnAddNewAddress.setTitleColor(customColor, for: UIControlState())
-        btnAddNewAddress.contentHorizontalAlignment = .left
-        btnAddNewAddress.contentEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
-        btnAddNewAddress.titleLabel?.font = UIFont().smallFont
-        btnAddNewAddress.addTarget(self, action: #selector(self.btnAddNewAddress(_:)), for: .touchUpInside)
-        self.view.addSubview(btnAddNewAddress)
-        let addImageView = BaseUIController().AImageViewFrame(CGRect(x: 10, y: 5, width: 30, height: 30), withImageName: "add.png")as! UIImageView
-        btnAddNewAddress.addSubview(addImageView)
-        let lblsaveAddress = BaseUIController().ALabelFrame(CGRect(x: 10, y: 60, width: 200, height: 21), withString: "Saved Addresses")as! UILabel
-        lblsaveAddress.font = UIFont().regularMediumFont
+//        let btnAddNewAddress = BaseUIController().AButtonFrame(CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: 40), withButtonTital: "Add a New Address")as! UIButton
+//        btnAddNewAddress.layer.borderWidth = 1
+//        btnAddNewAddress.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).cgColor //customColor.CGColor
+//        btnAddNewAddress.setTitleColor(customColor, for: UIControlState())
+//        btnAddNewAddress.contentHorizontalAlignment = .left
+//        btnAddNewAddress.contentEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0)
+//        btnAddNewAddress.titleLabel?.font = UIFont().smallFont
+//        btnAddNewAddress.addTarget(self, action: #selector(self.btnAddNewAddress(_:)), for: .touchUpInside)
+//        self.view.addSubview(btnAddNewAddress)
+//        let addImageView = BaseUIController().AImageViewFrame(CGRect(x: 10, y: 5, width: 30, height: 30), withImageName: "add.png")as! UIImageView
+//        btnAddNewAddress.addSubview(addImageView)
+        
+        let lblsaveAddress = BaseUIController().ALabelFrame(CGRect(x: 10, y: 10, width: 200, height: 21), withString: "Saved Addresses")as! UILabel
+        lblsaveAddress.font = KROBOTO_Light_17//UIFont().regularMediumFont
         self.view.addSubview(lblsaveAddress)
 
-        saveAddresstableView = UITableView(frame:CGRect(x: 10, y: 90,width: (UIScreen.main.bounds.width) - 20, height: UIScreen.main.bounds.height - 184))
+        saveAddresstableView = UITableView(frame:CGRect(x: 5, y: 35,width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height - 94-35))
         saveAddresstableView.backgroundColor = UIColor.white
         saveAddresstableView.allowsSelection = false
         saveAddresstableView.separatorInset = UIEdgeInsets.zero
         self.saveAddresstableView.separatorStyle = .none
-//        saveAddresstableView.delegate = self
-//        saveAddresstableView.dataSource = self
         self.view.addSubview(saveAddresstableView)
+        
+        let addAddressButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 60, y: (saveAddresstableView.frame.origin.y + saveAddresstableView.frame.size.height) - 60, width: 50, height: 50))
+        addAddressButton.setImage(#imageLiteral(resourceName: "plus_icon"), for: .normal)
+        addAddressButton.addTarget(self, action: #selector(self.btnAddNewAddress(_:)), for: .touchUpInside)
+        self.view.addSubview(addAddressButton)
+
         
         
     }
@@ -123,7 +126,7 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: self.view.frame.width, height: 40), withString: "Add New Address")as! UILabel
         baseView.addSubview(lblHeading)
         let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0, y: 41, width: self.view.frame.width, height: 1), withString: "")as! UILabel
-        lblLine.backgroundColor = UIColor.red
+        lblLine.backgroundColor = KRED_COLOR
         baseView.addSubview(lblLine)
         
 
@@ -177,7 +180,7 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         
         yPos += 40
         let btnCancel = BaseUIController().AButtonFrame(CGRect(x: 1 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "CANCEL")as! UIButton
-        btnCancel.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnCancel.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnCancel.titleLabel?.font = UIFont().largeFont
         btnCancel.setTitleColor(UIColor.white, for: UIControlState())
         btnCancel.addTarget(self, action: #selector(self.btnCancelOnClick(_:)), for: .touchUpInside)
@@ -186,7 +189,7 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         
         
         let btnDone = BaseUIController().AButtonFrame(CGRect(x: (baseView.frame.width)/2 + 2 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "DONE")as! UIButton
-        btnDone.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnDone.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnDone.titleLabel?.font = UIFont().largeFont
         btnDone.setTitleColor(UIColor.white, for: UIControlState())
         btnDone.addTarget(self, action: #selector(self.btnDoneOnclick(_:)), for: .touchUpInside)
@@ -236,18 +239,18 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
     //MARK: - TableViewDelegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView == autoPopulateAddressTableView {
+//        if tableView == autoPopulateAddressTableView {
             return 1
-        }else{
-             return arrOldPickupAddress.count
-        }
+//        }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if tableView == autoPopulateAddressTableView {
             return arrGeoAddressDetails.count
         }else{
-           return 1
+             return arrOldPickupAddress.count
+//           return 1
         }
         
         
@@ -259,7 +262,6 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         if tableView == autoPopulateAddressTableView {
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
             cell.textLabel?.text = (arrGeoAddressDetails.object(at: indexPath.row) as! NSDictionary).value(forKey: "address") as? String
-//            cell.textLabel?.text = arrGeoAddressDetails.object(at: (indexPath as NSIndexPath).row).value(forKey: "address") as? String
             cell.textLabel?.font = UIFont().mediumFont
             cell.backgroundColor = UIColor.gray
             return cell
@@ -269,11 +271,11 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
 //        if (cell == nil)
 //        {
             var nib:Array = Bundle.main.loadNibNamed("saveAddressTableViewCell", owner: self, options: nil)!
-            cell = nib[0] as? saveAddressTableViewCell
-            cell!.layer.borderWidth = 1
-            cell!.layer.cornerRadius = 3
-            cell?.layer.masksToBounds = true
-            cell!.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).cgColor
+            cell = nib[0] as! saveAddressTableViewCell
+            cell!.bgView.layer.borderWidth = 1
+            cell!.bgView.layer.cornerRadius = 3
+            cell?.bgView.layer.masksToBounds = true
+            cell!.bgView.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).cgColor
             
             let addressDict = arrOldPickupAddress.object(at: indexPath.row) as! NSDictionary
             
@@ -573,10 +575,16 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         }
         
     }
+    
     func btnAddNewAddress(_ button : UIButton){
-        pickup_Id = "0"
-        self.createAddressPopup()
+        
+        let addNewAddress = AddNewAddressViewController()
+        let newAddressNaviagtion = UINavigationController(rootViewController: addNewAddress)
+        self.navigationController?.present(newAddressNaviagtion, animated: true, completion: nil)
+//        pickup_Id = "0"
+//        self.createAddressPopup()
     }
+    
     func btnCancelOnClick(_ button : UIButton)  {
         pickup_Id = "0"
         bgView.isHidden = true
@@ -670,11 +678,14 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
                      self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)
                     
                 }else{
+                    
+                    self.saveAddresstableView.delegate      =   self
+                    self.saveAddresstableView.dataSource    =   self
                         self.arrOldPickupAddress.removeAllObjects()
-                        self.saveAddresstableView.delegate      =   self
-                        self.saveAddresstableView.dataSource    =   self
                        // self.saveAddresstableView.separatorStyle = .SingleLine
-                        self.arrOldPickupAddress = allResponse as! NSMutableArray
+                        self.arrOldPickupAddress = NSMutableArray(array: allResponse as! NSArray)//allResponse as! NSMutableArray
+                    print(self.arrOldPickupAddress)
+
                         self.saveAddresstableView.reloadData()
                     }
                 }else if(methodName == "DeleteAddress")

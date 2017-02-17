@@ -128,9 +128,9 @@ class MedicalHistoryFirstViewController: UIViewController ,serverTaskComplete {
         txtWaistSize.layer.borderColor = boderColor.cgColor
         
         btnSave_Next.layer.borderWidth = 2
-        btnSave_Next.layer.borderColor = UIColor.red.cgColor
+        btnSave_Next.layer.borderColor = KRED_COLOR.cgColor
         btnSkipAll.layer.borderWidth = 2
-        btnSkipAll.layer.borderColor = UIColor.red.cgColor
+        btnSkipAll.layer.borderColor = KRED_COLOR.cgColor
         //add numeric keyboad & tool bar on textfield
         txtHeightInFeet.keyboardType = .numberPad
         addToolBar(txtHeightInFeet)
@@ -144,7 +144,7 @@ class MedicalHistoryFirstViewController: UIViewController ,serverTaskComplete {
             //Add skip button on Navigation bar
             btnSkip = BaseUIController().AButtonFrame(CGRect(x: 0  ,y: 7 , width: 50 , height: 30), withButtonTital: "Skip")as! UIButton
             btnSkip.backgroundColor = UIColor.white
-            btnSkip.setTitleColor(UIColor.red, for: UIControlState())
+            btnSkip.setTitleColor(KRED_COLOR, for: UIControlState())
             btnSkip.addTarget(self, action: #selector(MedicalHistoryThirdViewController.btnSkipOnClick(_:)), for: .touchUpInside)
             let rightBarButton = UIBarButtonItem(customView: btnSkip)
             self.navigationItem.rightBarButtonItem = rightBarButton
@@ -270,7 +270,7 @@ class MedicalHistoryFirstViewController: UIViewController ,serverTaskComplete {
     func changeTextWithMultipleColor(_ blackString : String , redString : String) -> NSMutableAttributedString {
         
         let attrs1      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName:UIColor.black]
-        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: UIColor.red]
+        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: KRED_COLOR]
         let attributedText = NSMutableAttributedString()
         attributedText.append(NSAttributedString(string: blackString , attributes:  attrs1))
         attributedText.append(NSAttributedString(string: redString, attributes: attrs2))
@@ -326,11 +326,11 @@ class MedicalHistoryFirstViewController: UIViewController ,serverTaskComplete {
     @IBAction func btnBloodGroupSelected(_ sender: AnyObject) {
         
         let selectedButton = self.view.viewWithTag(sender.tag) as? UIButton
-        selectedButton?.backgroundColor = UIColor.red
+        selectedButton?.backgroundColor = KRED_COLOR
         for i in 0..<9 {
             if sender.tag == 301 + i {
                 
-                selectedButton?.backgroundColor = UIColor.red
+                selectedButton?.backgroundColor = KRED_COLOR
                 selectedBloodGroup = (selectedButton?.titleLabel?.text)!
             }else{
                 let nonSelectedButton = self.view.viewWithTag(301+i) as? UIButton
@@ -364,7 +364,7 @@ class MedicalHistoryFirstViewController: UIViewController ,serverTaskComplete {
         if ((arrMemberProfileInfoDetails.object(at: 0) as AnyObject).value(forKey: "blood_group")as! String) != "" {
             let buttonTag  = arrBloodGroup.index(of: (arrMemberProfileInfoDetails.object(at: 0) as AnyObject).value(forKey: "blood_group")as! String)
             let selectedButton = self.view.viewWithTag(buttonTag! + 301) as? UIButton
-            selectedButton?.backgroundColor = UIColor.red
+            selectedButton?.backgroundColor = KRED_COLOR
             
         }
         

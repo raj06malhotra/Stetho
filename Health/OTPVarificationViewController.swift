@@ -143,8 +143,8 @@ class OTPVarificationViewController: UIViewController , UITextViewDelegate , ser
         attributedString.addAttribute(NSLinkAttributeName, value: "Click here", range: NSRange(location: 33, length: 10))
         
         let linkAttributes = [
-            NSForegroundColorAttributeName: UIColor.redColor(),
-            // NSUnderlineColorAttributeName: UIColor.redColor(),
+            NSForegroundColorAttributeName: KRED_COLORColor(),
+            // NSUnderlineColorAttributeName: KRED_COLORColor(),
             NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue ]
         
         // let str: String = "If you've not received the code, Click here to receive"
@@ -175,7 +175,7 @@ class OTPVarificationViewController: UIViewController , UITextViewDelegate , ser
         
         let btnVerify_Continue: UIButton = UIButton(frame: CGRect(x: 0, y: self.view.frame.height - 40, width: self.view.bounds.width, height: 40));
         btnVerify_Continue.setTitle("VERIFY AND CONTINUE", for: UIControlState())
-        btnVerify_Continue.backgroundColor = UIColor.red
+        btnVerify_Continue.backgroundColor = KRED_COLOR
         btnVerify_Continue.titleLabel?.font = UIFont (name: "Roboto-Regular", size: 15)
 //        btnVerify_Continue.layer.masksToBounds = true
 //        btnVerify_Continue

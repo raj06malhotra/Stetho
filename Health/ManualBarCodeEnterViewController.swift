@@ -44,11 +44,11 @@ class ManualBarCodeEnterViewController: UIViewController, serverTaskComplete {
         
         btnSubmit.layer.cornerRadius = 8.0
         btnSubmit.layer.borderWidth = 1.0
-        btnSubmit.layer.borderColor = UIColor.red.cgColor
+        btnSubmit.layer.borderColor = KRED_COLOR.cgColor
         
         btnCancel.layer.cornerRadius = 8.0
         btnCancel.layer.borderWidth = 1.0
-        btnCancel.layer.borderColor = UIColor.red.cgColor
+        btnCancel.layer.borderColor = KRED_COLOR.cgColor
         
         let barButtonBack  = UIBarButtonItem(image: UIImage(named: "back_icon3.png"),style: .done,target: self, action: #selector(self.barButtonBackClick(_:)))
         self.navigationItem.leftBarButtonItem = barButtonBack;

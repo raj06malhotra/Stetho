@@ -64,7 +64,7 @@ class Cancel_RecheduleViewController: UIViewController , UIPickerViewDelegate , 
         let lblScheduled = BaseUIController().ALabelFrame(CGRect(x: 5, y: 25, width: view1.frame.width - 10, height: 20), withString: "Scheduled on ")as! UILabel
         lblScheduled.text = String(format: "Scheduled On: %@", order_secheduleTime)
         lblScheduled.font = UIFont().mediumFont
-        lblScheduled.textColor = UIColor.red
+        lblScheduled.textColor = KRED_COLOR
         view1.addSubview(lblScheduled)
         
         let view2 = UIView.init(frame: CGRect(x: 10, y: 155, width: self.view.frame.width - 20, height: 100))

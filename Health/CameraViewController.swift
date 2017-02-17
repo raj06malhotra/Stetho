@@ -173,7 +173,7 @@ UINavigationControllerDelegate , ELCImagePickerControllerDelegate , UICollection
         let label = BaseUIController().ALabelFrame(CGRect(x: 0, y: 30, width: 20, height: 20), withString: String((indexPath as NSIndexPath).row + 1))as! UILabel
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.backgroundColor = UIColor.red
+        label.backgroundColor = KRED_COLOR
         cell.addSubview(label)
         
         return cell
@@ -209,7 +209,7 @@ UINavigationControllerDelegate , ELCImagePickerControllerDelegate , UICollection
         
         
         btnDone = BaseUIController().AButtonFrame(CGRect(x: 0, y: 0, width: 60, height: 44), withButtonTital: "Done")as! UIButton
-        btnDone.setTitleColor(UIColor.red, for: UIControlState())
+        btnDone.setTitleColor(KRED_COLOR, for: UIControlState())
         btnDone.addTarget(self, action: #selector(self.btnDoneOnClick(_:)), for: .touchUpInside)
         self.view.addSubview(btnDone)
         btnDone.isHidden = true
@@ -269,7 +269,7 @@ UINavigationControllerDelegate , ELCImagePickerControllerDelegate , UICollection
             
             let label = BaseUIController().ALabelFrame(CGRectMake(0, 30, 20, 20), withString: String(i+1))as! UILabel
             label.textColor = UIColor.whiteColor()
-            label.backgroundColor = UIColor.redColor()
+            label.backgroundColor = KRED_COLORColor()
             imgView.addSubview(label)
             yPos += 55
             if i == 4 {
