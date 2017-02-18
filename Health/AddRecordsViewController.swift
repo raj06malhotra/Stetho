@@ -72,7 +72,7 @@ class AddRecordsViewController: UIViewController, UITableViewDelegate , UITableV
     func createALayout()  {
         
         btnDone = BaseUIController().AButtonFrame(CGRect(x: 0, y: 0, width: 60, height: 44), withButtonTital: "Done")as! UIButton
-        btnDone.setTitleColor(UIColor.red, for: UIControlState())
+        btnDone.setTitleColor(KRED_COLOR, for: UIControlState())
         btnDone.addTarget(self, action: #selector(self.btnDoneOnClick(_:)), for: .touchUpInside)
         let rightBarButton = UIBarButtonItem(customView: btnDone)
         self.navigationItem.rightBarButtonItem = rightBarButton
@@ -147,7 +147,7 @@ class AddRecordsViewController: UIViewController, UITableViewDelegate , UITableV
             //set selected record
             if i == selectedTag {
                 imageView.image = UIImage(named: arrSelectedImageName[i])
-                lblRecordName.textColor = UIColor.red
+                lblRecordName.textColor = KRED_COLOR
                 button.isSelected = true
                 recordType = arrRecordTypeFirstCharcter[i]
             }else{
@@ -268,7 +268,7 @@ class AddRecordsViewController: UIViewController, UITableViewDelegate , UITableV
             let selectedLabel = self.view.viewWithTag(301 + i)as! UILabel
             if button.tag == 101 + i {
                 selectedImage.image = UIImage(named: arrSelectedImageName[i])
-                selectedLabel.textColor = UIColor.red
+                selectedLabel.textColor = KRED_COLOR
                 //set selected record
                 selectedTag = button.tag - 101
                 switch button.tag {
@@ -593,7 +593,7 @@ class AddRecordsViewController: UIViewController, UITableViewDelegate , UITableV
     func changeTextWithMultipleColor(_ blackString : String , redString : String) -> NSMutableAttributedString {
       
         let attrs1      = [NSFontAttributeName: UIFont().smallFont, NSForegroundColorAttributeName:UIColor.black]
-        let attrs2      = [NSFontAttributeName: UIFont().mediumFont, NSForegroundColorAttributeName: UIColor.red]
+        let attrs2      = [NSFontAttributeName: UIFont().mediumFont, NSForegroundColorAttributeName: KRED_COLOR]
         let attributedText = NSMutableAttributedString()
         attributedText.append(NSAttributedString(string: blackString , attributes:  attrs1))
         attributedText.append(NSAttributedString(string: redString, attributes: attrs2))

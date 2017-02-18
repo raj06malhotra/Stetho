@@ -120,7 +120,6 @@
 		BB3DC1DE1D58A4B400BDF65E /* PickupAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */; };
 		BB41384D1D1D2D5000BE0069 /* shot_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB41384C1D1D2D5000BE0069 /* shot_icon.png */; };
 		BB4138511D1D360800BE0069 /* add_family_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138501D1D360800BE0069 /* add_family_icon.png */; };
-		BB4138551D1D39A700BE0069 /* plus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138541D1D39A700BE0069 /* plus_icon.png */; };
 		BB4138571D1D406200BE0069 /* pdf_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138561D1D406200BE0069 /* pdf_icon.png */; };
 		BB4138591D1D40C900BE0069 /* test_report_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138581D1D40C900BE0069 /* test_report_icon.png */; };
 		BB41385F1D2FC8700045AF8C /* MyRecordPrescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41385E1D2FC8700045AF8C /* MyRecordPrescriptionViewController.swift */; };
@@ -335,9 +334,13 @@
 		BBF834301D63542400BAC9F8 /* menu_orders.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF8342F1D63542400BAC9F8 /* menu_orders.png */; };
 		BBFA0DB31D96D06100C24019 /* saveAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */; };
 		BBFA0DB41D96D06100C24019 /* saveAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */; };
+		C35D277D1E572BCC002C11BA /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */; };
 		C38F56EC1E545D2500BE1BEF /* FamilyMemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */; };
 		C38F56EF1E54653000BE1BEF /* FamilyMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */; };
 		C38F56F11E547DB500BE1BEF /* FamilyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56F01E547DB500BE1BEF /* FamilyHeaderCell.swift */; };
+		C3DD35A21E56E70F0072B231 /* SavedAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DD35A11E56E70F0072B231 /* SavedAddressTableViewController.swift */; };
+		C3DD35AB1E56EACC0072B231 /* SavedAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DD35AA1E56EACC0072B231 /* SavedAddressTableViewCell.swift */; };
+		C3DD35AD1E56FD6B0072B231 /* SavedAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DD35AC1E56FD6B0072B231 /* SavedAddressInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -583,7 +586,6 @@
 		BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupAddressInfo.swift; sourceTree = "<group>"; };
 		BB41384C1D1D2D5000BE0069 /* shot_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_icon.png; sourceTree = "<group>"; };
 		BB4138501D1D360800BE0069 /* add_family_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_family_icon.png; sourceTree = "<group>"; };
-		BB4138541D1D39A700BE0069 /* plus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus_icon.png; sourceTree = "<group>"; };
 		BB4138561D1D406200BE0069 /* pdf_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdf_icon.png; sourceTree = "<group>"; };
 		BB4138581D1D40C900BE0069 /* test_report_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_report_icon.png; sourceTree = "<group>"; };
 		BB41385E1D2FC8700045AF8C /* MyRecordPrescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRecordPrescriptionViewController.swift; sourceTree = "<group>"; };
@@ -816,9 +818,13 @@
 		BBF8342F1D63542400BAC9F8 /* menu_orders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orders.png; sourceTree = "<group>"; };
 		BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = saveAddressTableViewCell.swift; sourceTree = "<group>"; };
 		BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = saveAddressTableViewCell.xib; sourceTree = "<group>"; };
+		C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
 		C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberListViewController.swift; sourceTree = "<group>"; };
 		C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberTableViewCell.swift; sourceTree = "<group>"; };
 		C38F56F01E547DB500BE1BEF /* FamilyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHeaderCell.swift; sourceTree = "<group>"; };
+		C3DD35A11E56E70F0072B231 /* SavedAddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAddressTableViewController.swift; sourceTree = "<group>"; };
+		C3DD35AA1E56EACC0072B231 /* SavedAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAddressTableViewCell.swift; sourceTree = "<group>"; };
+		C3DD35AC1E56FD6B0072B231 /* SavedAddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAddressInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1114,6 +1120,8 @@
 				BBE95DB31DFA99E00007A944 /* main.swift */,
 				BBAC4A4C1E112E1500F68FE1 /* showGraphViewController.swift */,
 				C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */,
+				C3DD35A11E56E70F0072B231 /* SavedAddressTableViewController.swift */,
+				C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -1268,7 +1276,6 @@
 				BBCBE3441D3A5EB100B17126 /* home_icon.png */,
 				BB4138581D1D40C900BE0069 /* test_report_icon.png */,
 				BB4138561D1D406200BE0069 /* pdf_icon.png */,
-				BB4138541D1D39A700BE0069 /* plus_icon.png */,
 				BB4138501D1D360800BE0069 /* add_family_icon.png */,
 				BB41384C1D1D2D5000BE0069 /* shot_icon.png */,
 				BBE9540B1D1BE428009A2947 /* add_records_icon.png */,
@@ -1530,6 +1537,7 @@
 			isa = PBXGroup;
 			children = (
 				BBC7FE5A1E430844004F363C /* CompanyDetailsInfo.swift */,
+				C3DD35AC1E56FD6B0072B231 /* SavedAddressInfo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1574,6 +1582,7 @@
 			children = (
 				C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */,
 				C38F56F01E547DB500BE1BEF /* FamilyHeaderCell.swift */,
+				C3DD35AA1E56EACC0072B231 /* SavedAddressTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1916,7 +1925,6 @@
 				BB0451BB1D5DFF77009497E7 /* package_name.png in Resources */,
 				BB1AD3B01DF6ACCD002DFD83 /* check@2x.png in Resources */,
 				BBACF1A61DDD920A0012669F /* medium_circle.png in Resources */,
-				BB4138551D1D39A700BE0069 /* plus_icon.png in Resources */,
 				BBC504B81DCE330C0016D4AD /* package_book.png in Resources */,
 				BBAC4A421E110BD000F68FE1 /* red_orderbooked_icon.png in Resources */,
 				BBE954101D1BE428009A2947 /* my_health_feed.png in Resources */,
@@ -2014,6 +2022,7 @@
 				BB092B691D2A6E7900126475 /* FMDatabasePool.m in Sources */,
 				BBE72C8C1D685B43000F727A /* MyReminderInfo.swift in Sources */,
 				BB63A7131D1AC60500EEA106 /* BaseUIController.swift in Sources */,
+				C3DD35AD1E56FD6B0072B231 /* SavedAddressInfo.swift in Sources */,
 				BB092B711D2A8DD300126475 /* ModelManager.swift in Sources */,
 				BBF158F41D152FA10053398E /* CarbonTabSwipeScrollView.m in Sources */,
 				BB0451B51D5DF646009497E7 /* MyOrderViewController.swift in Sources */,
@@ -2022,6 +2031,7 @@
 				BB3560171D23E1F7008646BB /* ServerConnectivity.swift in Sources */,
 				BB7147B01D140AC30011BC62 /* DrawerViewController.swift in Sources */,
 				BB7147AB1D140A6A0011BC62 /* KYDrawerController.swift in Sources */,
+				C3DD35A21E56E70F0072B231 /* SavedAddressTableViewController.swift in Sources */,
 				BB450F941D37AE0A004D7832 /* ActionButton.swift in Sources */,
 				BBC7FE581E42EF49004F363C /* CheckinBarcodeViewController.swift in Sources */,
 				BB3773A41D116E8F00E80B54 /* ForgotPasswordViewController.swift in Sources */,
@@ -2057,6 +2067,8 @@
 				BBC7FE5B1E430844004F363C /* CompanyDetailsInfo.swift in Sources */,
 				BB54EA391D4C81FE00418EB7 /* MedicalHistoryFourthViewController.swift in Sources */,
 				BB1AD3BA1DF6ACCD002DFD83 /* ReadMe.md in Sources */,
+				C3DD35AB1E56EACC0072B231 /* SavedAddressTableViewCell.swift in Sources */,
+				C35D277D1E572BCC002C11BA /* AddNewAddressViewController.swift in Sources */,
 				BBC662F51D7860B10027A9C6 /* CameraViewController.swift in Sources */,
 				BBE9541A1D1BF9E5009A2947 /* NotificationsViewController.swift in Sources */,
 				BB37C8191D537B77004A6C56 /* PackgeOrederInfo.swift in Sources */,

@@ -49,9 +49,9 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
         self.navigationController?.navigationBar.isTranslucent = true;
        // self.navigationController!.navigationBar.barTintColor = UIColor(red: 212.0/255, green: 47.0/255, blue: 41.0/255, alpha: 1)
         self.navigationController!.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
 //        
-//        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : UIColor.redColor()]
+//        self.navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(14), NSForegroundColorAttributeName : KRED_COLORColor()]
         self.navigationController!.navigationBar.titleTextAttributes = appDelegate.navigationTitalFontSize
         self .setStatusBarBackgroundColor(UIColor(red: 193.0/255, green: 38.0/255, blue: 33.0/255, alpha: 1))
         self.title = "LOGIN / SIGN UP"
@@ -347,7 +347,7 @@ extension UIViewController: UITextFieldDelegate{
         //toolBar.barTintColor = UIColor .redColor()
        // toolBar.translucent = false
        // toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.tintColor = UIColor.red
+        toolBar.tintColor = KRED_COLOR
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(UIViewController.donePressed))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UIViewController.cancelPressed))

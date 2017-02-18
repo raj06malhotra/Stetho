@@ -132,7 +132,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
 
        // let lblCompanyName = BaseUIController().ALabelFrame(CGRectMake(0, 64 + 15, self.view.frame.width, 30), withString: "HINDUSTAN WELLNESS Pvt. Ltd.")as! UILabel
         lblCompanyName.textAlignment = .center
-        lblCompanyName.textColor = UIColor.red
+        lblCompanyName.textColor = KRED_COLOR
         lblCompanyName.font = UIFont(name: "Roboto-Light", size: 20)
        // lblCompanyName.font = UIFont.boldSystemFontOfSize(14)
         self.view.addSubview(lblCompanyName)
@@ -273,7 +273,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
             
 //            let companyEditImageView = UIImageView(frame: CGRectMake((txtCompanyName.frame.size.width + xPos) - 40, txtCompanyName.frame.origin.y + 5, 30, 30))
 //            companyEditImageView.image = UIImage(named: "corp_edit_icon")
-//            companyEditImageView.tintColor = UIColor.redColor()
+//            companyEditImageView.tintColor = KRED_COLORColor()
             scrollView.addSubview(editButton)
 
             
@@ -500,7 +500,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         //toolBar.barTintColor = UIColor .redColor()
         // toolBar.translucent = false
         // toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.tintColor = UIColor.red
+        toolBar.tintColor = KRED_COLOR
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CorporateViewController.donePressedCustom))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CorporateViewController.cancelPressedCustom))
@@ -624,7 +624,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
     //MARK: - btnOnclickMethod
     /*
      let theImageView = UIImageView(image: UIImage(named:"foo")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))
-     theImageView.tintColor = UIColor.redColor()
+     theImageView.tintColor = KRED_COLORColor()
      */
     func editCompanyNameButtonClicked(_ button: UIButton){
         if button.isSelected == false{

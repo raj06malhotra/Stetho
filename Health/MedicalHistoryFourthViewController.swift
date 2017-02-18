@@ -73,7 +73,7 @@ class MedicalHistoryFourthViewController: UIViewController,serverTaskComplete {
        
         btnSave_Done.layer.masksToBounds = true
         btnSave_Done.layer.borderWidth = 2
-        btnSave_Done.layer.borderColor = UIColor.red.cgColor
+        btnSave_Done.layer.borderColor = KRED_COLOR.cgColor
         fastingBloodSugarIsSelected = false
         btnFastingBloodSugar.layer.masksToBounds = true
         btnFastingBloodSugar.layer.borderWidth = 1
@@ -83,7 +83,7 @@ class MedicalHistoryFourthViewController: UIViewController,serverTaskComplete {
         //Add skip button on Navigation bar
         let btnSkip = BaseUIController().AButtonFrame(CGRect(x: 0  ,y: 7 , width: 50 , height: 30), withButtonTital: "Skip")as! UIButton
         btnSkip.backgroundColor = UIColor.white
-        btnSkip.setTitleColor(UIColor.red, for: UIControlState())
+        btnSkip.setTitleColor(KRED_COLOR, for: UIControlState())
         btnSkip.addTarget(self, action: #selector(MedicalHistorySecondViewController.btnSkipOnClick(_:)), for: .touchUpInside)
         let rightBarButton = UIBarButtonItem(customView: btnSkip)
         self.navigationItem.rightBarButtonItem = rightBarButton
@@ -113,7 +113,7 @@ class MedicalHistoryFourthViewController: UIViewController,serverTaskComplete {
     func changeTextWithMultipleColor(_ blackString : String , redString : String) -> NSMutableAttributedString {
         
         let attrs1      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName:UIColor.black]
-        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: UIColor.red]
+        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: KRED_COLOR]
         let attributedText = NSMutableAttributedString()
         attributedText.append(NSAttributedString(string: blackString , attributes:  attrs1))
         attributedText.append(NSAttributedString(string: redString, attributes: attrs2))
@@ -229,7 +229,7 @@ class MedicalHistoryFourthViewController: UIViewController,serverTaskComplete {
         
         if fastingBloodSugarIsSelected == false {
             fastingBloodSugarIsSelected = true
-            btnFastingBloodSugar.backgroundColor = UIColor.red
+            btnFastingBloodSugar.backgroundColor = KRED_COLOR
             btnFastingBloodSugar.setTitleColor(UIColor.white, for: UIControlState())
             isCheckBoxSelected.image = UIImage(named: "nonselected_yellow_checkbox.png")
             btnBloodGlucoseCheckBox.isSelected = false
@@ -616,7 +616,7 @@ class MedicalHistoryFourthViewController: UIViewController,serverTaskComplete {
         if bg == "1" {
             let isCheckBoxSelected = self.view.viewWithTag(302)as! UIImageView
             fastingBloodSugarIsSelected = true
-            btnFastingBloodSugar.backgroundColor = UIColor.red
+            btnFastingBloodSugar.backgroundColor = KRED_COLOR
             btnFastingBloodSugar.setTitleColor(UIColor.white, for: UIControlState())
             isCheckBoxSelected.image = UIImage(named: "nonselected_yellow_checkbox.png")
             btnBloodGlucoseCheckBox.isSelected = false

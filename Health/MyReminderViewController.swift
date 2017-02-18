@@ -42,7 +42,7 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         }
         
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.title = "MY REMINDERS"
         self.createALayout()
     }

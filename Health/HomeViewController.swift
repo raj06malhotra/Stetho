@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     var graph_Value_Xpos: CGFloat = 0
     var arrSelectedTestListGraphValue = NSArray()
     var borderColor : UIColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1)
-    var textColor : UIColor = UIColor.red
+    var textColor : UIColor = KRED_COLOR
     var max_Value = CGFloat()
     var min_Value = CGFloat()
     // timer varibale
@@ -182,7 +182,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
         self.view.window?.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textColor]
         self.automaticallyAdjustsScrollViewInsets = false
        
@@ -1105,7 +1105,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         lblCart.font = UIFont().smallFont
         lblCart.textAlignment = .center
         lblCart.textColor = UIColor.white
-        lblCart.backgroundColor = UIColor.red
+        lblCart.backgroundColor = KRED_COLOR
         rightBarView.addSubview(lblCart)
         
         let btnNotificaitons = BaseUIController().AButtonFrame(CGRect(x:35 , y: 2, width: 30,height: 40), withButtonTital: "")as! UIButton
@@ -1121,7 +1121,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         }
         lblNotifications.layer.cornerRadius = 8
         lblNotifications.layer.masksToBounds = true
-        lblNotifications.backgroundColor = UIColor.red
+        lblNotifications.backgroundColor = KRED_COLOR
         lblNotifications.font = UIFont().smallFont
         lblNotifications.textAlignment = .center
         lblNotifications.textColor = UIColor.white
@@ -1134,8 +1134,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
         rightBarView.addSubview(lblNotifications)
         let barButtonItem = UIBarButtonItem(customView: rightBarView)
-        self.navigationItem.rightBarButtonItem = barButtonItem
-        
+        self.navigationItem.rightBarButtonItem = barButtonItem        
     }
     //MARK: - LineChartDelegate
     func didSelectDataPoint(_ x: CGFloat, yValues: Array<CGFloat>) {
@@ -2276,7 +2275,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             selectedbutton.backgroundColor = UIColor (red: (224.0/255.0), green: (224.0/255.0), blue: (224.0/255.0), alpha: 1)
             sender.frame = CGRect(x: sender.frame.origin.x, y: sender.frame.origin.y-5, width: 70, height: 70)
             sender.layer.cornerRadius = (sender.frame.width/2)
-            sender.backgroundColor = UIColor.red
+            sender.backgroundColor = KRED_COLOR
             selectedbutton = sender
             
             for v in baseScrollView.subviews{
@@ -2432,7 +2431,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
         cell = nib[0] as? HomeTableViewCell
         cell?.selectionStyle = .none
-        //cell?.backgroundColor = UIColor.redColor()
+        //cell?.backgroundColor = KRED_COLORColor()
         cell?.lbltestName.text = (arrAllTestByFamily[index_row] as AnyObject).value(forKey: "test_name")as? String
         cell?.lblTestValue.text = (arrAllTestByFamily[index_row] as AnyObject).value(forKey: "value")as? String
         cell?.lblTestUnit.text = (arrAllTestByFamily[index_row] as AnyObject).value(forKey: "t_meas")as? String

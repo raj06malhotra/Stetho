@@ -67,7 +67,7 @@ class OrderBookedViewController: UIViewController {
         yPos += 50 + 10
         let label2 = BaseUIController().ALabelFrame(CGRect(x: 10, y: yPos, width: self.view.frame.width - 20 , height: 20), withString: "Instructions:")as! UILabel
         label2.font = UIFont().regularMediumFont
-        label2.textColor = UIColor.red
+        label2.textColor = KRED_COLOR
        // label2.backgroundColor = UIColor .yellowColor()
         scrollView.addSubview(label2)
         yPos += 20 + 10
@@ -82,10 +82,10 @@ class OrderBookedViewController: UIViewController {
         let btnTrackOrder = BaseUIController().AButtonFrame(CGRect(x: 10, y: yPos, width: self.view.frame.width - 20, height: 30), withButtonTital: "TRACK ORDER")as! UIButton
         btnTrackOrder.layer.masksToBounds = true
         btnTrackOrder.layer.borderWidth = 1
-        btnTrackOrder.layer.borderColor = UIColor.red.cgColor
+        btnTrackOrder.layer.borderColor = KRED_COLOR.cgColor
         btnTrackOrder.layer.cornerRadius = 3
         btnTrackOrder.titleLabel?.font = fontSize
-        btnTrackOrder.titleLabel?.textColor = UIColor.red
+        btnTrackOrder.titleLabel?.textColor = KRED_COLOR
         btnTrackOrder.addTarget(self, action: #selector(OrderBookedViewController.btnTrackOrderOnClick(_:)), for: .touchUpInside)
         scrollView.addSubview(btnTrackOrder)
         

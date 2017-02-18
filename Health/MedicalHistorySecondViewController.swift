@@ -59,7 +59,7 @@ class MedicalHistorySecondViewController: UIViewController ,serverTaskComplete{
     }
     func createLayoutDesign()  {
         btnSave_Next.layer.borderWidth = 2
-        btnSave_Next.layer.borderColor = UIColor.red.cgColor
+        btnSave_Next.layer.borderColor = KRED_COLOR.cgColor
         
         alcohalSegmentedCntrol.tintColor = bodertintColor
         smokeSegmentedControl.tintColor = bodertintColor
@@ -83,7 +83,7 @@ class MedicalHistorySecondViewController: UIViewController ,serverTaskComplete{
         //Add skip button on Navigation bar 
         let btnSkip = BaseUIController().AButtonFrame(CGRect(x: 0  ,y: 7 , width: 50 , height: 30), withButtonTital: "Skip")as! UIButton
         btnSkip.backgroundColor = UIColor.white
-        btnSkip.setTitleColor(UIColor.red, for: UIControlState())
+        btnSkip.setTitleColor(KRED_COLOR, for: UIControlState())
         btnSkip.addTarget(self, action: #selector(MedicalHistorySecondViewController.btnSkipOnClick(_:)), for: .touchUpInside)
          let rightBarButton = UIBarButtonItem(customView: btnSkip)
          self.navigationItem.rightBarButtonItem = rightBarButton
@@ -109,7 +109,7 @@ class MedicalHistorySecondViewController: UIViewController ,serverTaskComplete{
     func changeTextWithMultipleColor(_ blackString : String , redString : String) -> NSMutableAttributedString {
         
         let attrs1      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName:UIColor.black]
-        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: UIColor.red]
+        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: KRED_COLOR]
         let attributedText = NSMutableAttributedString()
         attributedText.append(NSAttributedString(string: blackString , attributes:  attrs1))
         attributedText.append(NSAttributedString(string: redString, attributes: attrs2))

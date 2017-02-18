@@ -115,7 +115,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         
         let lblTotalPaymentAmount = BaseUIController().ALabelFrame(CGRect(x: 0, y: yPos, width: self.view.frame.width, height: 21), withString: "'")as! UILabel
         lblTotalPaymentAmount.textAlignment = .center
-        lblTotalPaymentAmount.textColor = UIColor.red
+        lblTotalPaymentAmount.textColor = KRED_COLOR
         lblTotalPaymentAmount.font = UIFont.boldSystemFont(ofSize: 18)
         lblTotalPaymentAmount.text =  totalAmount
         print(totalAmount)
@@ -155,7 +155,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         yPos += 60
         btnPlaceOrder = BaseUIController().AButtonFrame(CGRect(x: 20 , y: yPos, width: self.view.frame.width - 40, height: 40), withButtonTital: "PLACE ORDER")as! UIButton
          btnPlaceOrder.addTarget(self, action: #selector(PaymentOptionsViewController.btnPlaceOrderOnClick(_:)), for:.touchUpInside)
-        btnPlaceOrder.backgroundColor = UIColor.red
+        btnPlaceOrder.backgroundColor = KRED_COLOR
         btnPlaceOrder.titleLabel?.font = UIFont().mediumFont
         btnPlaceOrder.setTitleColor(UIColor.white, for: UIControlState())
         scrollView.addSubview(btnPlaceOrder)
@@ -517,7 +517,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
             //  self.navigationController?.navigationBarHidden = true
            
             self.navigationController?.navigationBar.isTranslucent = true
-            self.navigationController?.navigationBar.tintColor = UIColor.red
+            self.navigationController?.navigationBar.tintColor = KRED_COLOR
             self.navigationController!.pushViewController(paymentView, animated: true)
              self.activityIndicator?.stop()
         }

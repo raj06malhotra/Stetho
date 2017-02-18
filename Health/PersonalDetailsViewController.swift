@@ -71,7 +71,7 @@ var maleImageView: UIImageView = UIImageView()
         yPos += 25 + 10 ;
         
         let btnNext = BaseUIController().AButtonFrame(CGRect(x: self.view.frame.width - 80 , y: yPos, width: 60, height: 30), withButtonTital: "NEXt")as! UIButton
-        btnNext.backgroundColor = UIColor.red
+        btnNext.backgroundColor = KRED_COLOR
         btnNext.setTitleColor(UIColor.white, for: UIControlState())
         scrollView.addSubview(btnNext)
         

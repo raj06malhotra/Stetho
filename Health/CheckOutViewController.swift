@@ -45,7 +45,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
     let pickupAddressObj = PickupAddressInfo()
     var arrPackageOrderData = NSMutableArray()
     var timePickerView : UIPickerView = UIPickerView()
-    var arrTime = ["04:00-04:30", "04:30-05:00" ,"05:00-05:30" , "05:30-06:00" , "06:00-06:30" , "06:30-07:00" , "07:00-07:30" , "07:30-08:00" , "08:00-08:30", "08:30-09:00" , "09:00-09:30" , "09:30-10:00" , "10:00-10:30" ,"10:30-11:00" , "11:00-11:30" , "11:30-12:00" , "12:00-12:30" , "13:00-13:30" , "13:30-14:00" , "14:00-14:30" , "14:30-15:00" , "15:00-15:30" , "15:30-16:00" , "16:00-16:30" , "16:30-17:00" , "17:00-17:30" , "17:00-18:00"]
+    var arrTime = ["04:00-04:30", "04:30-05:00" ,"05:00-05:30" , "05:30-06:00" , "06:00-06:30" , "06:30-07:00" , "07:00-07:30" , "07:30-08:00" , "08:00-08:30", "08:30-09:00" , "09:00-09:30" , "09:30-10:00" , "10:00-10:30" ,"10:30-11:00" , "11:00-11:30" , "11:30-12:00" , "12:00-12:30" , "13:00-13:30" , "13:30-14:00" , "14:00-14:30" , "14:30-15:00" , "15:00-15:30" , "15:30-16:00" , "16:00-16:30" , "16:30-17:00" , "17:00-17:30" , "17:30-18:00"]
     var arrDay = ["Tomorrow " ,"Day after Tomorrow "]
     var bgView = UIView()
     var lblPickUpDate = UILabel()
@@ -118,17 +118,8 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-
-        // Do any additional setup after loading the view.
-        //set Tital
         self.title = "CHECKOUT "
         self.navigationController!.navigationBar.topItem!.title = "CHECKOUT";
-        // get currency sysmbol
-//        let currencyCode = "INR"
-//        let localeComponents = [NSLocale.Key.currencyCode: currencyCode]
-//        let localeIdentifier = Locale.localeIdentifier(fromComponents: localeComponents as! [String : String])
-//        let locale = Locale(localeIdentifier: localeIdentifier)
-//        currencySymbol = (locale as NSLocale).object(forKey: NSLocale.Key.currencySymbol) as! String
         currencySymbol = (Locale(identifier:"de") as NSLocale).displayName(forKey: .currencySymbol, value: "INR")!
         //check is coming form package id from barcode scanner
         if (packageIdFromBarCode != "") {
@@ -152,15 +143,15 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         //add button on Bottom
         btnAddAnotherMember = BaseUIController().AButtonFrame(CGRect(x: 0, y: self.view.frame.height - 104, width: self.view.frame.width/2 - 1, height: 40), withButtonTital: "ADD ANOTHER MEMBER")as! UIButton
         btnAddAnotherMember.addTarget(self, action: #selector(self.btnAddAnotherMemberOnClick(_:)), for: .touchUpInside)
-        btnAddAnotherMember.backgroundColor = UIColor.red
+        btnAddAnotherMember.backgroundColor = KRED_COLOR
         btnAddAnotherMember.setTitleColor(UIColor.white, for: UIControlState())
-        btnAddAnotherMember.titleLabel?.font = UIFont().smallFont
+        btnAddAnotherMember.titleLabel?.font = KROBOTO_Light_15//UIFont().smallFont
         self.view.addSubview(btnAddAnotherMember)
         
         btnProcess = BaseUIController().AButtonFrame(CGRect(x: self.view.frame.width/2 + 1, y: self.view.frame.height - 104 , width: self.view.frame.width/2, height: 40), withButtonTital: "PROCEED")as! UIButton
-        btnProcess.backgroundColor = UIColor.red
+        btnProcess.backgroundColor = KRED_COLOR
         btnProcess.setTitleColor(UIColor.white, for: UIControlState())
-        btnProcess.titleLabel?.font = UIFont().smallFont
+        btnProcess.titleLabel?.font = KROBOTO_Light_15//UIFont().smallFont
         btnProcess.addTarget(self, action: #selector(CheckOutViewController.btnMakePaymentOnClick), for: .touchUpInside)
         self.view.addSubview(btnProcess)
         
@@ -195,12 +186,13 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         var yPos : CGFloat = 10
         btnSelectDate = BaseUIController().AButtonFrame(CGRect(x: 0 , y: yPos , width: self.view.frame.width , height: 40), withButtonTital: "")as! UIButton
         btnSelectDate.addTarget(self, action: #selector(self.btnSelectDateOnClick(_:)), for: .touchUpInside)
-        lblPickUpDate = BaseUIController().ALabelFrame(CGRect(x: 5, y: 5, width: 200, height: 20), withString: "")as! UILabel
-        lblPickUpDate.font = UIFont().mediumFont
+        lblPickUpDate = BaseUIController().ALabelFrame(CGRect(x: 5, y: 10, width: 200, height: 20), withString: "")as! UILabel
+        lblPickUpDate.font = KROBOTO_Regular_21//UIFont().mediumFont
+        lblPickUpDate.textColor = KRED_COLOR
         let _ = self.getPickupAddressDetails()
         lblPickUpDate.text = pickupDay_Time
         btnSelectDate.addSubview(lblPickUpDate)
-        let editImageView = BaseUIController().AImageViewFrame(CGRect(x: self.view.frame.width - 40 , y: 5, width: 25, height: 25), withImageName: "edit_black_icon.png")as! UIImageView
+        let editImageView = BaseUIController().AImageViewFrame(CGRect(x: self.view.frame.width - 40 , y: 5, width: 20, height: 20), withImageName: "edit_red_icon")as! UIImageView
         btnSelectDate.addSubview(editImageView)
         self.view.addSubview(btnSelectDate)
         yPos += 40
@@ -214,7 +206,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             btnMemberName.addTarget(self, action: #selector(btnSelectmemberName(_:)), for: .touchUpInside)
             self.view.addSubview(btnMemberName)
             btnMemberName.setTitle(selectedMemberName, for: UIControlState())
-            btnMemberName.setTitleColor(UIColor.red, for: UIControlState())
+            btnMemberName.setTitleColor(KRED_COLOR, for: UIControlState())
             
             
             let btnaddPackage = BaseUIController().AButtonFrame(CGRect(x: self.view.frame.width/2 + 20, y: yPos, width: self.view.frame.width/2 - 30, height: 35), withButtonTital: "") as! UIButton
@@ -225,12 +217,12 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             btnaddPackage.addTarget(self, action: #selector(btnAddExtraPackage(_:)), for: .touchUpInside)
             self.view.addSubview(btnaddPackage)
             let lblAddTest = BaseUIController().ALabelFrame(CGRect(x: 40, y: 0, width: 200, height: 35), withString: "ADD TEST")as! UILabel
-            lblAddTest.textColor = UIColor.red
+            lblAddTest.textColor = KRED_COLOR
             lblAddTest.font =  UIFont.boldSystemFont(ofSize: 14)
             lblAddTest.textAlignment = .left
             btnaddPackage.addSubview(lblAddTest)
             
-            btnaddPackage.setTitleColor(UIColor.red, for: UIControlState())
+            btnaddPackage.setTitleColor(KRED_COLOR, for: UIControlState())
             //set frame of button 
             btnProcess.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 104 , width: UIScreen.main.bounds.width, height: 40)
             btnAddAnotherMember.isHidden = true
@@ -280,7 +272,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         headingView.addSubview(lblPayableHeading)
         
         let lblVerticalleftLine = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: 0.5, height: 30), withString: "")as! UILabel
-        lblVerticalleftLine.backgroundColor = UIColor.red
+        lblVerticalleftLine.backgroundColor = KRED_COLOR
         headingView.addSubview(lblVerticalleftLine)
         
         let lblHorizontalLineOnHeadingView = BaseUIController().ALabelFrame(CGRect(x: 0, y: 29, width: self.view.frame.width, height: 0.5), withString: "")as! UILabel
@@ -321,12 +313,12 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
           //  lblPackageName.frame = CGRectMake(50, 20, self.view.frame.width - 135, lblPackageName.frame.height)
             scrollView.addSubview(mainView)
             let lblLeftVerticalLine = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: 0.5, height: mainView.frame.height), withString: "")as! UILabel
-            lblLeftVerticalLine.backgroundColor = UIColor.red
+            lblLeftVerticalLine.backgroundColor = KRED_COLOR
             mainView.addSubview(lblLeftVerticalLine)
             
           //  let userImageView = BaseUIController().AImageViewFrame(CGRectMake(lblLeftVerticalLine.frame.origin.x + 5 , (mainView.frame.height - 30)/2 , 30, 30), withImageName: "user_icon.png")as! UIImageView
             let lblMemberName = BaseUIController().ALabelFrame(CGRect(x: lblLeftVerticalLine.frame.origin.x + 5 , y: (mainView.frame.height - 30)/2 , width: 30, height: 30), withString: "")as! UILabel
-            lblMemberName.backgroundColor = UIColor.red
+            lblMemberName.backgroundColor = KRED_COLOR
             lblMemberName.textAlignment = .center
             lblMemberName.font = UIFont().regularMediumFont
             lblMemberName.textColor = UIColor.white
@@ -532,7 +524,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         totalView.addSubview(lbltotalView_H_lLine)
         
         let lbltotalView_V_lLine = BaseUIController().ALabelFrame(CGRect(x: 10, y: 2, width: 0.5, height: 50), withString: "")as! UILabel
-        lbltotalView_V_lLine.backgroundColor = UIColor.red
+        lbltotalView_V_lLine.backgroundColor = KRED_COLOR
         totalView.addSubview(lbltotalView_V_lLine)
         
         let lblTotal = BaseUIController().ALabelFrame(CGRect(x: 30, y: 15, width: 120, height: 20), withString: "Total Amount")as! UILabel
@@ -578,7 +570,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             totalView.addSubview(lblDiscountAmount)
             
             let lblHorizontalLineOntotalView = BaseUIController().ALabelFrame(CGRect(x: 10, y: 80, width: self.view.frame.width, height: 0.5), withString: "")as! UILabel
-            lblHorizontalLineOntotalView.backgroundColor = UIColor.red
+            lblHorizontalLineOntotalView.backgroundColor = KRED_COLOR
             totalView.addSubview(lblHorizontalLineOntotalView)
             
             let lblTotalPayableAmount = BaseUIController().ALabelFrame(CGRect(x: 30, y: 85, width: 200, height: 20), withString: "Payable Amount")as! UILabel
@@ -670,7 +662,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             
             
             
-            lblHorizontalLineOntotalView.backgroundColor = UIColor.red
+            lblHorizontalLineOntotalView.backgroundColor = KRED_COLOR
             totalView.addSubview(lblHorizontalLineOntotalView)
 
             
@@ -721,7 +713,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         
         let lblMessage = BaseUIController().ALabelFrame(CGRect(x: 40, y: 70, width: couponView.frame.width - 80, height: 30), withString: "Enter your coupon code here and applicable only in Stetho.")as! UILabel
         lblMessage.numberOfLines = 0
-        //lblMessage.backgroundColor = UIColor.redColor()
+        //lblMessage.backgroundColor = KRED_COLORColor()
         lblMessage.font = UIFont().smallFont
         couponView.addSubview(lblMessage)
         
@@ -731,8 +723,8 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         let btnApply = BaseUIController().AButtonFrame(CGRect(x: rightImageView.frame.origin.x - 70 , y: 25, width: 70, height: 35), withButtonTital: "Apply")as! UIButton
         btnApply.layer.cornerRadius = 4
         btnApply.layer.borderWidth = 1
-        btnApply.layer.borderColor = UIColor.red.cgColor
-        btnApply.setTitleColor(UIColor.red, for: UIControlState())
+        btnApply.layer.borderColor = KRED_COLOR.cgColor
+        btnApply.setTitleColor(KRED_COLOR, for: UIControlState())
         btnApply.addTarget(self, action: #selector(self.btnApplyOnClick(_:)), for: .touchUpInside)
         btnApply.titleLabel?.font = fontSize
         couponView.addSubview(btnApply)
@@ -780,7 +772,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             couponView.addSubview(lblTotalDistAmount)
             
             let lblCouponSuccefullyMessages = BaseUIController().ALabelFrame(CGRect(x: 30, y: 40, width: 200 , height: 40), withString: "Coupon applied successfully!")as! UILabel
-           // lblCouponSuccefullyMessages.textColor = UIColor.redColor()
+           // lblCouponSuccefullyMessages.textColor = KRED_COLORColor()
             lblCouponSuccefullyMessages.text = "Coupon applied successfully!" + "\n Payble amount is ₹ " + String(afterDiscoutTotalPrice)
             couponView.addSubview(lblCouponSuccefullyMessages)
         }
@@ -887,7 +879,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         bgView .addSubview(lblTestSelectd)
         btnContinue = UIButton(frame: CGRect(x: self.view.frame.width/2, y: packageTableView.frame.height + 50 ,width: bgView.frame.width/2,height: 40))
         btnContinue.setTitle("Continue", for: UIControlState())
-        btnContinue.backgroundColor = UIColor.red
+        btnContinue.backgroundColor = KRED_COLOR
         btnContinue.titleLabel?.font = UIFont().mediumFont
         btnContinue.addTarget(self, action: #selector(self.btnContinueOnClick(_:)), for: .touchUpInside)
         bgView .addSubview(btnContinue)
@@ -949,7 +941,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: self.view.frame.width, height: 40), withString: "Add New Address")as! UILabel
         baseView.addSubview(lblHeading)
         let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0, y: 41, width: self.view.frame.width, height: 1), withString: "")as! UILabel
-        lblLine.backgroundColor = UIColor.red
+        lblLine.backgroundColor = KRED_COLOR
         baseView.addSubview(lblLine)
         
         
@@ -1003,7 +995,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         
         yPos += 40
         let btnCancel = BaseUIController().AButtonFrame(CGRect(x: 1 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "CANCEL")as! UIButton
-        btnCancel.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnCancel.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnCancel.titleLabel?.font = UIFont().largeFont
         btnCancel.setTitleColor(UIColor.white, for: UIControlState())
         btnCancel.addTarget(self, action: #selector(self.btnCancelOnClick(_:)), for: .touchUpInside)
@@ -1012,7 +1004,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         
         
         let btnDone = BaseUIController().AButtonFrame(CGRect(x: (baseView.frame.width)/2 + 2 , y: baseView.frame.height - 40 , width: (baseView.frame.width)/2 - 2, height: 40), withButtonTital: "DONE")as! UIButton
-        btnDone.backgroundColor =  UIColor.red//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
+        btnDone.backgroundColor =  KRED_COLOR//UIColor .init(red: (235.0/255.0), green: (235.0/255.0), blue: (235.0/255.0), alpha: 1)
         btnDone.titleLabel?.font = UIFont().largeFont
         btnDone.setTitleColor(UIColor.white, for: UIControlState())
         btnDone.addTarget(self, action: #selector(self.btnDoneOnclick(_:)), for: .touchUpInside)
@@ -1069,6 +1061,19 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         }
     }
     
+
+    
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        var str = ""
+//        if component == 0{
+//            str = arrDay[row]
+//        }else{
+//            str = arrTime[row]
+//        }
+//        let attributedString = NSAttributedString(string: str, attributes: [NSForegroundColorAttributeName : KRED_COLOR, NSFontAttributeName : UIFont(name: "Roboto-Light", size: 12.0)!])
+//        return attributedString
+//    }
+    
     // returns the # of rows in each component..
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         if (pickerView == cityPickerView) {
@@ -1083,17 +1088,17 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (pickerView == cityPickerView) {
-            return arrCityName[row]
-        }else{
-        if component == 0 {
-            return arrDay[row]
-        }else{
-            return arrTime[row]
-            }
-        }
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        if (pickerView == cityPickerView) {
+//            return arrCityName[row]
+//        }else{
+//        if component == 0 {
+//            return arrDay[row]
+//        }else{
+//            return arrTime[row]
+//            }
+//        }
+//    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
@@ -1129,7 +1134,8 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             }
         }
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
-        pickerLabel.font = UIFont().mediumFont // In this use your custom font
+        pickerLabel.font = KROBOTO_Regular_17 // In this use your custom font
+        pickerLabel.textColor = KRED_COLOR
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
     }
@@ -1255,7 +1261,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
                     pkg_id = (arrFilterPakageData[indexPath.row] as! NSDictionary).value(forKey: "pkg_id")as! String
                 }
                 if (pkgOrderInfo.packageId == pkg_id) && pkgOrderInfo.orderId == selectedMemberId  {
-                    btnAdd.backgroundColor = UIColor.red
+                    btnAdd.backgroundColor = KRED_COLOR
                     btnAdd.setTitleColor(UIColor.white, for: UIControlState())
                     btnAdd.isSelected = true
                 }
@@ -1367,7 +1373,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         label.text = "SAVED ADDRESSES"
         headerView.addSubview(label)
         let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0 , y: 29 ,width: self.view.frame.width , height: 1), withString: "")as! UILabel
-        lblLine.backgroundColor = UIColor.red
+        lblLine.backgroundColor = KRED_COLOR
         headerView.addSubview(lblLine)
         return headerView
     }
@@ -1526,10 +1532,11 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
     //MARK: buttonOnClick
     func btnSelectDateOnClick(_ button : UIButton)  {
         
+        
         bgView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(bgView)
-        timePickerView = UIPickerView(frame: CGRect(x: 20 , y: self.view.center.y - 144 , width: self.view.frame.width - 40, height: 160 ))
+        timePickerView = UIPickerView(frame: CGRect(x: 0 , y: self.view.frame.height - 216 , width: self.view.frame.width, height: 216 ))
         timePickerView.backgroundColor = UIColor.white
         timePickerView.dataSource = self
         timePickerView.delegate = self
@@ -1750,8 +1757,8 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         
         
         if Sender.isSelected == false {
-            Sender.backgroundColor = UIColor.red
-            Sender.layer.borderColor = UIColor.red.cgColor
+            Sender.backgroundColor = KRED_COLOR
+            Sender.layer.borderColor = KRED_COLOR.cgColor
             Sender.setTitleColor(UIColor.white, for: UIControlState())
             Sender.isSelected = true
             if searchController.isActive == false  {
@@ -1766,7 +1773,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         }else{
             Sender.backgroundColor = UIColor.clear
             Sender.layer.borderColor = UIColor.orange.cgColor
-            Sender.setTitleColor(UIColor.red, for: UIControlState())
+            Sender.setTitleColor(KRED_COLOR, for: UIControlState())
             Sender.isSelected = false
             if searchController.isActive == false  {
             //    self.deleteOrderPackageFromDB(arrPakageData.objectAtIndex((indexPath?.row)!) as! NSDictionary)

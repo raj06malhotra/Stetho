@@ -151,7 +151,7 @@ class SuccessViewController: UIViewController,serverTaskComplete {
             self.view.addSubview(lblSuccessMessage)
             
             let btnDone = BaseUIController().AButtonFrame(CGRect(x: 0, y: self.view.frame.height - 40, width: self.view.frame.width, height: 40), withButtonTital: "DONE")as! UIButton
-            btnDone.backgroundColor = UIColor.red
+            btnDone.backgroundColor = KRED_COLOR
             btnDone.setTitleColor(UIColor.white, for: UIControlState())
             btnDone.addTarget(self, action: #selector(self.barButtonBackClick(_:)), for: .touchUpInside)
             btnDone.titleLabel?.font = UIFont().veryLargeFont

@@ -243,7 +243,7 @@ class FailViewController: UIViewController,serverTaskComplete {
         self.view.addSubview(lblDelineMessage)
         
         let btnBackToStetho = BaseUIController().AButtonFrame(CGRect(x: 0, y: self.view.frame.height - 40, width: self.view.frame.width, height: 40), withButtonTital: "BACK TO STETHO")as! UIButton
-        btnBackToStetho.backgroundColor = UIColor.red
+        btnBackToStetho.backgroundColor = KRED_COLOR
         btnBackToStetho.setTitleColor(UIColor.white, for: UIControlState())
         btnBackToStetho.addTarget(self, action: #selector(self.barButtonBackClick(_:)), for: .touchUpInside)
         btnBackToStetho.titleLabel?.font = UIFont().regularMediumFont

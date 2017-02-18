@@ -171,7 +171,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             //Add skip button on Navigation bar
             //        btnSkip = BaseUIController().AButtonFrame(CGRect(x: 0  ,y: 7 , width: 50 , height: 30), withButtonTital: "Skip")as! UIButton
             //        btnSkip.backgroundColor = UIColor.whiteColor()
-            //        btnSkip.setTitleColor(UIColor.redColor(), forState: .Normal)
+            //        btnSkip.setTitleColor(KRED_COLORColor(), forState: .Normal)
             //        btnSkip.addTarget(self, action: #selector(MedicalHistoryThirdViewController.btnSkipOnClick(_:)), forControlEvents: .TouchUpInside)
             //        let rightBarButton = UIBarButtonItem(customView: btnSkip)
             //        self.navigationItem.rightBarButtonItem = rightBarButton
@@ -346,7 +346,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             problemCell.btnSelf.setTitleColor(UIColor.darkGray, for: UIControlState())
             problemCell.btnSelf.backgroundColor = UIColor.clear
         }else{
-            problemCell.btnSelf.backgroundColor = UIColor.red
+            problemCell.btnSelf.backgroundColor = KRED_COLOR
             problemCell.btnSelf.setTitleColor(UIColor.white, for: UIControlState())
             
         }
@@ -357,7 +357,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             
             problemCell.btnFather.backgroundColor = UIColor.clear
         }else{
-            problemCell.btnFather.backgroundColor = UIColor.red
+            problemCell.btnFather.backgroundColor = KRED_COLOR
             problemCell.btnFather.setTitleColor(UIColor.white, for: UIControlState())
         }
         
@@ -368,7 +368,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             
             problemCell.btnMother.backgroundColor = UIColor.clear
         }else{
-            problemCell.btnMother.backgroundColor = UIColor.red
+            problemCell.btnMother.backgroundColor = KRED_COLOR
             problemCell.btnMother.setTitleColor(UIColor.white, for: UIControlState())
             
         }
@@ -448,7 +448,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func changeTextWithMultipleColor(_ blackString : String , redString : String) -> NSMutableAttributedString {
         
         let attrs1      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName:UIColor.black]
-        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: UIColor.red]
+        let attrs2      = [NSFontAttributeName: UIFont().regularMediumFont, NSForegroundColorAttributeName: KRED_COLOR]
         let attributedText = NSMutableAttributedString()
         attributedText.append(NSAttributedString(string: blackString , attributes:  attrs1))
         attributedText.append(NSAttributedString(string: redString, attributes: attrs2))
@@ -557,11 +557,11 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     //NOT IN USE
     @IBAction func btnBloodGroupSelected(_ sender: AnyObject) {
         let selectedButton = self.view.viewWithTag(sender.tag) as? UIButton
-        selectedButton?.backgroundColor = UIColor.red
+        selectedButton?.backgroundColor = KRED_COLOR
         for i in 0..<9 {
             if sender.tag == 301 + i {
                 
-                selectedButton?.backgroundColor = UIColor.red
+                selectedButton?.backgroundColor = KRED_COLOR
                 selectedBloodGroup = (selectedButton?.titleLabel?.text)!
             }else{
                 let nonSelectedButton = self.view.viewWithTag(301+i) as? UIButton
@@ -590,7 +590,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         //toolBar.barTintColor = UIColor .redColor()
         // toolBar.translucent = false
         // toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.tintColor = UIColor.red
+        toolBar.tintColor = KRED_COLOR
         
         let doneButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(UserDetailsViewController.nextPressed(_:)))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action:#selector(UserDetailsViewController.cancelBtnPressed))
@@ -831,7 +831,7 @@ class UserDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if ((arrMemberProfileInfoDetails.object(at: 0) as AnyObject).value(forKey: "blood_group")as! String) != "" {
             let buttonTag  = arrBloodGroup.index(of: (arrMemberProfileInfoDetails.object(at: 0) as AnyObject).value(forKey: "blood_group")as! String)
             let selectedButton = self.view.viewWithTag(buttonTag! + 301) as? UIButton
-            selectedButton?.backgroundColor = UIColor.red
+            selectedButton?.backgroundColor = KRED_COLOR
             
         }
         

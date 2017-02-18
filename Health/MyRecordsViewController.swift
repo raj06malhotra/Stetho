@@ -43,8 +43,8 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.red
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        self.navigationController?.navigationBar.tintColor = KRED_COLOR
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: KRED_COLOR]
         self.CreateALayout()
         //set activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
@@ -216,7 +216,7 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
         var checkImageView = UIImageView()
         
         let lblView = BaseUIController().ALabelFrame(CGRect(x: 0, y: image_height - 15, width: image_width, height: 14.5), withString: "View")as! UILabel
-        lblView.textColor = UIColor.red
+        lblView.textColor = KRED_COLOR
         lblView.backgroundColor = UIColor.lightGray
         lblView.textAlignment = .center
         lblView.font = UIFont.boldSystemFont(ofSize: 16)//UIFont().mediumFont
@@ -528,7 +528,7 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
         btnDone.tag = 111
         btnDone.backgroundColor = UIColor.white
         btnDone.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btnDone.setTitleColor(UIColor.red, for: UIControlState())
+        btnDone.setTitleColor(KRED_COLOR, for: UIControlState())
         btnDone.addTarget(self, action: #selector(self.btnDoneOnClick(_:)), for: .touchUpInside)
         self.view.window!.viewWithTag(500)?.addSubview(btnDone)
         

@@ -85,7 +85,7 @@ class RMParallax : UIViewController, UIScrollViewDelegate {
        // self.dismissButton.setTitle("Got it, Thanks!", forState: UIControlState.Normal)
         let attrs = [
             NSFontAttributeName : UIFont.systemFont(ofSize: 12.0),
-            NSForegroundColorAttributeName : UIColor.red,
+            NSForegroundColorAttributeName : KRED_COLOR,
             NSUnderlineStyleAttributeName : 1] as [String : Any]
         let attributedString = NSMutableAttributedString(string:"")
         let buttonTitleStr = NSMutableAttributedString(string:"Got it, Thanks!", attributes:attrs)

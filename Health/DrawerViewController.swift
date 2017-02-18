@@ -121,7 +121,7 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
             let imgView = UIImageView(image: UIImage(named: "drawer_background"))
             imgView.tintColor = UIColor.gray
 //            let theImageView = UIImageView(image: UIImage(named:"drawer_background.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))
-//            theImageView.tintColor = UIColor.redColor()
+//            theImageView.tintColor = KRED_COLORColor()
             cell.backgroundView = imgView//UIImageView(image: UIImage(named: "drawer_background.png")!)
 //           cell.backgroundView?.tintColor = UIColor.blue
             if (myFamilyObject.memberPhoto != "") {

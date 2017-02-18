@@ -18,7 +18,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
     // y axis Value
     var arrGraphValue: [CGFloat] = []
     var arrGraphValueCopy: [CGFloat] = []
-     var textColor : UIColor = UIColor.red
+     var textColor : UIColor = KRED_COLOR
     //  x axis values
     var arrGraphDateCopy: [String] = []
     //  x axis values
@@ -122,7 +122,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
     
     let testListScrollView  = UIScrollView.init(frame: CGRect(x: 0, y: self.view.frame.height/2 + 100, width: self.view.frame.width, height: 130))
     testListScrollView.showsHorizontalScrollIndicator = false
-    //testListScrollView.backgroundColor = UIColor.redColor()
+    //testListScrollView.backgroundColor = KRED_COLORColor()
     self.view.addSubview(testListScrollView)
     
     //let testListView = UIView.init(frame: CGRectMake(5, -62, self.view.frame.width - 10, 62))
@@ -154,7 +154,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
     btnTest.tag = 101 + i
     if btnTest.tag == 101 {
         btnTest.backgroundColor = UIColor (red: (227/255), green: (227/255), blue: (227/255), alpha: 1)
-        btnTest.setTitleColor(UIColor.red, for: UIControlState())
+        btnTest.setTitleColor(KRED_COLOR, for: UIControlState())
     }
     else
     {
@@ -581,7 +581,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
                 selectedTestName = arrTestList[btn.tag - 101] as! String
                 print(selectedTestName)
                 btn.backgroundColor = UIColor (red: (227/255), green: (227/255), blue: (227/255), alpha: 1)
-                btn.setTitleColor(UIColor.red, for: UIControlState())
+                btn.setTitleColor(KRED_COLOR, for: UIControlState())
             }else{
                 btn.backgroundColor = UIColor.clear
                 btn.setTitleColor(UIColor (red: (72/255), green: (72/255), blue: (72/255), alpha: 1), for: UIControlState())
