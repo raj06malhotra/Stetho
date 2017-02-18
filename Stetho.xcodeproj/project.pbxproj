@@ -118,7 +118,6 @@
 		BB383CF51DCB819400B7ABFE /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB383CF31DCB819400B7ABFE /* AGPushNoteView.xib */; };
 		BB3DB9E51D12C6AF00CC2B3C /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BB3DB9E41D12C6AF00CC2B3C /* app_logo.png */; };
 		BB3DC1DE1D58A4B400BDF65E /* PickupAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */; };
-		BB41384D1D1D2D5000BE0069 /* shot_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB41384C1D1D2D5000BE0069 /* shot_icon.png */; };
 		BB4138511D1D360800BE0069 /* add_family_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138501D1D360800BE0069 /* add_family_icon.png */; };
 		BB4138571D1D406200BE0069 /* pdf_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138561D1D406200BE0069 /* pdf_icon.png */; };
 		BB4138591D1D40C900BE0069 /* test_report_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4138581D1D40C900BE0069 /* test_report_icon.png */; };
@@ -584,7 +583,6 @@
 		BB383CF31DCB819400B7ABFE /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGPushNoteView.xib; sourceTree = "<group>"; };
 		BB3DB9E41D12C6AF00CC2B3C /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
 		BB3DC1DD1D58A4B400BDF65E /* PickupAddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupAddressInfo.swift; sourceTree = "<group>"; };
-		BB41384C1D1D2D5000BE0069 /* shot_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot_icon.png; sourceTree = "<group>"; };
 		BB4138501D1D360800BE0069 /* add_family_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_family_icon.png; sourceTree = "<group>"; };
 		BB4138561D1D406200BE0069 /* pdf_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdf_icon.png; sourceTree = "<group>"; };
 		BB4138581D1D40C900BE0069 /* test_report_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_report_icon.png; sourceTree = "<group>"; };
@@ -1277,7 +1275,6 @@
 				BB4138581D1D40C900BE0069 /* test_report_icon.png */,
 				BB4138561D1D406200BE0069 /* pdf_icon.png */,
 				BB4138501D1D360800BE0069 /* add_family_icon.png */,
-				BB41384C1D1D2D5000BE0069 /* shot_icon.png */,
 				BBE9540B1D1BE428009A2947 /* add_records_icon.png */,
 				BBE9540C1D1BE428009A2947 /* my_health_feed.png */,
 				BBE9540D1D1BE428009A2947 /* request_home_visit_icon.png */,
@@ -1843,7 +1840,6 @@
 				BB3786CB1D59E91100B9ACAB /* app_credits_left.png in Resources */,
 				BBF6705B1E1CCF5B002B3A73 /* corp_name_icon.png in Resources */,
 				BBC84D8E1D82E9CE006E623F /* package_price.png in Resources */,
-				BB41384D1D1D2D5000BE0069 /* shot_icon.png in Resources */,
 				BBB56BA51D8D6A2C0058860F /* roboto_regular.ttf in Resources */,
 				BBF670591E1CCF5B002B3A73 /* corp_mail_icon.png in Resources */,
 				BB1AD3A81DF6ACCD002DFD83 /* DebitCardCell_iPad.xib in Resources */,
