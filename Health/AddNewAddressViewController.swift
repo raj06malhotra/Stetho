@@ -98,7 +98,7 @@ class AddNewAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
             let textField = BaseUIController().ATextFiedlFrame(CGRect(x:xPos , y: yPos ,width: self.view.frame.width-40 , height: 35 ), withPlaceHolder: "")as! UITextField
             textField.tag = 200 + i
             textField.delegate = self
-            textField.font = KROBOTO_Light_17
+            textField.font = KROBOTO_Regular_17
             textField.textAlignment = .left
             textField.borderStyle = .none
             textField.placeholder = labelName[i]
@@ -140,7 +140,7 @@ class AddNewAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
             textField.layer.cornerRadius = 4.0
             textField.layer.masksToBounds = true
             textField.layer.borderColor =  UIColor.lightGray.cgColor//UIColor.lightGray.cgColor//UIColor.init(red: (242.0/255.0), green: (237.0/255.0), blue: (237.0/255.0), alpha: 1.0).cgColor
-            textField.font = KROBOTO_Light_19
+            textField.font = KROBOTO_Regular_19
             textField.textColor = UIColor.darkGray
             textField.textAlignment = .center
             scrollView.addSubview(textField)
