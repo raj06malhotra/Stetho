@@ -558,31 +558,20 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if tableView == inviteTableView {
             return arrExistingUser.count
-        }else{
-            return arrRelationCategory.count
-        }
-        
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
-        
-        //        cell.layer.borderWidth = 1
-        //        cell.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).CGColor
-        // set font size of cell text lable
         cell.textLabel!.adjustsFontSizeToFitWidth = true
         cell.textLabel!.font = UIFont().mediumFont
         
         cell.textLabel?.textColor = UIColor (red: (55.0/255.0), green: (54/255.0), blue: (54.0/255.0), alpha: 1)
         if tableView == inviteTableView {
             cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
-        }else{
-            
-            let _ = cell.textLabel?.text = arrRelationCategory[(indexPath as NSIndexPath).row] 
         }
         
         return cell;
@@ -590,7 +579,6 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if tableView == inviteTableView {
             dictContactDetails.removeObject(forKey: "fullName")
             dictContactDetails.setValue((arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String, forKey: "fullName")
             shadowBackGround.removeFromSuperview()
@@ -601,16 +589,8 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
                    self.shadowBackGround.removeFromSuperview()
                    self.openRelationPopup()
                 });
-            }//);
-        }else{
-            if selectedMemberId == "" {
-                relation = (arrRelationCategory[(indexPath as NSIndexPath).row])
-                self.showAlertController("add")
-            }else{
-                relation = (arrRelationCategory[(indexPath as NSIndexPath).row])
-                self.UpdateMyFamilyRelation(relation)
             }
-                    }
+      
         shadowBackGround.isHidden = true
         shadowBackGround.removeFromSuperview()
     }
@@ -629,13 +609,9 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
         headerView.backgroundColor = UIColor.white
-        
-        let lblSelectRelation = BaseUIController().ALabelFrame(CGRect(x: 10 ,y:5 ,width: tableView.frame.width , height: 20), withString: "Select Relation.") as! UILabel
+        let lblSelectRelation = BaseUIController().ALabelFrame(CGRect(x: 10 ,y:5 ,width: tableView.frame.width , height: 20), withString: "Invite Existing Member.") as! UILabel
         lblSelectRelation.font = UIFont().largeFont
         headerView.addSubview(lblSelectRelation)
-        if tableView == inviteTableView {
-            lblSelectRelation.text = "Invite Existing Member."
-        }
         return headerView
     }
 

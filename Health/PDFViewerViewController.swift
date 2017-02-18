@@ -195,6 +195,7 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
      // MARK: - OnClickMethod
     func btnShareOnClick()  {
       //  self.shareTextImageAndURL("Gmail", sharingImage: nil, sharingURL: nil)
+        actionButton.toggleMenu()
         self.openPDFPopup()
         
     }
@@ -204,6 +205,7 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
     
     
     func btnEditOnClick()  {
+         actionButton.toggleMenu()
          var arrLabelName = NSArray()
         
         if recordObject.recordType == "R" {

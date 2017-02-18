@@ -31,6 +31,9 @@ class MyRecordPrescriptionViewController: UIViewController , UITableViewDelegate
     var documentInteractionController = UIDocumentInteractionController()
     let datePickerView  : UIDatePicker = UIDatePicker()
     var tabBarHeight : CGFloat = 0
+    // add sort button
+    var btnSortText : UIButton = UIButton()
+    var btnSort : UIButton = UIButton()
     
     // MARK: - ViewLifeCycleMethod
     override func viewDidLoad() {
@@ -70,11 +73,23 @@ class MyRecordPrescriptionViewController: UIViewController , UITableViewDelegate
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         self.view.addSubview(self.tableView)
-        // create A Button
-        let btnSort: UIButton = UIButton(frame: CGRect(x: self.view.frame.width - 40 ,y: 5,width:20,height: 20))
-        btnSort.setImage(UIImage(named: "shot_icon"), for: UIControlState())
+        // create A sorting Button
+        btnSortText = UIButton(frame: CGRect(x: self.view.frame.width - 70 ,y: 5,width:30,height: 20)) //UILabel(frame: CGRect(x: btnSort.frame.origin.x + 25, y: 5, width: 30, height: 20))
+        btnSortText.setTitleColor(KRED_COLOR, for: .normal)
+        btnSortText.titleLabel?.font = KROBOTO_Regular_14
+        btnSortText.addTarget(self, action: #selector(self.btnSortOnClick), for: .touchUpInside)
+        btnSortText.setTitle("Sort", for: .normal)
+        self.view.addSubview(btnSortText)
+        
+        btnSort = UIButton(frame: CGRect(x: btnSortText.frame.origin.x + 30 + 2 ,y: 5,width:20,height: 20))
+        btnSort.setImage(UIImage(named: "sort_icon"), for: UIControlState())
         btnSort.addTarget(self, action: #selector(self.btnSortOnClick), for: .touchUpInside)
+        btnSort.imageEdgeInsets = UIEdgeInsetsMake(2.5, 0, 2.5, 0)
         self.view.addSubview(btnSort)
+        
+        btnSortText.isHidden = true
+        btnSort.isHidden = true
+
         //  add LongPress Gesture
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressOnCell(_:)))
         tableView.addGestureRecognizer(longPressRecognizer)
@@ -207,16 +222,19 @@ class MyRecordPrescriptionViewController: UIViewController , UITableViewDelegate
         // add selected check & uncheck button on cell
          var checkImageView = UIImageView()
         if longPressActive {
-            
-            checkImageView = BaseUIController().AImageViewFrame(CGRect(x: tableView.frame.width - 40, y: (image_height/2)-5, width: 20, height: 20), withImageName: "")as! UIImageView
+            let checkImageViewLayout = UIImageView(frame: CGRect(x: tableView.frame.width - 30, y: ((image_height) - 20), width: 20, height: 20))
+            checkImageViewLayout.layer.cornerRadius = 2
+            checkImageViewLayout.layer.borderWidth = 2
+            checkImageViewLayout.layer.borderColor  = KRED_COLOR.cgColor
+            cell.addSubview(checkImageViewLayout)
+            checkImageView = BaseUIController().AImageViewFrame(CGRect(x: 2.5, y: 2.5, width: 15, height: 15), withImageName: "checked")as! UIImageView
             checkImageView.isUserInteractionEnabled = true
-            cell.addSubview(checkImageView)
-            print(arrCheckUncheck)
+            checkImageViewLayout.addSubview(checkImageView)
             if arrCheckUncheck.contains((indexPath as NSIndexPath).section) {
-                checkImageView.image = UIImage(named: "selectedcheckbox_icon")
+                checkImageView.isHidden = false
             }
             else{
-                checkImageView.image = UIImage(named: "nonselectedcheckbox_icon")
+                checkImageView.isHidden = true
             }
         }
         // Add tap Gesture on ImageViw
@@ -403,6 +421,8 @@ class MyRecordPrescriptionViewController: UIViewController , UITableViewDelegate
         self.loadDataFromDataBase("desc")
     }
     func loadDataFromDataBase(_ order : String)  {
+        btnSortText.isHidden = false
+        btnSort.isHidden = false
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let database = appDelegate.openDataBase()

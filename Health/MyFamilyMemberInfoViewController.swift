@@ -78,9 +78,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         
          userImageView = BaseUIController().AImageViewFrame(CGRect(x: (self.view.frame.width/2 - imageSize/2), y:yPos , width: imageSize ,height: imageSize), withImageName: "avatar1.png")as! UIImageView
         userImageView.layer.cornerRadius = userImageView.frame.width/2
-        userImageView.layer.masksToBounds = true
         userImageView.isUserInteractionEnabled = true
-        userImageView.layer.borderWidth = 1
         userImageView.layer.borderColor = KRED_COLOR.cgColor
         scrollView.addSubview(userImageView)
         
@@ -357,16 +355,10 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     {
         
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
-        
-//        cell.layer.borderWidth = 1
-//        cell.layer.borderColor = UIColor (red: (228/255), green: (228/255), blue: (228/255), alpha: 1).CGColor
-        // set font size of cell text lable
         cell.textLabel!.adjustsFontSizeToFitWidth = true
         cell.textLabel!.font = UIFont().mediumFont
-       
         cell.textLabel?.textColor = UIColor (red: (55.0/255.0), green: (54/255.0), blue: (54.0/255.0), alpha: 1)
-       
-            cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
+        cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
         return cell;
     }
     

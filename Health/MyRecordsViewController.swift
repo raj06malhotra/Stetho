@@ -30,6 +30,9 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
     let datePickerView  : UIDatePicker = UIDatePicker()
     var documentInteractionController = UIDocumentInteractionController()
      var tabBarHeight : CGFloat = 0
+    // add sort button
+    var btnSortText : UIButton = UIButton()
+    var btnSort : UIButton = UIButton()
     
     
     
@@ -79,11 +82,25 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         self.view.addSubview(self.tableView)
-        // create A Button
-        let btnSort: UIButton = UIButton(frame: CGRect(x: self.view.frame.width - 40 ,y: 5,width:20,height: 20))
-        btnSort.setImage(UIImage(named: "shot_icon"), for: UIControlState())
-        btnSort.addTarget(self, action: #selector(MyRecordsViewController.btnSortOnClick), for: .touchUpInside)
+        // create A sorting Button
+        
+         btnSortText = UIButton(frame: CGRect(x: self.view.frame.width - 70 ,y: 5,width:30,height: 20)) //UILabel(frame: CGRect(x: btnSort.frame.origin.x + 25, y: 5, width: 30, height: 20))
+        btnSortText.setTitleColor(KRED_COLOR, for: .normal)
+        btnSortText.titleLabel?.font = KROBOTO_Regular_14
+        btnSortText.addTarget(self, action: #selector(self.btnSortOnClick), for: .touchUpInside)
+        btnSortText.setTitle("Sort", for: .normal)
+        self.view.addSubview(btnSortText)
+        
+        btnSort = UIButton(frame: CGRect(x: btnSortText.frame.origin.x + 30 + 2 ,y: 5,width:20,height: 20))
+        btnSort.setImage(UIImage(named: "sort_icon"), for: UIControlState())
+        btnSort.addTarget(self, action: #selector(self.btnSortOnClick), for: .touchUpInside)
+        btnSort.imageEdgeInsets = UIEdgeInsetsMake(2.5, 0, 2.5, 0)
         self.view.addSubview(btnSort)
+        
+        btnSortText.isHidden = true
+        btnSort.isHidden = true
+        
+        
         //  add LongPress Gesture
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressOnCell(_:)))
         tableView.addGestureRecognizer(longPressRecognizer)
@@ -217,26 +234,21 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
         
         // add selected check & uncheck button on cell 
         if longPressActive {
-            let checkImageViewLayout = UIImageView(frame: CGRect(x: tableView.frame.width - 35, y: ((image_height) - 25), width: 30, height: 30))
+            let checkImageViewLayout = UIImageView(frame: CGRect(x: tableView.frame.width - 30, y: ((image_height) - 20), width: 20, height: 20))
             checkImageViewLayout.layer.cornerRadius = 2
-            checkImageViewLayout.layer.borderWidth = 3
+            checkImageViewLayout.layer.borderWidth = 2
             checkImageViewLayout.layer.borderColor  = KRED_COLOR.cgColor
             cell.addSubview(checkImageViewLayout)
-            
-//            checkImageView = BaseUIController().AImageViewFrame(CGRect(x: tableView.frame.width - 35, y: ((image_height) - 25), width: 30, height: 30), withImageName: "")as! UIImageView
-            checkImageView = BaseUIController().AImageViewFrame(CGRect(x: 0, y: 0, width: 30, height: 30), withImageName: "checked")as! UIImageView
+            checkImageView = BaseUIController().AImageViewFrame(CGRect(x: 2.5, y: 2.5, width: 15, height: 15), withImageName: "checked")as! UIImageView
             checkImageView.isUserInteractionEnabled = true
             checkImageViewLayout.addSubview(checkImageView)
-            print(arrCheckUncheck)
             if arrCheckUncheck.contains((indexPath as NSIndexPath).section) {
-                checkImageView.image = UIImage(named: "selectedcheckbox_icon")
                 checkImageView.isHidden = false
             }
             else{
-               checkImageView.image = UIImage(named: "nonselectedcheckbox_icon")
                checkImageView.isHidden = true
             }
-              }
+        }
         // Add tap Gesture on ImageViw
         let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyRecordsViewController.tappedOnImage(_:)))
         tapped.numberOfTapsRequired = 1
@@ -408,6 +420,8 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
         self.loadDataFromDataBase("desc")
     }
     func loadDataFromDataBase(_ order : String)  {
+        btnSortText.isHidden = false
+        btnSort.isHidden = false
         
         let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         let fileURL = documents.appendingPathComponent("HealthDatabase.db")
