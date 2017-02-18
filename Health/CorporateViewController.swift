@@ -96,6 +96,8 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         txtMobileNo.autocorrectionType = .no
         txtPersonal_EmailId.autocorrectionType = .no
         txtOfficial_EmailId.autocorrectionType = .no
+        txtFirstName.autocapitalizationType = .allCharacters
+        txtLastName.autocapitalizationType = .allCharacters
         
         // add back butotn on Navigaiton
         let barButtonBack  = UIBarButtonItem(image: UIImage(named: "back_icon3.png"),style: .done,target: self, action: #selector(self.barButtonBackClick(_:)))
@@ -561,7 +563,13 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
     func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String) -> Bool
     {
-        if textField == txtMobileNo {
+        if textField == txtFirstName || textField == txtLastName {
+            if string.rangeOfCharacter(from: .whitespacesAndNewlines, options: .regularExpression) != nil{
+                return false
+            }
+
+        }
+        else if (textField == txtMobileNo) {
             if string.isEmpty == true{
 //                textField.textColor
 //                var truncated = textField.text.substringToIndex(name.endIndex.predecessor())

@@ -66,6 +66,8 @@ class RegisterViewController: UIViewController, XMLParserDelegate , NSURLConnect
         addToolBar(txtPassword)
         txtRePassword.keyboardType = .numberPad
         addToolBar(txtRePassword)
+        
+        txtFullName.autocapitalizationType = .allCharacters
 
     }
 
@@ -76,7 +78,10 @@ class RegisterViewController: UIViewController, XMLParserDelegate , NSURLConnect
     //MARK: - ButtonOnClick
     
     @IBAction func btnCreateAnAccountOnClick(_ sender: AnyObject) {
-        if txtFullName.text?.isEmpty == true {
+        
+        let f_name = txtFullName.text?.trimmingCharacters(in: .whitespaces)
+        
+        if f_name?.isEmpty == true {
             self.present(BaseUIController().showAlertView("Please Enter Full Name!"), animated: true, completion: nil)
         }else if (txtPassword.text?.isEmpty == true || txtPassword.text?.characters.count != 4){
              self.present(BaseUIController().showAlertView("Please Enter 4 digit Password!"), animated: true, completion: nil)
@@ -106,6 +111,8 @@ class RegisterViewController: UIViewController, XMLParserDelegate , NSURLConnect
     func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String) -> Bool
     {
+        
+        
         if textField == txtPassword || textField == txtRePassword {
             let maxLength = 4
             let currentString: NSString = textField.text! as NSString

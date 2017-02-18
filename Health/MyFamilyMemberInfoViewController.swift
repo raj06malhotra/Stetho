@@ -146,9 +146,10 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         txtMobileNo = scrollView.viewWithTag(102) as! UITextField
         txtEmail = scrollView.viewWithTag(103) as! UITextField
         txtRelation = scrollView.viewWithTag(104) as! UITextField
-       
+        txtName.autocapitalizationType = .allCharacters
         print(familyMemberDetails.memberId)
         print(familyMemberDetails.memberActiveStatus)
+
         
         if familyMemberDetails.memberId != "" {
             
@@ -537,8 +538,10 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         selectedGender = "F"
     }
     func btnUpdateOnClick()  {
+        let f_Name = txtName.text?.trimmingCharacters(in: .whitespaces)
         
-       if txtName.text?.isEmpty == true {
+        
+       if f_Name?.isEmpty == true {
             self.present(BaseUIController().showAlertView("Please Enter Full Name!"), animated: true, completion: nil)
         }else if(txtDateOfBirth.text?.isEmpty == true){
              self.present(BaseUIController().showAlertView("Please Enter DOB!"), animated: true, completion: nil)

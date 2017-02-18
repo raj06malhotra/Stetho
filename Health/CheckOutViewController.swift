@@ -186,6 +186,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         var yPos : CGFloat = 10
         btnSelectDate = BaseUIController().AButtonFrame(CGRect(x: 0 , y: yPos , width: self.view.frame.width , height: 40), withButtonTital: "")as! UIButton
         btnSelectDate.addTarget(self, action: #selector(self.btnSelectDateOnClick(_:)), for: .touchUpInside)
+        lblPickUpDate.removeFromSuperview()
         lblPickUpDate = BaseUIController().ALabelFrame(CGRect(x: 5, y: 10, width: 200, height: 20), withString: "")as! UILabel
         lblPickUpDate.font = KROBOTO_Regular_21//UIFont().mediumFont
         lblPickUpDate.textColor = KRED_COLOR
@@ -1135,7 +1136,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         }
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
         pickerLabel.font = KROBOTO_Regular_17 // In this use your custom font
-        pickerLabel.textColor = KRED_COLOR
+        pickerLabel.textColor = UIColor.black
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
     }
@@ -1544,6 +1545,18 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         let timeIndex = Int(arrTime.index(of: pickupTime)!)
         timePickerView.selectRow(dayIndex, inComponent: 0, animated: true)
         timePickerView.selectRow(timeIndex, inComponent: 1, animated: true)
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.height - 256, width: self.view.frame.width, height: 40))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.tintColor = UIColor.red
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.toolBarDoneOnClick))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.toolBarCancelOnClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        bgView.addSubview(toolBar)
        
         
 //        timePickerView.selectRow(2, inComponent: 0, animated: true)
@@ -1811,6 +1824,9 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         bgView.isHidden = true
         bgView.removeFromSuperview()
     }
+    
+    
+
     func btnDoneOnclick(_ button : UIButton)  {
         
         if txtAddressLine1.text?.isEmpty == true {
@@ -1832,6 +1848,16 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             self.insertUpdatePickupAddress()
             
         }
+    }
+    
+    //MARK: toolbarAction
+    func toolBarDoneOnClick(){
+       
+        bgView.removeFromSuperview()
+        
+    }
+    func toolBarCancelOnClick(){
+        bgView.removeFromSuperview()
     }
     
     func addNewPackageInArray(_ selectedData : NSDictionary)  {

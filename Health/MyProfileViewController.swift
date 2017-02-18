@@ -34,6 +34,7 @@ class MyProfileViewController: UIViewController ,UIImagePickerControllerDelegate
     //MARK: viewLifeCycleDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
         mainView.layer.cornerRadius = 4
@@ -53,6 +54,9 @@ class MyProfileViewController: UIViewController ,UIImagePickerControllerDelegate
         //key board hide & show
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        txtFirstName.autocapitalizationType = .allCharacters
+        txtLastName.autocapitalizationType = .allCharacters
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         //set tital 
@@ -194,6 +198,15 @@ class MyProfileViewController: UIViewController ,UIImagePickerControllerDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
         return textField.resignFirstResponder()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (textField == txtFirstName || textField == txtLastName) {
+            if string.rangeOfCharacter(from: .whitespacesAndNewlines, options: .regularExpression) != nil{
+                return false
+            }
+        }
+        return true
     }
     //MARK: - ImagePickerDelegate
     
