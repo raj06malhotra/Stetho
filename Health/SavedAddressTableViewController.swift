@@ -51,15 +51,42 @@ class SavedAddressTableViewController: UIViewController, UITableViewDataSource, 
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedAddressTableViewCell", for: indexPath) as! SavedAddressTableViewCell
         cell.selectionStyle = .none
+        var strFormat = ""
             let address_line1 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_1")as? String
+        if address_line1?.isEmpty == false{
+            strFormat.append("\(address_line1), ")
+        }
+        
             let address_line2 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_2")as? String
+        if address_line2?.isEmpty == false{
+            strFormat.append("\(address_line2), ")
+        }
             let landmark = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_landmark")as? String
+        if landmark?.isEmpty == false{
+            strFormat.append("\(landmark), ")
+        }
+        
+        let geo_address = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "geo_address")as? String
+        if geo_address?.isEmpty == false{
+            strFormat.append("\(geo_address), ")
+        }
+        
+        let cityName = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "city_name")as? String
+        if cityName?.isEmpty == false{
+            strFormat.append("\(cityName), ")
+        }
+        
             let pincode = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_pincode")as? String
-            let cityName = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "city_name")as? String
-            let geo_address = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "geo_address")as? String
-            
-            let fullAddress = String(format: "%@ , %@,%@,%@,%@ %@", address_line1! ,address_line2! , landmark! ,geo_address! ,cityName! , pincode!)
-         cell.lblSavedAddress.text = fullAddress
+        if pincode?.isEmpty == false{
+            strFormat.append("\(pincode), ")
+        }
+        
+        
+        /*
+            let fullAddress = String(format: "%@, %@, %@, %@, %@ %@", address_line1! ,address_line2! , landmark! ,geo_address! ,cityName! , pincode!)
+        
+        let fullAddress = String(format: "%@, %@, %@, %@, %@ %@", address_line1! ,address_line2! , landmark! ,geo_address! ,cityName! , pincode!)*/
+         cell.lblSavedAddress.text = strFormat
         return cell;
     }
     

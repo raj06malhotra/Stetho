@@ -123,8 +123,8 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         baseView.layer.borderColor = UIColor.gray.cgColor
         bgView.addSubview(baseView)
         
-        let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: self.view.frame.width, height: 40), withString: "Add New Address")as! UILabel
-        baseView.addSubview(lblHeading)
+      //  let lblHeading = BaseUIController().ALabelFrame(CGRect(x: 10, y: 0, width: self.view.frame.width, height: 40), withString: "Add New Address")as! UILabel
+       // baseView.addSubview(lblHeading)
         let lblLine = BaseUIController().ALabelFrame(CGRect(x: 0, y: 41, width: self.view.frame.width, height: 1), withString: "")as! UILabel
         lblLine.backgroundColor = KRED_COLOR
         baseView.addSubview(lblLine)
@@ -540,12 +540,20 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
         
     }
     func btnEditOnClick(_ button : UIButton)  {
-        
-        self.createAddressPopup()
-        var pinCode = ""
         let buttonPosition = button.convert(CGPoint.zero, to: saveAddresstableView)
         let indexPath = saveAddresstableView.indexPathForRow(at: buttonPosition)
-        let addressDetails = arrOldPickupAddress.object(at: indexPath!.section) as! NSDictionary
+        let addressDetails = arrOldPickupAddress.object(at: indexPath!.row) as! NSDictionary
+        let addNewAddress = AddNewAddressViewController()
+        addNewAddress.updateSavedAddressDict = addressDetails
+        let newAddressNaviagtion = UINavigationController(rootViewController: addNewAddress)
+        self.navigationController?.present(newAddressNaviagtion, animated: true, completion: nil)
+        addNewAddress.updateAddress = { () in
+            self.getCustomerAddress()
+        }
+        /*
+        self.createAddressPopup()
+        var pinCode = ""
+        
         pickup_Id = addressDetails.value(forKey: "opick_id")as! String
         let address_line1 = addressDetails.value(forKey: "a_address_line_1")as? String
         let address_line2 = addressDetails.value(forKey: "a_address_line_2")as? String
@@ -573,14 +581,16 @@ class SaveAddressViewController: UIViewController ,UITableViewDelegate , UITable
             txtPin5.text = ""
             txtPin6.text = ""
         }
-        
+        */
     }
     
     func btnAddNewAddress(_ button : UIButton){
-        
         let addNewAddress = AddNewAddressViewController()
         let newAddressNaviagtion = UINavigationController(rootViewController: addNewAddress)
         self.navigationController?.present(newAddressNaviagtion, animated: true, completion: nil)
+        addNewAddress.updateAddress = { () in
+            self.getCustomerAddress()
+        }
 //        pickup_Id = "0"
 //        self.createAddressPopup()
     }

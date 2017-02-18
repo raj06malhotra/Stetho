@@ -800,10 +800,10 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         if pickerView == cityPickerView {
             pickerLabel.text = arrCityName[row]
             pickerLabel.textColor = UIColor.black
-            pickerLabel.font = KROBOTO_Light_17//UIFont().mediumFont
+            pickerLabel.font = KROBOTO_Regular_17//UIFont().mediumFont
         }else{
             pickerLabel.text = arrMemberNameList[row] as? String
-            pickerLabel.font = UIFont().smallFont
+            pickerLabel.font = KROBOTO_Light_14
         }
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
