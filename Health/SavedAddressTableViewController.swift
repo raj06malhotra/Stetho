@@ -52,32 +52,32 @@ class SavedAddressTableViewController: UIViewController, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedAddressTableViewCell", for: indexPath) as! SavedAddressTableViewCell
         cell.selectionStyle = .none
         var strFormat = ""
-            let address_line1 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_1")as? String
-        if address_line1?.isEmpty == false{
+            let address_line1 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_1")as! String
+        if address_line1.isEmpty == false{
             strFormat.append("\(address_line1), ")
         }
         
-            let address_line2 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_2")as? String
-        if address_line2?.isEmpty == false{
+            let address_line2 = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_address_line_2")as! String
+        if address_line2.isEmpty == false{
             strFormat.append("\(address_line2), ")
         }
-            let landmark = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_landmark")as? String
-        if landmark?.isEmpty == false{
+            let landmark = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_landmark")as! String
+        if landmark.isEmpty == false{
             strFormat.append("\(landmark), ")
         }
         
-        let geo_address = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "geo_address")as? String
-        if geo_address?.isEmpty == false{
+        let geo_address = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "geo_address")as! String
+        if geo_address.isEmpty == false{
             strFormat.append("\(geo_address), ")
         }
         
-        let cityName = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "city_name")as? String
-        if cityName?.isEmpty == false{
+        let cityName = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "city_name")as! String
+        if cityName.isEmpty == false{
             strFormat.append("\(cityName), ")
         }
         
-            let pincode = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_pincode")as? String
-        if pincode?.isEmpty == false{
+            let pincode = (arrOldPickupAddress.object(at: (indexPath as NSIndexPath).row) as AnyObject).value(forKey: "a_pincode")as! String
+        if pincode.isEmpty == false{
             strFormat.append("\(pincode), ")
         }
         

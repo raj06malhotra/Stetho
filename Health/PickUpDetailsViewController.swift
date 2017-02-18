@@ -148,7 +148,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
             let textField = BaseUIController().ATextFiedlFrame(CGRect(x:xPos , y: yPos ,width: self.view.frame.width-40 , height: 35 ), withPlaceHolder: "")as! UITextField
             textField.tag = 200 + i
             textField.delegate = self
-            textField.font = KROBOTO_Light_17
+            textField.font = KROBOTO_Regular_17
             textField.textAlignment = .left
             textField.borderStyle = .none
             textField.placeholder = labelName[i]
@@ -177,7 +177,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         scrollView.addSubview(lblPincode)
         
        
-        xPos =  120
+        xPos =  90
         let _width: CGFloat = (self.view.frame.width - (xPos + 20 + 50 ))/6
         
         
@@ -190,7 +190,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
             textField.layer.cornerRadius = 4.0
             textField.layer.masksToBounds = true
             textField.layer.borderColor =  UIColor.lightGray.cgColor//UIColor.lightGray.cgColor//UIColor.init(red: (242.0/255.0), green: (237.0/255.0), blue: (237.0/255.0), alpha: 1.0).cgColor
-            textField.font = KROBOTO_Light_21
+            textField.font = KROBOTO_Regular_21
             textField.textColor = UIColor.darkGray
             textField.textAlignment = .center
             scrollView.addSubview(textField)
@@ -1005,19 +1005,36 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
             }
         }
     }
+    /*
+     {
+     let trimAddress1 = txtAddressLine1.text?.trimmingCharacters(in: .whitespaces)
+     
+     
+     if trimAddress1?.isEmpty == true{
+     self.present(BaseUIController().showAlertView("Please Enter Your Address"), animated: true, completion: nil)
+     }else if txtCity.text?.isEmpty == true{
+     self.present(BaseUIController().showAlertView("Please Select Your City"), animated: true, completion: nil)
+     }
+     else if txtLocality.text?.isEmpty == true{
+     self.present(BaseUIController().showAlertView("Please Enter your Locality"), animated: true, completion: nil)
+     }
+     else  if ((txtPin1.text?.isEmpty == true) || (txtPin2.text?.isEmpty == true) || (txtPin3.text?.isEmpty == true) || (txtPin4.text?.isEmpty == true) || (txtPin5.text?.isEmpty == true) || (txtPin6.text?.isEmpty == true)){
+     self.present(BaseUIController().showAlertView("Please fill Pincode!"), animated: true, completion: nil)
+     }else{
+     self.insertUpdatePickupAddress()
+     }
+     }
+     */
     //MARK: buttonOnclick
     func btnContinueOnClick(_ button : UIButton)  {
-        
+        let trimAddress1 = txtAddressLine1.text?.trimmingCharacters(in: .whitespaces)
         if maxCount == 0  {
             self.present(BaseUIController().showAlertView("Please Select a test to Continue Booking order."), animated: true, completion: nil)
         }
-        else if txtAddressLine1.text?.isEmpty == true {
+        else if trimAddress1?.isEmpty == true {
             self.present(BaseUIController().showAlertView("Please Enter Your Address"), animated: true, completion: nil)
-        }else if (txtLandMark.text?.isEmpty == true){
-            self.present(BaseUIController().showAlertView("Please Enter Your LandMarks"), animated: true, completion: nil)
-            
         }else if(txtCity.text?.isEmpty == true){
-            self.present(BaseUIController().showAlertView("Please Select Your City"), animated: true, completion: nil)
+            self.text(BaseUIController().showAlertView("Please Select Your City"), animated: true, completion: nil)
             
         }else if (txtLocality.text?.isEmpty == true){
             self.present(BaseUIController().showAlertView("Please Enter your Locality"), animated: true, completion: nil)
