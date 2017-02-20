@@ -1317,7 +1317,9 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     func btnCartBarButtounOnClick(_ button : UIButton)  {
         print("btn cart  click")
         if self.getCartMemebrtCount() != 0 {
+//            self.navigationController?.navigationBar.isTranslucent = false
             let checkoutVC = CheckOutViewController()
+            checkoutVC.isComingFrom = "myfamily"
             self.navigationController?.pushViewController(checkoutVC, animated: true)
         }else{
             self.present(BaseUIController().showAlertView("There are currently no order in your cart."), animated: true, completion: nil)

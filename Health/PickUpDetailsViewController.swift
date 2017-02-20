@@ -1034,7 +1034,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         else if trimAddress1?.isEmpty == true {
             self.present(BaseUIController().showAlertView("Please Enter Your Address"), animated: true, completion: nil)
         }else if(txtCity.text?.isEmpty == true){
-            self.text(BaseUIController().showAlertView("Please Select Your City"), animated: true, completion: nil)
+            self.present(BaseUIController().showAlertView("Please Select Your City"), animated: true, completion: nil)
             
         }else if (txtLocality.text?.isEmpty == true){
             self.present(BaseUIController().showAlertView("Please Enter your Locality"), animated: true, completion: nil)

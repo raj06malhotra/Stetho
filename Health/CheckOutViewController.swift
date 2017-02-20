@@ -112,11 +112,17 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
     var addressId = ""
     var gpaViewController = GooglePlacesAutocomplete()
     
+    var isComingFrom = ""
+    
+    
 
     
   //MARK: viewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isComingFrom == "myfamily" {
+             self.navigationController?.navigationBar.isTranslucent = false
+        }
         self.view.backgroundColor = UIColor.white
         self.title = "CHECKOUT "
         self.navigationController!.navigationBar.topItem!.title = "CHECKOUT";
@@ -146,6 +152,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         btnAddAnotherMember.backgroundColor = KRED_COLOR
         btnAddAnotherMember.setTitleColor(UIColor.white, for: UIControlState())
         btnAddAnotherMember.titleLabel?.font = KROBOTO_Light_15//UIFont().smallFont
+        btnAddAnotherMember.titleLabel?.adjustsFontSizeToFitWidth = true
         self.view.addSubview(btnAddAnotherMember)
         
         btnProcess = BaseUIController().AButtonFrame(CGRect(x: self.view.frame.width/2 + 1, y: self.view.frame.height - 104 , width: self.view.frame.width/2, height: 40), withButtonTital: "PROCEED")as! UIButton
@@ -1714,12 +1721,16 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
             self.title = "CHECKOUT"
             bgView.removeFromSuperview()
         }else{
-            for controller in self.navigationController!.viewControllers as Array {
-                if controller.isKind(of: HomeViewController.self) {
-                    let _ = self.navigationController?.popToViewController(controller as UIViewController, animated: true)
-                    break
-                }
+            if isComingFrom == "myfamily" {
+                self.navigationController?.navigationBar.isTranslucent = true
             }
+            self.navigationController?.popViewController(animated: true)
+//            for controller in self.navigationController!.viewControllers as Array {
+////                if controller.isKind(of: HomeViewController.self) {
+////                    let _ = self.navigationController?.popToViewController(controller as UIViewController, animated: true)
+////                    break
+////                }
+//            }
 
         }
        

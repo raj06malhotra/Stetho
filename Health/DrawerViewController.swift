@@ -343,7 +343,7 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
                 yPos += 60 + 10
                 xPos = (popUpView.frame.width - 180)/4
             }
-            btnAvatarImage.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnAvatarImageOnClick(_:)), for: .touchUpInside)
+            btnAvatarImage.addTarget(self, action: #selector(self.btnAvatarImageOnClick(_:)), for: .touchUpInside)
             
         }
         controller.view.addSubview(popUpView)

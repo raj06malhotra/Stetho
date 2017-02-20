@@ -2300,38 +2300,69 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     }
     //MARK: ACTIONSHEET DELEGATE
 
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int)
-    {
-        switch (buttonIndex){
-            
-        case 0:
-            print("Delete")
-            actionSheet.removeFromSuperview()
-        case 1:
-            print(KCHECKIN_CODE)
-            let barCodeVC = CheckinBarcodeViewController()//BarCodeViewController()
-            self.navigationController?.pushViewController(barCodeVC, animated: true)
-            
-        case 2:
-            print(KCORP_CHECKIN)
-            let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
-            let manualBarCodeEnterViewController = storyboard1.instantiateViewController(withIdentifier: "ManualBarCodeEnterViewController") as! ManualBarCodeEnterViewController
-            self.navigationController?.pushViewController(manualBarCodeEnterViewController, animated: true)
-
-
-            
-            
-        default:
-            print("Default")
-            //Some code here..
-            
-        }
-    }
+//    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int)
+//    {
+//        switch (buttonIndex){
+//            
+//        case 0:
+//            print("Delete")
+//            actionSheet.removeFromSuperview()
+//        case 1:
+//            print(KCHECKIN_CODE)
+//            let barCodeVC = CheckinBarcodeViewController()//BarCodeViewController()
+//            self.navigationController?.pushViewController(barCodeVC, animated: true)
+//            
+//        case 2:
+//            print(KCORP_CHECKIN)
+//            let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+//            let manualBarCodeEnterViewController = storyboard1.instantiateViewController(withIdentifier: "ManualBarCodeEnterViewController") as! ManualBarCodeEnterViewController
+//            self.navigationController?.pushViewController(manualBarCodeEnterViewController, animated: true)
+//
+//
+//            
+//            
+//        default:
+//            print("Default")
+//            //Some code here..
+//            
+//        }
+//    }
     //MARK: showAlert
     
     func openActionSheettoUploadBarcode(){
-        let actionSheet = UIActionSheet(title: "", delegate: self, cancelButtonTitle: "CANCEL", destructiveButtonTitle: nil, otherButtonTitles: KCHECKIN_BAR, KCHECKING_ID)
-        actionSheet.show(in: self.view)
+        let alertSheet = UIAlertController(title: KCHANGEPHOTO, message: nil, preferredStyle: .actionSheet)
+        alertSheet.view.tintColor = KRED_COLOR
+        /*
+         case 1:
+         print(KCHECKIN_CODE)
+         let barCodeVC = CheckinBarcodeViewController()//BarCodeViewController()
+         self.navigationController?.pushViewController(barCodeVC, animated: true)
+         
+         case 2:
+         print(KCORP_CHECKIN)
+         let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+         let manualBarCodeEnterViewController = storyboard1.instantiateViewController(withIdentifier: "ManualBarCodeEnterViewController") as! ManualBarCodeEnterViewController
+         self.navigationController?.pushViewController(manualBarCodeEnterViewController, animated: true)
+         */
+        alertSheet.addAction(UIAlertAction(title: KCHECKIN_BAR, style: .default, handler: { (alert: UIAlertAction!) in
+            let barCodeVC = CheckinBarcodeViewController()//BarCodeViewController()
+            self.navigationController?.pushViewController(barCodeVC, animated: true)
+        }))
+        
+        alertSheet.addAction(UIAlertAction(title: KCHECKING_ID, style: .default, handler: { (alert: UIAlertAction!) in
+            let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+            let manualBarCodeEnterViewController = storyboard1.instantiateViewController(withIdentifier: "ManualBarCodeEnterViewController") as! ManualBarCodeEnterViewController
+            self.navigationController?.pushViewController(manualBarCodeEnterViewController, animated: true)
+        }))
+        
+        alertSheet.addAction(UIAlertAction(title: KCANCEL, style: .cancel, handler: { (alert: UIAlertAction!) in
+            alertSheet.dismiss(animated: true, completion: nil)
+        }))
+        present(alertSheet, animated: true, completion: nil)
+        
+//        return alertSheet
+//        let actionSheet = UIActionSheet(title: "", delegate: self, cancelButtonTitle: "CANCEL", destructiveButtonTitle: nil, otherButtonTitles: KCHECKIN_BAR, KCHECKING_ID)
+//        actionSheet.show(in: self.view)
     }
     
     func showAlertView(_ message : String)  {

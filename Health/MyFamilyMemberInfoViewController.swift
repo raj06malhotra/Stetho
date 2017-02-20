@@ -32,7 +32,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     var arrExistigUserDetails = NSMutableArray()
     var userImageView = UIImageView()
     var imagePicker = UIImagePickerController()
-    var arrAvatarImage = NSArray()
+    let  arrAvatarImage = ["avatar1","avatar2","avatar3","avatar4","avatar5","avatar6"]
     var btnUpdate = UIButton()
     var member_id = ""
     var member_Name = ""
@@ -47,7 +47,6 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         arrRelationCategory = ["Spouse" , "Father", "Mother" , "Sibling","Child","Others","You"]
         
         arrTextPlaceHolder = ["Full Name","Date of Birth","Mobile Number","Email","Select Relation"]
-        arrAvatarImage = ["avatar1","avatar2","avatar3","avatar4","avatar5","avatar6"]
         self.createALayout()
         // Do any additional setup after loading the view.
     }
@@ -266,12 +265,12 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         bgView.addSubview(inviteTableView)
         // if getting more then 3 member then increaase height of view
         if arrExistingUser.count >= 3 {
-            bgView.frame = CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(90)), width: (UIScreen.main.bounds.width-20), height: 180)
-            inviteTableView.frame = CGRect(x: 0, y: 0, width: bgView.bounds.width, height: 150)
+            bgView.frame = CGRect(x: 10, y: ((UIScreen.main.bounds.height/2)-(150)), width: (UIScreen.main.bounds.width-20), height: 300)
+            inviteTableView.frame = CGRect(x: 0, y: 0, width: bgView.bounds.width, height: 270)
             
         }
         let btnSkip = BaseUIController().AButtonFrame(CGRect(x:bgView.frame.width - 60  , y:bgView.frame.height - 30 ,width:60  ,height: 25 ), withButtonTital: "Skip")as! UIButton
-        btnSkip.titleLabel?.font = UIFont().mediumFont
+        btnSkip.titleLabel?.font = KROBOTO_BOLD_12
         btnSkip.addTarget(self, action: #selector(MyFamilyMemberInfoViewController.btnSkipOnClick), for: .touchUpInside)
         bgView.addSubview(btnSkip)
         // add Tapgestue  on shadowBackGround
@@ -303,7 +302,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     
     func openAvatarPopup()  {
         
-        shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
+       /* shadowBackGround = UIView(frame: CGRect(x: 0 , y: 0 , width: self.view.frame.width , height: self.view.frame.height))
         shadowBackGround.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(shadowBackGround)
         var xPos:CGFloat = 10
@@ -336,7 +335,44 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         let tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MyFamilyMemberInfoViewController.tappedOnShadowBG(_:)))
         tapped.numberOfTapsRequired = 1
         tapped.delegate = self
-        shadowBackGround.addGestureRecognizer(tapped)
+        shadowBackGround.addGestureRecognizer(tapped) */
+        
+        
+        var xPos:CGFloat = 10
+        var yPos:CGFloat = 10
+        let controller = UIAlertController(title: "\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        controller.view.tintColor = KRED_COLOR
+        
+        let popUpView = UIView(frame: CGRect(x: 0, y: 0 ,width: controller.view.bounds.size.width-20 ,height: 160))
+        
+        popUpView.layer.cornerRadius = 4
+        popUpView.backgroundColor = UIColor.white
+        shadowBackGround .addSubview(popUpView)
+        xPos = (popUpView.frame.width - 180)/4 // set gap between all avtar images
+        for i in 0..<6 {
+            let   btnAvatarImage = BaseUIController().AButtonFrame(CGRect(x: xPos , y: yPos , width: 60 , height: 60), withButtonTital: "")as! UIButton
+            btnAvatarImage.setImage((UIImage(named:arrAvatarImage[i] )), for: UIControlState())
+            btnAvatarImage.layer.masksToBounds = true
+            btnAvatarImage.layer.cornerRadius = btnAvatarImage.frame.width/2
+            btnAvatarImage.tag = 500 + i
+            popUpView.addSubview(btnAvatarImage)
+            
+            xPos += 60 + (popUpView.frame.width - 180)/4
+            
+            if i == 2 {
+                yPos += 60 + 10
+                xPos = (popUpView.frame.width - 180)/4
+            }
+            btnAvatarImage.addTarget(self, action: #selector(self.btnAvatarImageOnClick(_:)), for: .touchUpInside)
+            
+        }
+        controller.view.addSubview(popUpView)
+        controller.view.bringSubview(toFront: popUpView)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(alert: UIAlertAction!) in controller.dismiss(animated: true, completion: nil)})
+        controller.addAction(cancelAction)
+        
+        
+        self.present(controller, animated: true, completion: nil)
         
     }
     
@@ -357,7 +393,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         cell.textLabel!.adjustsFontSizeToFitWidth = true
-        cell.textLabel!.font = UIFont().mediumFont
+        cell.textLabel!.font = KROBOTO_Light_17
         cell.textLabel?.textColor = UIColor (red: (55.0/255.0), green: (54/255.0), blue: (54.0/255.0), alpha: 1)
         cell.textLabel?.text = (arrExistingUser[(indexPath as NSIndexPath).row] as AnyObject).value(forKey: "name")as? String
         return cell;
@@ -387,7 +423,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         headerView.backgroundColor = UIColor.white
         
          let lblSelectRelation = BaseUIController().ALabelFrame(CGRect(x: 10 ,y:5 ,width: tableView.frame.width , height: 20), withString: "Invite Existing Member.") as! UILabel
-        lblSelectRelation.font = UIFont().largeFont
+        lblSelectRelation.font = KROBOTO_BOLD_12
         headerView.addSubview(lblSelectRelation)
         return headerView
     }
