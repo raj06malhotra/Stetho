@@ -45,7 +45,9 @@ class SuccessViewController: UIViewController,serverTaskComplete {
             
             
             print("Response = %@", message.object)
-            jsondict = message.object as! NSMutableDictionary
+            
+            jsondict = NSMutableDictionary(dictionary: message.object as! NSDictionary)
+            //message.object as! NSMutableDictionary
             self.onlinePayment(jsondict)
         }
     }
@@ -107,7 +109,7 @@ class SuccessViewController: UIViewController,serverTaskComplete {
     
     func getAllResponse(_ allResponse: AnyObject, methodName: String) {
         
-       // print(allResponse)
+        print(allResponse)
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             // do your background code here
             DispatchQueue.main.sync(execute: {

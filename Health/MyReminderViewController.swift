@@ -372,8 +372,11 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
                     }
                 }else{
                     HomeViewController().reminderTimerSycnServerToLocal.invalidate()
-                    HomeViewController().deleteAllSyncReminderFromDataBase()
-                    HomeViewController().syncReminderFromServerToDatabase(allResponse as! NSArray)
+//                    HomeViewController().deleteAllSyncReminderFromDataBase()
+//                    HomeViewController().syncReminderFromServerToDatabase(allResponse as! NSArray)
+                    SyncReminderData.shareReminderData.deleteAllSyncReminderFromDataBase()
+                    SyncReminderData.shareReminderData.syncReminderFromServerToDatabase(allResponse as! NSArray)
+                    
                     self.getReminderList()
                     self.myReminderListTableView.reloadData()
                 }

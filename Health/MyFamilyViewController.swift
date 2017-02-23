@@ -763,7 +763,9 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
             print("failed: \(error.localizedDescription)")
         }
         database.close()
-        HomeViewController().getNonSyncDataFromMyFamilyTable()
+       // HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
+        
     }
     func UpdateMyFamilyRelation(_ relation : String) {
         
@@ -783,7 +785,8 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
             v1.removeFromSuperview()
         }
         self.createALayout()
-        HomeViewController().getNonSyncDataFromMyFamilyTable()
+       // HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
     }
     func deleteAllMyFamilyData()  {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

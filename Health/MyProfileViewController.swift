@@ -344,7 +344,8 @@ class MyProfileViewController: UIViewController ,UIImagePickerControllerDelegate
         }
         database.close()
          self.present(BaseUIController().showAlertView("Your profile update successfully!"), animated: true, completion: nil)
-        HomeViewController().getNonSyncDataFromMyFamilyTable()
+       // HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "reload"), object: nil)        
     }
 

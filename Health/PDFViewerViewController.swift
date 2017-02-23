@@ -318,7 +318,9 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
        // self.navigationController?.navigationBar.translucent = false
         self.loadDataFromDataBase()
 //        tableView.reloadData()
-        HomeViewController().getNonSyncDataFromDtabase()
+      //  HomeViewController().getNonSyncDataFromDtabase()
+        SyncReportData.shareReportData.getNonSyncDataFromDtabase()
+        
 
     }
     func tappedOnBGView(_ sender: UITapGestureRecognizer)  {

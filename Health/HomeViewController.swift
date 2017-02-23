@@ -189,37 +189,38 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         self .setStatusBarBackgroundColor( UIColor(red: 196/255.0, green: 35/255.0, blue: 24/255.0, alpha: 1))
         
        // set time for record syncing
-         timerSyncRecordDataFromServerToLocal = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(HomeViewController.syncRecordData), userInfo: nil, repeats: false)
-        appDelegate.timerArray.add(timerSyncRecordDataFromServerToLocal)
+//         timerSyncRecordDataFromServerToLocal = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(HomeViewController.syncRecordData), userInfo: nil, repeats: false)
+//        appDelegate.timerArray.add(timerSyncRecordDataFromServerToLocal)
+//        syncRecordData()
         
-        let timerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(HomeViewController.getNonSyncDataFromDtabase), userInfo: nil, repeats: true)
-        print(timerSycnLocalToServer)
-         appDelegate.timerArray.add(timerSycnLocalToServer)
+//        let timerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(HomeViewController.getNonSyncDataFromDtabase), userInfo: nil, repeats: true)
+//        print(timerSycnLocalToServer)
+//         appDelegate.timerArray.add(timerSycnLocalToServer)
         
         
-        let timerForDeletedReport = Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(HomeViewController.getListofDeletedReport), userInfo: nil, repeats: true)
-        print(timerForDeletedReport)
-         appDelegate.timerArray.add(timerForDeletedReport)
+//        let timerForDeletedReport = Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(HomeViewController.getListofDeletedReport), userInfo: nil, repeats: true)
+//        print(timerForDeletedReport)
+//         appDelegate.timerArray.add(timerForDeletedReport)
 
         
-        let timerSycnMyFamilyDataToServer = Timer.scheduledTimer(timeInterval: 35, target: self, selector: #selector(HomeViewController.getNonSyncDataFromMyFamilyTable), userInfo: nil, repeats: true)
-        print(timerSycnMyFamilyDataToServer)
-         appDelegate.timerArray.add(timerSycnMyFamilyDataToServer)
+//        let timerSycnMyFamilyDataToServer = Timer.scheduledTimer(timeInterval: 35, target: self, selector: #selector(HomeViewController.getNonSyncDataFromMyFamilyTable), userInfo: nil, repeats: true)
+//        print(timerSycnMyFamilyDataToServer)
+//         appDelegate.timerArray.add(timerSycnMyFamilyDataToServer)
 
        // self.getRemindersFromSever()
         
         
-        reminderTimerSycnServerToLocal = Timer.scheduledTimer(timeInterval: 27, target: self, selector: #selector(HomeViewController.getRemindersFromSever), userInfo: nil, repeats: true)
-        print(reminderTimerSycnServerToLocal)
-         appDelegate.timerArray.add(reminderTimerSycnServerToLocal)
-
-        let reminderTimerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 65, target: self, selector: #selector(HomeViewController.syncReminderFromDataBasetoServer), userInfo: nil, repeats: true)
-        print(reminderTimerSycnLocalToServer)
-         appDelegate.timerArray.add(reminderTimerSycnLocalToServer)
-        
-        let reminderTimerDeleteReminder = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(HomeViewController.getListofDeletedReminder), userInfo: nil, repeats: true)
-        print(reminderTimerDeleteReminder)
-         appDelegate.timerArray.add(reminderTimerDeleteReminder)
+//        reminderTimerSycnServerToLocal = Timer.scheduledTimer(timeInterval: 27, target: self, selector: #selector(HomeViewController.getRemindersFromSever), userInfo: nil, repeats: true)
+//        print(reminderTimerSycnServerToLocal)
+//         appDelegate.timerArray.add(reminderTimerSycnServerToLocal)
+//
+//        let reminderTimerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 65, target: self, selector: #selector(HomeViewController.syncReminderFromDataBasetoServer), userInfo: nil, repeats: true)
+//        print(reminderTimerSycnLocalToServer)
+//         appDelegate.timerArray.add(reminderTimerSycnLocalToServer)
+//        
+//        let reminderTimerDeleteReminder = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(HomeViewController.getListofDeletedReminder), userInfo: nil, repeats: true)
+//        print(reminderTimerDeleteReminder)
+//         appDelegate.timerArray.add(reminderTimerDeleteReminder)
         
         
         
@@ -1455,11 +1456,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     
     //MARK: - SyncData
     
-    func syncRecordData()  {
-        self.loadDataFromDataBase()
-        
-        
-    }
+//    func syncRecordData()  {
+//        self.loadDataFromDataBase()
+//        
+//        
+//    }
     
     func loadDataFromDataBase()  {
         
@@ -1584,21 +1585,23 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                         print("some Sync problem")
                     }
                 }else{
-                    if methodName == "GetRecordsFromServer" {
-                        self.syncServertoLocalDB(allResponse as! NSArray)
-                    }else if(methodName == "SaveRecord_New"){
-                        self.updateLocalDBAfterSync(allResponse as! NSArray)
-                    }else if methodName == "UpdateMemberInfo" && allResponse .isEqual("1") {
-                        self.updateMyFamilyDataAfterSync()
-                    }else if(methodName == "GetReminders"){
-                        self.reminderTimerSycnServerToLocal.invalidate()
-                        self.deleteAllSyncReminderFromDataBase()
-                        self.syncReminderFromServerToDatabase(allResponse as! NSArray)
-                    }else if(methodName == "SaveReminder"){
-                        self.updateDataBaseAfterSaveReminder(allResponse as! String)
-                    }else if(methodName == "DeleteReminder"){
-                        self.deleteReminderFromDataBase()
-                    }else if (methodName == "GetAllTests"){
+//                    if methodName == "GetRecordsFromServer" {
+//                        self.syncServertoLocalDB(allResponse as! NSArray)
+//                    }else if(methodName == "SaveRecord_New"){
+//                        self.updateLocalDBAfterSync(allResponse as! NSArray)
+//                    }
+//                    else if methodName == "UpdateMemberInfo" && allResponse .isEqual("1") {
+//                        self.updateMyFamilyDataAfterSync()
+//                    }else if(methodName == "GetReminders"){
+//                        self.reminderTimerSycnServerToLocal.invalidate()
+//                        self.deleteAllSyncReminderFromDataBase()
+//                        self.syncReminderFromServerToDatabase(allResponse as! NSArray)
+//                    }else if(methodName == "SaveReminder"){
+//                        self.updateDataBaseAfterSaveReminder(allResponse as! String)
+//                    }else if(methodName == "DeleteReminder"){
+//                        self.deleteReminderFromDataBase()
+//                    }
+                     if (methodName == "GetAllTests"){
                         //set All test in NSUserDefault
                         self.arrGetAllTestList = allResponse as! NSMutableArray
 //                        if(NSUserDefaults.standardUserDefaults().valueForKey("GetAllTests") == nil){
@@ -1622,11 +1625,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                         UserDefaults.standard.set((allResponse as? NSArray)!, forKey: "GetAllTestsByFamily")
                         
                     }
-                    else if (methodName == "DeleteRecords"){
-                        if(allResponse as! String == "1"){
-                        self.deleteReportFromDatabase()
-                        }
-                    }
+//                    else if (methodName == "DeleteRecords"){
+//                        if(allResponse as! String == "1"){
+//                        self.deleteReportFromDatabase()
+//                        }
+//                    }
                     else if (methodName == "GetNotifications"){
                         
                         self.syncNotificationsFromServerToLocal(allResponse as! NSArray)
@@ -1699,7 +1702,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         });
     }
     
- internal  func syncServertoLocalDB(_ arrMyRecord : NSArray)  {
+/* internal  func syncServertoLocalDB(_ arrMyRecord : NSArray)  {
         
         for i in (0..<arrMyRecord.count) {
             let database = appDelegate.openDataBase()
@@ -1826,11 +1829,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             }
             database.close()
         }
-    }
+    }  */
     
     //MARK: - SyncMyFamilyData 
     
-    func getNonSyncDataFromMyFamilyTable()  {
+   /* func getNonSyncDataFromMyFamilyTable()  {
         let database = appDelegate.openDataBase()
         do {
             
@@ -1891,10 +1894,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 print("failed: \(error.localizedDescription)")
             }
             database.close()
-    }
+    } */
+    
     //MARK: RemindersSync
     
-    func getRemindersFromSever(){
+ /*   func getRemindersFromSever(){
         if Reachability.isConnectedToNetwork() == true {
             if (UserDefaults.standard.value(forKey: "loginCustomerId") != nil){
                 
@@ -2051,7 +2055,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         }
         database.close()
         
-    }
+    }  */
     //MARK: NotificationsSync
     func getNotificatiosFromServer(){
         if Reachability.isConnectedToNetwork() == true {
@@ -2195,7 +2199,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     } */
     
     // MARK: deleteReport(bySyncProcess)
-    func getListofDeletedReport()  {
+    
+  /*  func getListofDeletedReport()  {
         let database = appDelegate.openDataBase()
         let reportdObj = HealthInfo()
         do {
@@ -2232,7 +2237,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             print("failed: \(error.localizedDescription)")
         }
         database.close()
-    }
+    } */
     // MARK: getCartCount
     func getCartMemebrtCount() -> Int{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

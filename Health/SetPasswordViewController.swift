@@ -93,6 +93,9 @@ class SetPasswordViewController: UIViewController ,serverTaskComplete {
     }
     
     func loadMainview()  {
+        
+         AppDelegate.getAppDelegate().loadRecordfromBackground()
+        
         // Override point for customization after application launch.
         
       //  let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
@@ -253,6 +256,7 @@ class SetPasswordViewController: UIViewController ,serverTaskComplete {
                             self.pushForCorporateSignup()
                         }else{
                             self.loadMainview()
+                           
                         }
                         
                     }

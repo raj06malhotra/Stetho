@@ -595,8 +595,8 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
               self.view.window!.viewWithTag(400)?.removeFromSuperview()
               self.loadDataFromDataBase("desc")
               tableView.reloadData()
-              HomeViewController().getNonSyncDataFromDtabase()
-        
+            //  HomeViewController().getNonSyncDataFromDtabase()
+             SyncReportData.shareReportData.getNonSyncDataFromDtabase()
             }
     
     // MARK: - OnClickMethod
@@ -638,7 +638,8 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
             }
             arrCheckUncheck = NSMutableArray()
             self.loadDataFromDataBase("desc")
-            HomeViewController().getNonSyncDataFromDtabase()
+          //  HomeViewController().getNonSyncDataFromDtabase()
+            SyncReportData.shareReportData.getNonSyncDataFromDtabase()
         }else{
             self.present(BaseUIController().showAlertView("Please select record by long Pressing it."), animated: true, completion: nil)
         }

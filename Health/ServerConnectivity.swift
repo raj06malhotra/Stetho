@@ -240,7 +240,7 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
             
             var result = ""
             
-            if (methodName == "GetRecordsFromServer"){
+            if (methodName == "GetRecordsFromServer" || methodName == "GetReminders"){
                 
                 
                  result = string as AnyObject as! String

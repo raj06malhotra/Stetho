@@ -408,7 +408,9 @@ class AddRecordsViewController: UIViewController, UITableViewDelegate , UITableV
             print("failed: \(error.localizedDescription)")
         }
         database.close()
-        HomeViewController().getNonSyncDataFromDtabase()
+       // HomeViewController().getNonSyncDataFromDtabase()
+        SyncReportData.shareReportData.getNonSyncDataFromDtabase()
+        
         //  }
     }
 

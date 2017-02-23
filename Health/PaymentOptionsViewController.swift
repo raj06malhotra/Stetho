@@ -49,7 +49,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     var isComingFromClass = ""
     var failPaymentAmount = ""
     var checkBackfromPayment = false
-    
+    var tempArr : NSMutableArray!
     
     
     
@@ -62,13 +62,13 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        if isComingFromClass == "paymentFail" {
-            self.getPickupAddressDetails()
-            self.getMemberList()
-            self.gothoughOnlinePayment()
-        }else{
+//        if isComingFromClass == "paymentFail" {
+////            self.getPickupAddressDetails()
+////            self.getMemberList()
+////            self.gothoughOnlinePayment()
+//        }else{
         self.createALayout()
-         }
+      //   }
         //set Tital
         self.title = "PAYMENT OPTION"
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
@@ -91,6 +91,15 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     }
     override func viewWillAppear(_ animated: Bool) {
         // call google analytics for screen tracking
+        
+//        if isComingFromClass == "paymentFail" {
+//            self.getPickupAddressDetails()
+//            self.getMemberList()
+////            self.gothoughOnlinePayment()
+//        }else{
+//            self.createALayout()
+//        }
+         tempArr = NSMutableArray()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.trackViewOnGoogleAnalytics("PaymentOptions Screen")
         // if is coming form fail or remaining payment goto to back viewcontroller
@@ -117,7 +126,11 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         lblTotalPaymentAmount.textAlignment = .center
         lblTotalPaymentAmount.textColor = KRED_COLOR
         lblTotalPaymentAmount.font = UIFont.boldSystemFont(ofSize: 18)
+        if isComingFromClass == "paymentFail" {
+            lblTotalPaymentAmount.text =  failPaymentAmount
+        }else{
         lblTotalPaymentAmount.text =  totalAmount
+        }
         print(totalAmount)
         scrollView.addSubview(lblTotalPaymentAmount)
         yPos += 30
@@ -181,13 +194,47 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         
         self.getPickupAddressDetails()
         self.getMemberList()
-        self.bookAnOrder()
+        
+        
+        if arrMemberDetails.count == 0{
+            if let memberDetails = GlobalInfo.sharedInfo.getSelectedTest(){
+                arrMemberDetails = memberDetails
+            }
+            self.gothoughOnlinePayment()
+        }else{
+            self.bookAnOrder()
+        }
+        
        
     }
     
     func barButtonBackClick(_ barButton : UIBarButtonItem)  {
+       arrMemberDetails = self.getMemberList()
         
-        self.navigationController?.popViewController(animated: true)
+        if arrMemberDetails.count == 0{
+            if isComingFromClass == "paymentFail"{
+                for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: MyOrderViewController.self) {
+                        self.navigationController?.popToViewController(controller as UIViewController, animated: true)
+                        break
+                    }
+                    
+                }
+            }
+            else{
+                for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: HomeViewController.self) {
+                        self.navigationController?.popToViewController(controller as UIViewController, animated: true)
+                        break
+                    }
+                }
+            }
+          
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+
         
     }
     //MARK: DataBaseOperations
@@ -238,11 +285,17 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                 myfamilyInfoObj.memberMobileNo = rs.string(forColumn: "MemberMobileNo")
                 myfamilyInfoObj.memberGender = rs.string(forColumn: "membergender")
                 arrMemberDetails.add(myfamilyInfoObj)
+                tempArr.add(myfamilyInfoObj)
             }
         } catch let error as NSError {
             print("failed: \(error.localizedDescription)")
         }
         database.close()
+        if tempArr.count > 0{
+            GlobalInfo.sharedInfo.setSelectedTest(data: tempArr)
+        }
+        print(arrMemberDetails)
+        
         return arrMemberDetails
     }
     
@@ -262,6 +315,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                 packageOrderInfoObj.packageType = rs.string(forColumn: "PackageType")
                 arrSelectedPackges.add(packageOrderInfoObj)
                 
+                
             }
         } catch let error as NSError {
             print("failed: \(error.localizedDescription)")
@@ -273,13 +327,20 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     func deletedPackageOrder(_ memberId : String) -> NSMutableArray  {
     
         let database = appDelegate.openDataBase()
+        
+       
+        
         arrSelectedPackges.removeAllObjects()
+        self.arrMemberDetails.removeObject(at: 0)
+        print(tempArr)
         do {
              try database.executeUpdate(String(format:"delete from order_Package_Purchased where OrderId = %@ ",member_Id), values: nil)
         } catch let error as NSError {
             print("failed: \(error.localizedDescription)")
         }
         database.close()
+        print(arrSelectedPackges)
+        print(arrMemberDetails)
         return arrSelectedPackges
     }
 
@@ -488,17 +549,81 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
             paymentView.strSaleAmount = t_amount
             paymentView.strCurrency = "INR";
             paymentView.strDisplayCurrency = "USD";
-            //Reference no has to be configured
-            paymentView.reference_no = myFamilyObj.memberMobileNo
-            paymentView.strDescription = self.appDelegate.bookedOrderId as String
-            paymentView.strBillingName = userName
-            paymentView.strBillingAddress = self.pickupAddressObj.GeoAddress
-            paymentView.strBillingCity =  self.pickupAddressObj.City
+            
+            
+            if myFamilyObj.memberMobileNo.isEmpty{
+                paymentView.reference_no = "9810981073"
+            }else{
+                paymentView.reference_no = myFamilyObj.memberMobileNo
+            }
+            
+            if String(self.appDelegate.bookedOrderId).isEmpty{
+                 paymentView.strDescription = "Hindustanwellness"
+            }else{
+                 paymentView.strDescription = self.appDelegate.bookedOrderId as String
+            }
+            
+            if userName.isEmpty{
+                paymentView.strBillingName = "Hindustan wellness"
+            }else{
+                paymentView.strBillingName = userName
+            }
+            
+            if self.pickupAddressObj.GeoAddress.isEmpty{
+                paymentView.strBillingAddress = "2nd floor Hindustan wellness"
+
+            }else{
+                paymentView.strBillingAddress = self.pickupAddressObj.GeoAddress
+
+            }
+            
+            if self.pickupAddressObj.City.isEmpty{
+                 paymentView.strBillingCity =  "Gurgaon"
+                
+            }else{
+                 paymentView.strBillingCity =  self.pickupAddressObj.City
+                
+            }
+    
+            
+            if self.pickupAddressObj.Pincode.isEmpty{
+                paymentView.strBillingPostal = "122001"//self.pickupAddressObj.Pincode
+            }else{
+                paymentView.strBillingPostal = self.pickupAddressObj.Pincode
+            }
+            
+            if myFamilyObj.memberEmail.isEmpty{
+                paymentView.strBillingEmail = "stetho.hindustanwellness@gmail.com"
+            }else{
+                paymentView.strBillingEmail = myFamilyObj.memberEmail
+            }
+            
+            if myFamilyObj.memberMobileNo.isEmpty{
+                 paymentView.strBillingTelephone = "9810981073"
+            }else{
+                 paymentView.strBillingTelephone = myFamilyObj.memberMobileNo
+            }
+            
             paymentView.strBillingState = "DL";
-            paymentView.strBillingPostal = self.pickupAddressObj.Pincode
             paymentView.strBillingCountry = "IND";
-            paymentView.strBillingEmail = myFamilyObj.memberEmail
-            paymentView.strBillingTelephone = myFamilyObj.memberMobileNo
+            
+            
+            
+            //Reference no has to be configured
+           // paymentView.reference_no = myFamilyObj.memberMobileNo
+//            paymentView.strDescription = self.appDelegate.bookedOrderId as String
+         //   paymentView.strBillingName = userName
+//            paymentView.strBillingAddress = ""//self.pickupAddressObj.GeoAddress
+          //  paymentView.strBillingCity =  ""//self.pickupAddressObj.City
+         //   paymentView.strBillingState = "DL";
+//            paymentView.strBillingPostal = ""//self.pickupAddressObj.Pincode
+         //   paymentView.strBillingCountry = "IND";
+//            paymentView.strBillingEmail = myFamilyObj.memberEmail
+//            paymentView.strBillingTelephone = myFamilyObj.memberMobileNo
+            
+            
+            
+            
             
             
             // Non mandatory parameters
@@ -518,6 +643,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
            
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.navigationBar.tintColor = KRED_COLOR
+            GlobalInfo.sharedInfo.setPaymentOptionsNavigation(navController: self.navigationController!)
             self.navigationController!.pushViewController(paymentView, animated: true)
              self.activityIndicator?.stop()
         }
@@ -538,7 +664,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                 }else{
                     
                     if self.arrMemberDetails.count > 1 {
-                        self.arrMemberDetails.removeObject(at: 0)
+//                        self.arrMemberDetails.removeObject(at: 0)
                         print(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "wallet_balance")as! String)
                         self.appDelegate.walletBalance = ((allResponse as! NSArray)[0] as AnyObject).value(forKey: "wallet_balance")as! String
                        self.deletedPackageOrder(self.member_Id)
@@ -549,7 +675,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                     }else{
                         print(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "wallet_balance")as! String)
                         self.appDelegate.walletBalance = ((allResponse as! NSArray)[0] as AnyObject).value(forKey: "wallet_balance")as! String
-                        self.arrMemberDetails.removeObject(at: 0)
+//                        self.arrMemberDetails.removeObject(at: 0)
                         self.deletedPackageOrder(self.member_Id)
                        // self.presentViewController(BaseUIController().showAlertView("Your order placed successfully"), animated: true, completion: nil)
                        // self.showAlertView()

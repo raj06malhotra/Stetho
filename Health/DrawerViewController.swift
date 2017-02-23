@@ -446,7 +446,8 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
         }
         database.close()
         //sync data on server
-        HomeViewController().getNonSyncDataFromMyFamilyTable()
+        //HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
     }
     func loadMyProfile()-> MyFamilyInfo  {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

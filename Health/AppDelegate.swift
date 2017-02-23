@@ -85,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }else{
             self.loadMainview()
             }
+            loadRecordfromBackground()
         }
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         
@@ -457,6 +458,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         googleAnalytics.set(kGAIScreenName, value: pageName)
         let builder = GAIDictionaryBuilder.createScreenView()
         googleAnalytics.send(((builder?.build())! as NSDictionary) as! [AnyHashable: Any])
+    }
+    
+    //MARK: BACKGROUND SYNC
+    
+    func loadRecordfromBackground(){
+        DispatchQueue.global(qos: .background).async {
+            SyncReportData.shareReportData.loadDataFromDataBase()
+            SyncReportData.shareReportData.getNonSyncDataFromDtabase()
+            SyncReportData.shareReportData.getListofDeletedReport()
+            SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
+            SyncReminderData.shareReminderData.getRemindersFromSever()
+            SyncReminderData.shareReminderData.syncReminderFromDataBasetoServer()
+            SyncReminderData.shareReminderData.getListofDeletedReminder()
+        }
     }
 }
 

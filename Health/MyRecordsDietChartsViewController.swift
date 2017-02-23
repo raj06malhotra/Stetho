@@ -516,7 +516,8 @@ class MyRecordsDietChartsViewController: UIViewController,UITableViewDelegate , 
         self.view.window!.viewWithTag(400)?.removeFromSuperview()
         self.loadDataFromDataBase("desc")
         tableView.reloadData()
-        HomeViewController().getNonSyncDataFromDtabase()
+     //   HomeViewController().getNonSyncDataFromDtabase()
+        SyncReportData.shareReportData.getNonSyncDataFromDtabase()
     }
     
     func longPressOnCell(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
@@ -608,7 +609,8 @@ class MyRecordsDietChartsViewController: UIViewController,UITableViewDelegate , 
             }
             arrCheckUncheck = NSMutableArray()
             self.loadDataFromDataBase("desc")
-             HomeViewController().getNonSyncDataFromDtabase()
+           //  HomeViewController().getNonSyncDataFromDtabase()
+             SyncReportData.shareReportData.getNonSyncDataFromDtabase()
         }else{
             self.present(BaseUIController().showAlertView("Please select record by long Pressing it."), animated: true, completion: nil)
         }

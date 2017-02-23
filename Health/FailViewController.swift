@@ -61,7 +61,8 @@ class FailViewController: UIViewController,serverTaskComplete {
             
             
             print("Response = %@", message.object)
-            jsondict = message.object as! NSMutableDictionary
+            
+            jsondict = NSMutableDictionary(dictionary: message.object as! NSDictionary)//message.object as! NSMutableDictionary
             
             self.onlinePayment(jsondict)
         }
@@ -172,7 +173,7 @@ class FailViewController: UIViewController,serverTaskComplete {
     }
     
     func getAllResponse(_ allResponse: AnyObject, methodName: String) {
-      //  print(allResponse)
+        print(allResponse)
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             // do your background code here
             DispatchQueue.main.sync(execute: {
@@ -196,7 +197,7 @@ class FailViewController: UIViewController,serverTaskComplete {
     
     func barButtonBackClick(_ button : UIButton)  {
 
-        DispatchQueue.main.async(execute: {
+    /*    DispatchQueue.main.async(execute: {
             let homeVC = HomeViewController()
             homeVC.isComingFromClass = "paymentFail"
             homeVC.failPaymentAmount = self.totalamount
@@ -218,7 +219,19 @@ class FailViewController: UIViewController,serverTaskComplete {
             appDelegate.window!.makeKeyAndVisible()
             
          
-        });
+        }); */
+        
+//        self.navigationController?.popViewController(animated: true)
+        let paymentNavigation = GlobalInfo.sharedInfo.getPaymentNavigation()
+        print(self.navigationController!.viewControllers)
+        for controller in paymentNavigation.viewControllers {
+            if controller.isKind(of: PaymentOptionsViewController.self){
+                AppDelegate.getAppDelegate().window?.rootViewController = paymentNavigation
+                (controller as! PaymentOptionsViewController).isComingFromClass = "paymentFail"
+            paymentNavigation.popToViewController(controller, animated: true)
+//                self.navigationController?.popToViewController(controller, animated: true)
+            }
+        }
     }
     
     func createDeclineView() {

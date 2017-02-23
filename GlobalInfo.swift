@@ -10,6 +10,8 @@ import UIKit
 
 class GlobalInfo: NSObject {
     let dafaults = UserDefaults.standard
+    private var paymentNavigation: UINavigationController?
+    private var selectedTest: NSMutableArray?
     static let sharedInfo = GlobalInfo()
     
     func setValueInDefault(_ value:AnyObject, forKey:String){
@@ -41,5 +43,21 @@ class GlobalInfo: NSObject {
         let alertSheet = UIAlertController(title: KCHANGEPHOTO, message: nil, preferredStyle: .actionSheet)
         alertSheet.view.tintColor = KRED_COLOR
         return alertSheet
+    }
+    
+    func setPaymentOptionsNavigation(navController: UINavigationController){
+        paymentNavigation = navController
+    }
+    
+    func getPaymentNavigation() -> UINavigationController{
+        return paymentNavigation!
+    }
+    
+    func setSelectedTest(data: NSMutableArray?){
+        selectedTest = data
+    }
+    
+    func getSelectedTest() -> NSMutableArray?{
+        return selectedTest
     }
 }

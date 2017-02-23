@@ -727,6 +727,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         }
         database.close()
         self.showAlertController()
+        SyncReminderData.shareReminderData.syncReminderFromDataBasetoServer()
     }
     func updateReminder()  {
         
@@ -765,6 +766,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
         database.close()
       //  self.showAlertController()
         self.navigationController?.popViewController(animated: true)
+         SyncReminderData.shareReminderData.syncReminderFromDataBasetoServer()
     }
     
     func sliderValueChange(_ slider : UISlider)  {
@@ -819,6 +821,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
             print("failed: \(error.localizedDescription)")
         }
         database.close()
+        SyncReminderData.shareReminderData.deleteReminderFromDataBase()
        let reminderCount = self.getTotalReminderCount()
        let  alertController = UIAlertController(title: "Alert", message: "Your reminder delete successfully.", preferredStyle: .alert)
         // Create the actions

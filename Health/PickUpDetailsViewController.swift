@@ -1274,7 +1274,9 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         let database = appDelegate.openDataBase()
         do {
             let rs = try database.executeQuery("select * from PickupAddress ", values: nil)
-            if rs.next() == false {  return  }
+//            if rs.next() == false {
+//                return
+//            }
             while rs.next() {
                 pickupAddressObj.MemberId = rs.string(forColumn: "MemberId")
                 pickupAddressObj.AddressLine1 = rs.string(forColumn: "AddressLine1")
@@ -1289,6 +1291,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
                 pickupAddressObj.OrderDate = rs.string(forColumn: "OrderDate")
                 pickupAddressObj.OrderTime = rs.string(forColumn: "OrderTime")
             }
+            
         } catch let error as NSError {
             print("failed: \(error.localizedDescription)")
         }

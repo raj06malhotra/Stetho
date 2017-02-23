@@ -972,7 +972,8 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         }
         database.close()
         //sync data on server
-        HomeViewController().getNonSyncDataFromMyFamilyTable()
+       // HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
         
     }
 }

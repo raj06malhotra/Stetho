@@ -708,7 +708,8 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
             database.close()
         
         //sync data on server
-         HomeViewController().getNonSyncDataFromMyFamilyTable()
+        // HomeViewController().getNonSyncDataFromMyFamilyTable()
+        SyncMyFamilyData.shareMyFamilyData.getNonSyncDataFromMyFamilyTable()
         // reload Drawer Data 
          NotificationCenter.default.post(name: Notification.Name(rawValue: "reload"), object: nil)
         

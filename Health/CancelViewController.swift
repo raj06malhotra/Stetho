@@ -34,7 +34,7 @@ class CancelViewController: UIViewController {
             
             
             print("Response = \(message.object!)")
-            jsondict = message.object as! NSMutableDictionary
+            jsondict = NSMutableDictionary(dictionary: message.object as! NSDictionary) //message.object as! NSMutableDictionary
         } } 
 
 
