@@ -14,6 +14,8 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
     var currentElementName:NSString = ""
     var resultTagName = ""
     var methodName = ""
+    var reminderResponse = ""
+    
     
     var myClass:serverTaskComplete?
     typealias CompletionHandler = (_ success:Bool) -> Void
@@ -164,6 +166,11 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
                      } */
                     
                     let xmlParser = XMLParser(data: response.data!)
+                    if self.methodName == "GetReminders"{
+                        let str = String(data: response.data!, encoding: .utf8)
+                       // print("GET REMINDER RESPONSE: \(str)")
+                    }
+                    
                     xmlParser.delegate = self
                     xmlParser.parse()
                     xmlParser.shouldResolveExternalEntities = true
@@ -230,6 +237,30 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
            
         }
     }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if methodName == "GetReminders" {
+            if elementName == resultTagName {
+                print("End tag")
+                
+                if (reminderResponse .range(of: "[") != nil) {
+                    let json: AnyObject? = reminderResponse.parseJSONString
+                    if json == nil{
+                        myClass!.getAllResponse("" as AnyObject, methodName: methodName)
+                    }else{
+                        myClass!.getAllResponse(json!, methodName: methodName)
+                    }
+                }else{
+                  //  print("Simple stingn")
+                    myClass!.getAllResponse(reminderResponse as AnyObject, methodName: methodName)
+                }
+                
+            }
+        }
+    }
+    
+
+    
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
         
@@ -238,47 +269,57 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
        
         if currentElementName as String == resultTagName {
             
-            var result = ""
-            
-            if (methodName == "GetRecordsFromServer" || methodName == "GetReminders"){
+            if methodName == "GetReminders" {
+                reminderResponse.append(string)
                 
-                
-                 result = string as AnyObject as! String
             }else{
+                var result = ""
                 
-                 result = AESEncryptionDecryption().DecryptAstring(string)
+                if (methodName == "GetRecordsFromServer"){
+                    
+                    
+                    result = string
+                }else{
+                    
+                    result = AESEncryptionDecryption().DecryptAstring(string)
+                }
+               
+                var newString = ""  //"GetOrderInformation"
+                if methodName == "GetTestDetails" || methodName == "GetOrderInformation" {
+                    newString = result.replacingOccurrences(of: "\r\n", with: "", options: NSString.CompareOptions.literal, range: nil)
+                }else{
+                    newString = result.replacingOccurrences(of: "\n", with: "", options: NSString.CompareOptions.literal, range: nil)
+                }
+               
+                if (result .range(of: "[") != nil) {
+                    print(result)
+                    let json: AnyObject? = newString.parseJSONString
+                    if json == nil{
+                        myClass!.getAllResponse("" as AnyObject, methodName: methodName)
+                    }else{
+                        myClass!.getAllResponse(json!, methodName: methodName)
+                    }
+                }else{
+                    print("Simple stingn")
+                    myClass!.getAllResponse(result as AnyObject, methodName: methodName)
+                }
+ 
             }
             
-            var newString = ""  //"GetOrderInformation"
-            if methodName == "GetTestDetails" || methodName == "GetOrderInformation" {
-            newString = result.replacingOccurrences(of: "\r\n", with: "", options: NSString.CompareOptions.literal, range: nil)
-            }else{
-             newString = result.replacingOccurrences(of: "\n", with: "", options: NSString.CompareOptions.literal, range: nil)
-            }
-
-           
             
-            if (result .range(of: "[") != nil) {
-                print(result)
-                let json: AnyObject? = newString.parseJSONString
-                myClass!.getAllResponse(json!, methodName: methodName)
-            }else{
-                print("Simple stingn")
-                myClass!.getAllResponse(result as AnyObject, methodName: methodName)
-            }
         }
-        
+    }
     }
     
-}
+
 
 
 extension String
 {
     var parseJSONString: AnyObject?
     {
-        let data = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        
+      //  let data = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
+         let data = self.data(using: .utf8)
         if let jsonData = data
         {
             // Will return an object or nil if JSON decoding fails

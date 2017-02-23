@@ -62,6 +62,8 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     var lblAddMember: UILabel!
     var initialPoint : CGPoint!
     var relationPickerView = UIPickerView()
+    var isComingFromNotification = false
+    
     
     
     
@@ -82,7 +84,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         self.view.addSubview(activityIndicator!)
         
-        if Reachability.isConnectedToNetwork() == true {
+        if Reachability.isConnectedToNetwork() == true && isComingFromNotification == true {
             self.getMyFamilyFromWebservice()
         }else{
             self.loadMyFamilyData()
