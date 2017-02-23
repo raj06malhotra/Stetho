@@ -300,6 +300,9 @@
 		BBE954121D1BE428009A2947 /* schedule_reminders_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BBE9540E1D1BE428009A2947 /* schedule_reminders_icon.png */; };
 		BBE9541A1D1BF9E5009A2947 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE954191D1BF9E5009A2947 /* NotificationsViewController.swift */; };
 		BBE95DB41DFA99E00007A944 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE95DB31DFA99E00007A944 /* main.swift */; };
+		BBE9F5691E5E99C0003C1725 /* SyncMyFamilyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9F5661E5E99C0003C1725 /* SyncMyFamilyData.swift */; };
+		BBE9F56A1E5E99C0003C1725 /* SyncReminderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9F5671E5E99C0003C1725 /* SyncReminderData.swift */; };
+		BBE9F56B1E5E99C0003C1725 /* SyncReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9F5681E5E99C0003C1725 /* SyncReportData.swift */; };
 		BBED82B71D3CDD4200044A1D /* CustomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBED82B61D3CDD4200044A1D /* CustomDelegate.swift */; };
 		BBED84291D92902400C776E4 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BBED84281D92902400C776E4 /* back_icon.png */; };
 		BBED842B1D929A4000C776E4 /* back_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = BBED842A1D929A4000C776E4 /* back_icon2.png */; };
@@ -778,6 +781,9 @@
 		BBE9540E1D1BE428009A2947 /* schedule_reminders_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_reminders_icon.png; sourceTree = "<group>"; };
 		BBE954191D1BF9E5009A2947 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		BBE95DB31DFA99E00007A944 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BBE9F5661E5E99C0003C1725 /* SyncMyFamilyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncMyFamilyData.swift; sourceTree = "<group>"; };
+		BBE9F5671E5E99C0003C1725 /* SyncReminderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReminderData.swift; sourceTree = "<group>"; };
+		BBE9F5681E5E99C0003C1725 /* SyncReportData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReportData.swift; sourceTree = "<group>"; };
 		BBED82B61D3CDD4200044A1D /* CustomDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDelegate.swift; sourceTree = "<group>"; };
 		BBED84281D92902400C776E4 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
 		BBED842A1D929A4000C776E4 /* back_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon2.png; sourceTree = "<group>"; };
@@ -1073,6 +1079,7 @@
 		BB3773571D112D0600E80B54 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				BBE9F55E1E5E99A1003C1725 /* SYNC */,
 				C38F56ED1E54651500BE1BEF /* Cells */,
 				BBC7FE591E430826004F363C /* Models */,
 				BBC7FE561E42EF17004F363C /* Corporate */,
@@ -1558,6 +1565,16 @@
 			name = GooglePlaceAutocomplete;
 			sourceTree = "<group>";
 		};
+		BBE9F55E1E5E99A1003C1725 /* SYNC */ = {
+			isa = PBXGroup;
+			children = (
+				BBE9F5661E5E99C0003C1725 /* SyncMyFamilyData.swift */,
+				BBE9F5671E5E99C0003C1725 /* SyncReminderData.swift */,
+				BBE9F5681E5E99C0003C1725 /* SyncReportData.swift */,
+			);
+			name = SYNC;
+			sourceTree = "<group>";
+		};
 		BBF158E81D152F6D0053398E /* Carbonkit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2032,11 +2049,13 @@
 				BBC7FE581E42EF49004F363C /* CheckinBarcodeViewController.swift in Sources */,
 				BB3773A41D116E8F00E80B54 /* ForgotPasswordViewController.swift in Sources */,
 				BBE72C8A1D685447000F727A /* AddReminderViewController.swift in Sources */,
+				BBE9F5691E5E99C0003C1725 /* SyncMyFamilyData.swift in Sources */,
 				BBA23BF31D4B765F00387912 /* MedicalHistorySecondViewController.swift in Sources */,
 				BB092B681D2A6E7900126475 /* FMDatabaseAdditions.m in Sources */,
 				BBF158F31D152FA10053398E /* CarbonTabSwipeNavigation.m in Sources */,
 				BBCE26EA1E1BDFE100C2C4D0 /* CorporateViewController.swift in Sources */,
 				BBA6F80D1D9A2D0B00ED4EE0 /* termsAndConditionViewController.swift in Sources */,
+				BBE9F56B1E5E99C0003C1725 /* SyncReportData.swift in Sources */,
 				BB5CCE4C1D807A8300699991 /* ELCAssetTablePicker.m in Sources */,
 				BBAAB74A1D9658F9006580AA /* MyProfileViewController.swift in Sources */,
 				BB092B531D2A42C400126475 /* DBModel.swift in Sources */,
@@ -2068,6 +2087,7 @@
 				BBC662F51D7860B10027A9C6 /* CameraViewController.swift in Sources */,
 				BBE9541A1D1BF9E5009A2947 /* NotificationsViewController.swift in Sources */,
 				BB37C8191D537B77004A6C56 /* PackgeOrederInfo.swift in Sources */,
+				BBE9F56A1E5E99C0003C1725 /* SyncReminderData.swift in Sources */,
 				BBADD26B1D65831D008E00C2 /* SubmitQueryViewController.swift in Sources */,
 				BBF158F51D152FA10053398E /* CarbonTabSwipeSegmentedControl.m in Sources */,
 				BB5751FD1D4779EE00C9E4C6 /* MyAccountViewController.swift in Sources */,
