@@ -280,11 +280,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         self.createNewLayout()
         
         //set activity on view
-        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+        activityIndicator = ProgressViewController(inview:tblView,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         //tblView.addSubview(activityIndicator!)
         
         if(UserDefaults.standard.value(forKey: "GetAllTestsByFamily") == nil){
-            activityIndicator?.frame = CGRect(x: tblView.frame.width/2 - 30, y: 100, width: 60, height: 60)
+//            activityIndicator?.frame = CGRect(x: tblView.frame.width/2 - 30, y: 100, width: 60, height: 60)
             activityIndicator?.start()
            // self.getAllTestsByFamily("")
         }else{
@@ -2571,6 +2571,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             bgView.removeFromSuperview()
             //set activity on view
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+//            activityIndicator = ProgressViewController(inview: tableView, loadingViewColor: <#T##UIColor#>, indicatorColor: <#T##UIColor#>, msg: <#T##String#>, customHeight: <#T##CGFloat#>)
             activityIndicator?.frame = CGRect(x: tableView.frame.width/2 - 30, y: 100, width: 60, height: 60)
             //tblView.addSubview(activityIndicator!)
             activityIndicator?.start()

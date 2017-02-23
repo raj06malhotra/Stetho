@@ -29,15 +29,10 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-<<<<<<< HEAD
         self.view.addSubview(activityIndicator!)
-        // only load reminder when coming from notificaiton click 
+        // only load reminder when coming from notificaiton click
         if Reachability.isConnectedToNetwork() == true && isComingFromNotification == true {
-=======
-        // self.view.addSubview(activityIndicator!) Comment Progress
-        
-        if Reachability.isConnectedToNetwork() == true {
->>>>>>> 075cf7f71ceb761c81ba828f4fcf8b65579aaccb
+            
             self.getRemindersFromSever()
         }else{
             self.getReminderList()
@@ -55,6 +50,7 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         self.title = "MY REMINDERS"
         self.createALayout()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         // add back butotn on Navigaiton
         let barButtonBack  = UIBarButtonItem(image: UIImage(named: "back_icon3.png"),style: .done,target: self, action: #selector(self.barButtonBackClick(_:)))
