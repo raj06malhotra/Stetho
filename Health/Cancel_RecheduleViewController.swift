@@ -32,7 +32,7 @@ class Cancel_RecheduleViewController: UIViewController , UIPickerViewDelegate , 
         self.view.backgroundColor = UIColor.white
         self.createALayout()
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         self.title = "EDIT APPOINTMENT"
        // self.navigationController!.navigationBar.topItem!.title = "Back"
     }

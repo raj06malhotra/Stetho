@@ -114,74 +114,18 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
             var request = try URLRequest(url: URL(string: "http://23.101.24.132/healthservice/webservice.asmx")!, method: .post)
             request.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
             request.addValue(String(msgLength), forHTTPHeaderField: "Content-Length")
-            request.httpBody = finalSoapUrl.data(using: String.Encoding.utf8, allowLossyConversion: false) // or false
+            request.httpBody = finalSoapUrl.data(using: String.Encoding.utf8, allowLossyConversion: true) // or false
             let _ = Alamofire.request(request)
                 .responseData{ response in
-                    /*        do{
-                     
-                     
-                     //  let responseDict = try XMLReader.dictionary(forXMLString: result)
-                     let responseDict = try XMLReader.dictionary(forXMLData: response.data!)
-                     print(responseDict)
-                     
-                     var result = ""
-                     let string = String(describing: responseDict)
-                     if (self.methodName == "GetRecordsFromServer"){
-                     
-                     
-                     result = string as AnyObject as! String
-                     }else{
-                     
-                     result = AESEncryptionDecryption().DecryptAstring(string)
-                     }
-                     
-                     print(result)
-                     
-                     
-                     
-                     var newString = ""
-                     if self.methodName == "GetTestDetails" || self.methodName == "GetOrderInformation" {
-                     newString = result.replacingOccurrences(of: "\r\n", with: "", options: NSString.CompareOptions.literal, range: nil)
-                     }else{
-                     newString = result.replacingOccurrences(of: "\n", with: "", options: NSString.CompareOptions.literal, range: nil)
-                     }
-                     
-                     
-                     
-                     if (result .range(of: "[") != nil) {
-                     print(result)
-                     let json: AnyObject? = newString.parseJSONString
-                     
-                     print(json ?? "")
-                     self.myClass!.getAllResponse(json!, methodName: self.methodName)
-                     }else{
-                     print("Simple stingn")
-                     self.myClass!.getAllResponse(result as AnyObject, methodName: self.methodName)
-                     }
-                     
-                     }catch{
-                     print("Enable to Parse Data")
-                     } */
+                    print(self.methodName)
+                    
                     
                     let xmlParser = XMLParser(data: response.data!)
                     xmlParser.delegate = self
                     xmlParser.parse()
                     xmlParser.shouldResolveExternalEntities = true
             }
-            //                .responseJSON { response in
-            //
-            //
-            //
-            //
-            //                    print(response.request)  // original URL request
-            //                    print(response.response) // HTTP URL response
-            //                    print(response.data)     // server data
-            //                    print(response.result)   // result of response serialization
-            //
-            //                    if let JSON = response.result.value {
-            //                        print("JSON: \(JSON)")
-            //                    }
-            //            }
+          
             
             
         }catch{
@@ -222,7 +166,7 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         currentElementName = elementName as NSString
-        
+        print(currentElementName)
         if currentElementName == "soap:Fault" {
             let error : AnyObject = "Something went wrong. Please try again." as AnyObject
             myClass?.getAllResponse(error, methodName: methodName)
@@ -261,7 +205,11 @@ class ServerConnectivity: NSObject, XMLParserDelegate {
             if (result .range(of: "[") != nil) {
                 print(result)
                 let json: AnyObject? = newString.parseJSONString
-                myClass!.getAllResponse(json!, methodName: methodName)
+                if json == nil{
+                    myClass!.getAllResponse("error" as AnyObject, methodName: methodName)
+                }else{
+                     myClass!.getAllResponse(json!, methodName: methodName)
+                }
             }else{
                 print("Simple stingn")
                 myClass!.getAllResponse(result as AnyObject, methodName: methodName)

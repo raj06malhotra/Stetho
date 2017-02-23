@@ -55,7 +55,7 @@ class AddNewAddressViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.navigationItem.rightBarButtonItem = rightButton
         createALayout()
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
 
         // Do any additional setup after loading the view.
     }

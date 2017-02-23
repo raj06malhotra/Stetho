@@ -29,7 +29,7 @@ class ForgotPasswordViewController: UIViewController,serverTaskComplete {
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         txtPassword.keyboardType = .numberPad
         addToolBar(txtPassword)

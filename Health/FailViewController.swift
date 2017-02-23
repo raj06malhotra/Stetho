@@ -38,7 +38,7 @@ class FailViewController: UIViewController,serverTaskComplete {
         self.navigationItem.leftBarButtonItem = barButtonBack;
         
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
        // self.createDeclineView()
          self.activityIndicator?.start()
 

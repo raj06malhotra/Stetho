@@ -26,7 +26,7 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         if Reachability.isConnectedToNetwork() == true {
             self.getRemindersFromSever()

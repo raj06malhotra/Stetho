@@ -360,7 +360,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
         //set activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        bgView.addSubview(activityIndicator!)
+        //bgView.addSubview(activityIndicator!)
     }
     
     func showExtraSelectedPackageListByMember()  {
@@ -1047,7 +1047,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
             //self.createExtraTestLayout()
             //set activity on view
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-            self.view.addSubview(activityIndicator!)
+            // self.view.addSubview(activityIndicator!) Comment Progress
             self.getExtraTest()
         }
         
@@ -1363,8 +1363,10 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
     
     func getCustomerAddress() {
         if Reachability.isConnectedToNetwork() == true {
-            activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-            self.view.addSubview(activityIndicator!)
+
+            
+             activityIndicator = ProgressViewController(inview: self.view, loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "", customHeight: self.view.frame.size.height - (self.view.frame.size.height/6 + 30))
+            // self.view.addSubview(activityIndicator!) Comment Progress
             activityIndicator?.start()
             let customerId = UserDefaults.standard.value(forKey: "loginCustomerId")as! String
             let allParameters = ["customerId" : customerId]

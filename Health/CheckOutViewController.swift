@@ -167,7 +167,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         // add progress on View 
         
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         // show & hide keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -845,7 +845,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         tapped.delegate = self
         bgView.addGestureRecognizer(tapped)
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        bgView.addSubview(activityIndicator!)
+        //bgView.addSubview(activityIndicator!)
         activityIndicator?.start()
     }
     func showAllPackages()  {
@@ -1693,7 +1693,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
         if (button.titleLabel?.text == "Apply"){
             // add progress on View
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-            self.view.addSubview(activityIndicator!)
+            // self.view.addSubview(activityIndicator!) Comment Progress
             
             if txtCouponCode.text?.isEmpty == true {
             self.present(BaseUIController().showAlertView("Please enter coupon code and try again."), animated: true, completion: nil)

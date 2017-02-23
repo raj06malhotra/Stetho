@@ -34,7 +34,7 @@ class MyOrderDetailsViewController: UIViewController , UITableViewDataSource , U
         self.view.addSubview(orderDetailsTableView)
         orderDetailsTableView.tableFooterView = UIView()
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        orderDetailsTableView.addSubview(activityIndicator!)
+        //orderDetailsTableView.addSubview(activityIndicator!)
         // get currency sysmbol
 //        let currencyCode = "INR"
 //        let localeComponents = [NSLocale.Key.currencyCode: currencyCode]

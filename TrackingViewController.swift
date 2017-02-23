@@ -50,7 +50,7 @@ class TrackingViewController: UIViewController , serverTaskComplete {
         
         self.addRightBarButtonOnNavigation()
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         activityIndicator?.start()
 
         self.getPhleboDetails()

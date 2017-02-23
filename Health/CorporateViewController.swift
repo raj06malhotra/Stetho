@@ -81,7 +81,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         
         txtPersonal_EmailId.keyboardType = .emailAddress

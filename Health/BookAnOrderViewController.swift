@@ -59,9 +59,12 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.backgroundColor = UIColor.white
         self.CreateALayout()
         // add activity indicator on View
-        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        activityIndicator?.frame = CGRect(x: activityIndicator!.frame.origin.x, y: activityIndicator!.frame.origin.y - 100, width: activityIndicator!.frame.width, height: activityIndicator!.frame.height)
-        self.view.addSubview(activityIndicator!)
+        
+        activityIndicator = ProgressViewController(inview: self.view, loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "", customHeight: self.view.frame.size.height - (self.view.frame.size.height/6 + 30))
+
+//        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+//        activityIndicator?.frame = CGRect(x: activityIndicator!.frame.origin.x, y: activityIndicator!.frame.origin.y - 100, width: activityIndicator!.frame.width, height: activityIndicator!.frame.height)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         var healthtestversion = ""
         var packageupdateversion = ""
