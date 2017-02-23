@@ -46,7 +46,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
         // Do any additional setup after loading the view.
         //set activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         // comment by anil for new
               if(UserDefaults.standard.value(forKey: "GetAllTests") == nil ){

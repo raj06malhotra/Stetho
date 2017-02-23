@@ -44,8 +44,10 @@ class MyRecordPrescriptionViewController: UIViewController , UITableViewDelegate
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: KRED_COLOR]
         self.CreateALayout()
         //set activity on view
-        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+//        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+        activityIndicator = ProgressViewController(inview: self.view, loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "", customHeight: self.view.frame.size.height - (self.view.frame.size.height/6 + 30))
+
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         NotificationCenter.default.addObserver(self, selector: #selector(MyRecordPrescriptionViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MyRecordPrescriptionViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)

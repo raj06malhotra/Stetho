@@ -37,7 +37,7 @@ class MyOrderViewController: UIViewController , UITableViewDelegate , UITableVie
         self.view.addSubview(trackOrderstableView)
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         trackOrderstableView.tableFooterView = UIView()
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         // add pool to refresh on tableview
         refreshControl = UIRefreshControl()

@@ -41,7 +41,8 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
         
         // Do any additional setup after loading the view, typically from a nib.
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+      //  // self.view.addSubview(activityIndicator!) Comment Progress
+        
         //set back button and tital 
         self.navigationItem.setHidesBackButton(true, animated:true)
         //set navigation bar
@@ -231,7 +232,7 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
     
     func hitAWebServices()  {
         if Reachability.isConnectedToNetwork() == true {
-           
+//        // self.view.addSubview(activityIndicator!) Comment Progress
         activityIndicator?.start()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
        //set mobile no in NSUserDefault
@@ -256,6 +257,7 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
             // do your background code here
             DispatchQueue.main.sync(execute: {
                 // stop the activity indicator (you are now on the main queue again)
+//                self.activityIndicator?.removeFromSuperview()
                 self.activityIndicator?.stop()
                 if  allResponse is String {
                 self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)

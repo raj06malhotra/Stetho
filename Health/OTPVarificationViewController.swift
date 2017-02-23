@@ -45,7 +45,7 @@ class OTPVarificationViewController: UIViewController , UITextViewDelegate , ser
         
         if identifire == "forgotpassword" {
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-            self.view.addSubview(activityIndicator!)
+            // self.view.addSubview(activityIndicator!) Comment Progress
             self.hitAWebServices()
              self.title = "FORGOT PASSWORD"
         }else{

@@ -153,7 +153,7 @@ class PDFViewerViewController: UIViewController , serverTaskComplete {
        
         if recordObject.PDFDataString == "" {
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-            PDFWebView.addSubview(activityIndicator!)
+           // PDFWebView.addSubview(activityIndicator!)
             loadMyReport(recordObject.dataBaseId, record_Type: recordObject.recordType)
             //set activity on view
             

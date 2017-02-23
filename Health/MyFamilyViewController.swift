@@ -82,7 +82,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         if Reachability.isConnectedToNetwork() == true && isComingFromNotification == true {
             self.getMyFamilyFromWebservice()
@@ -1032,7 +1032,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         print(Reachability.isConnectedToNetwork())
         
         if Reachability.isConnectedToNetwork() == true {
@@ -1057,7 +1057,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     func deleteMemberFromAccount()  {
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         print(Reachability.isConnectedToNetwork())
         
@@ -1104,7 +1104,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     func addNewMember()  {
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         if Reachability.isConnectedToNetwork() == true {
             activityIndicator?.start()
@@ -1131,7 +1131,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     func resendOpt()  {
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         if Reachability.isConnectedToNetwork() == true {
             activityIndicator?.start()
             var memberId = ""
@@ -1153,7 +1153,7 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
         // add activity on view
         print(newAddedMemberId)
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         if Reachability.isConnectedToNetwork() == true {
             activityIndicator?.start()
             var memberId = ""

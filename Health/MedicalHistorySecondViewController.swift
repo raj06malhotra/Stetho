@@ -40,7 +40,7 @@ class MedicalHistorySecondViewController: UIViewController ,serverTaskComplete{
         self.createLayoutDesign()
         //add ActivityIndicator on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         if isFromCorporate != "yes" {
             self.getMemberProfileInfo()
         }

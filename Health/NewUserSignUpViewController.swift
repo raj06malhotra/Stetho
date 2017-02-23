@@ -22,7 +22,7 @@ class NewUserSignUpViewController: UIViewController , XMLParserDelegate ,serverT
         self.createALayout()
         // add activity Indicator 
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
     }
 
     override func didReceiveMemoryWarning() {

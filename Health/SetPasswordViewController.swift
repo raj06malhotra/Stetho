@@ -40,7 +40,7 @@ class SetPasswordViewController: UIViewController ,serverTaskComplete {
             btnLogin_setPassword.setTitle("SET PASSWORD", for: UIControlState())
         }
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
         txtSetPassword.frame = CGRect(x: txtSetPassword.frame.origin.x, y: txtSetPassword.frame.origin.y, width: txtSetPassword.frame.width, height: 40)
         btnLogin_setPassword.frame = CGRect(x: 0, y: self.view.frame.height - 104, width: self.view.frame.width, height: 40)

@@ -93,7 +93,7 @@ class BarCodeViewController : UIViewController , AVCaptureMetadataOutputObjectsD
         
         // add progress on View
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         
     }
     override func viewWillAppear(_ animated: Bool) {

@@ -229,7 +229,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
 //        //set activity on view
 //        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.grayColor(), indicatorColor: UIColor.blackColor(), msg: "")
-//        self.view.addSubview(activityIndicator!)
+//        // self.view.addSubview(activityIndicator!) Comment Progress
       
         
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
@@ -281,7 +281,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
         //set activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        tblView.addSubview(activityIndicator!)
+        //tblView.addSubview(activityIndicator!)
         
         if(UserDefaults.standard.value(forKey: "GetAllTestsByFamily") == nil){
             activityIndicator?.frame = CGRect(x: tblView.frame.width/2 - 30, y: 100, width: 60, height: 60)
@@ -1458,7 +1458,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     
     func getAllTestByMember(info: MyFamilyInfo){
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
         activityIndicator?.start()
         myFamilyMemberObj = info
         self.getAllTestsByFamily(myFamilyMemberObj.memberId)
@@ -2572,7 +2572,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             //set activity on view
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
             activityIndicator?.frame = CGRect(x: tableView.frame.width/2 - 30, y: 100, width: 60, height: 60)
-            tblView.addSubview(activityIndicator!)
+            //tblView.addSubview(activityIndicator!)
             activityIndicator?.start()
             myFamilyMemberObj = tempDataFamily[(indexPath as NSIndexPath).row]as! MyFamilyInfo
             self.getAllTestsByFamily(myFamilyMemberObj.memberId)

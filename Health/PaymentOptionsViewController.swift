@@ -72,7 +72,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         //set Tital
         self.title = "PAYMENT OPTION"
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        self.view.addSubview(activityIndicator!)
+        // self.view.addSubview(activityIndicator!) Comment Progress
 
        remainingWalletBalance = appDelegate.walletBalance
         // add back butotn on Navigaiton

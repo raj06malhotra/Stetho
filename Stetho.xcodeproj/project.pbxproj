@@ -336,6 +336,7 @@
 		BBF834301D63542400BAC9F8 /* menu_orders.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF8342F1D63542400BAC9F8 /* menu_orders.png */; };
 		BBFA0DB31D96D06100C24019 /* saveAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */; };
 		BBFA0DB41D96D06100C24019 /* saveAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */; };
+		C34049071E5EAF5B00DEF6FB /* JTMaterialSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */; };
 		C35D277D1E572BCC002C11BA /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */; };
 		C38F56EC1E545D2500BE1BEF /* FamilyMemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */; };
 		C38F56EF1E54653000BE1BEF /* FamilyMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */; };
@@ -822,6 +823,7 @@
 		BBF8342F1D63542400BAC9F8 /* menu_orders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orders.png; sourceTree = "<group>"; };
 		BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = saveAddressTableViewCell.swift; sourceTree = "<group>"; };
 		BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = saveAddressTableViewCell.xib; sourceTree = "<group>"; };
+		C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTMaterialSpinner.swift; sourceTree = "<group>"; };
 		C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
 		C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberListViewController.swift; sourceTree = "<group>"; };
 		C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberTableViewCell.swift; sourceTree = "<group>"; };
@@ -1404,6 +1406,7 @@
 		BB7147A71D140A6A0011BC62 /* UtilityClasses */ = {
 			isa = PBXGroup;
 			children = (
+				C34048FE1E5EAF2F00DEF6FB /* LOADER */,
 				BB34D90D1E55CD2700A503CE /* Alamofire */,
 				BB34D9001E55CC9C00A503CE /* TPKeyboardAvoiding */,
 				BBE32EEF1E21165900FEF50C /* GooglePlaceAutocomplete */,
@@ -1589,6 +1592,14 @@
 				BBF158F11D152FA10053398E /* CarbonTabSwipeSegmentedControl.m */,
 			);
 			name = Carbonkit;
+			sourceTree = "<group>";
+		};
+		C34048FE1E5EAF2F00DEF6FB /* LOADER */ = {
+			isa = PBXGroup;
+			children = (
+				C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */,
+			);
+			name = LOADER;
 			sourceTree = "<group>";
 		};
 		C38F56ED1E54651500BE1BEF /* Cells */ = {
@@ -2039,6 +2050,7 @@
 				BB092B711D2A8DD300126475 /* ModelManager.swift in Sources */,
 				BBF158F41D152FA10053398E /* CarbonTabSwipeScrollView.m in Sources */,
 				BB0451B51D5DF646009497E7 /* MyOrderViewController.swift in Sources */,
+				C34049071E5EAF5B00DEF6FB /* JTMaterialSpinner.swift in Sources */,
 				BB74618F1D7B027B007AC38D /* AddRecordsViewController.swift in Sources */,
 				BBEF19261E436CF7004E12B1 /* ManualBarCodeEnterViewController.swift in Sources */,
 				BB3560171D23E1F7008646BB /* ServerConnectivity.swift in Sources */,
