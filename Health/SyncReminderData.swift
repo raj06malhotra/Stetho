@@ -20,6 +20,9 @@ class SyncReminderData: NSObject , serverTaskComplete{
             if (UserDefaults.standard.value(forKey: "loginCustomerId") != nil){
                 
                 
+                print(UserDefaults.standard.value(forKey: "loginCustomerId")as! String)
+                
+                
                 let customerId = UserDefaults.standard.value(forKey: "loginCustomerId")as! String
                 let allParameters = ["customerId":customerId , "reminderIds":"0"]
                 ServerConnectivity().callWebservice(allParameters, resulttagname: "GetRemindersResult" ,methodname: "GetReminders", className: self)
@@ -177,29 +180,25 @@ class SyncReminderData: NSObject , serverTaskComplete{
     }
     
     func getAllResponse(_ allResponse: AnyObject, methodName: String) {
-        print(methodName)
-        print(allResponse)
+//        print(methodName)
+//        print(allResponse)
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             // do your background code here
             DispatchQueue.main.sync(execute: {
                 // stop the activity indicator (you are now on the main queue again)
                 
-                if allResponse .isEqual("error") || allResponse.isEqual("") || allResponse.isEqual("Something went wrong. Please try again.")  {
+                if allResponse .isEqual("error") || allResponse.isEqual("") || allResponse.isEqual("NA") || allResponse.isEqual("Something went wrong. Please try again.")  {
                     //  print("some problem")
-                    if methodName == "GetRecordsFromServer" && allResponse .isEqual("") {
-                        //stop syncing process
-                        // self.timerSyncRecordDataFromServerToLocal.invalidate()
-                    }
-                    if methodName == "GetReminders" && allResponse .isEqual("") {
+//                    if methodName == "GetReminders" && allResponse .isEqual("") {
                         //stop syncing process
                         //  self.reminderTimerSycnServerToLocal.invalidate()
-                    }
-                    if methodName == "GetAllTests" && allResponse .isEqual("error") {
+//                    }
+//                    if methodName == "GetAllTests" && allResponse .isEqual("error") {
                         //  self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)
-                    }
-                    if(allResponse .isEqual("error") || allResponse.isEqual("Something went wrong. Please try again.")){
+//                    }
+//                    if(allResponse .isEqual("error") || allResponse.isEqual("Something went wrong. Please try again.")){
                         print("some Sync problem")
-                    }
+//                    }
                 }
                 else{
                      if(methodName == "GetReminders"){

@@ -280,20 +280,20 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         self.createNewLayout()
         
         //set activity on view
-        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+        activityIndicator = ProgressViewController(inview:tblView,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         //tblView.addSubview(activityIndicator!)
         
         if(UserDefaults.standard.value(forKey: "GetAllTestsByFamily") == nil){
-            activityIndicator?.frame = CGRect(x: tblView.frame.width/2 - 30, y: 100, width: 60, height: 60)
+//            activityIndicator?.frame = CGRect(x: tblView.frame.width/2 - 30, y: 100, width: 60, height: 60)
             activityIndicator?.start()
-            self.getAllTestsByFamily("")
+           // self.getAllTestsByFamily("")
         }else{
             arrAllTestByFamily = UserDefaults.standard.value(forKey: "GetAllTestsByFamily") as! NSArray
             tblView.backgroundColor = UIColor (red: (237/255), green: (64/255), blue: (56/255), alpha: 1)
             self.tblView.delegate = self
             self.tblView.dataSource = self
             self.tblView.reloadData()
-            self.getAllTestsByFamily("")
+            //self.getAllTestsByFamily("")
         }
         
     }
@@ -452,11 +452,13 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 
             case "15":// New Reminder
                 let myReminderVC = MyReminderViewController()
+                myReminderVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myReminderVC, animated: false)
                 break
                 
             case "16":// Updated Reminder
                 let myReminderVC = MyReminderViewController()
+                myReminderVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myReminderVC, animated: false)
                 break
                 
@@ -477,6 +479,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 
             case "21":// Delete reminder
                 let myReminderVC = MyReminderViewController()
+                myReminderVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myReminderVC, animated: false)
                 break
                 
@@ -508,11 +511,13 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 
             case "26":// Member Delete
                 let myFamilyVC = storyboard1.instantiateViewController(withIdentifier: "MyFamilyViewController")as! MyFamilyViewController
+                myFamilyVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myFamilyVC, animated: false)
                 break
                 
             case "27":// Member Reject
                 let myFamilyVC = storyboard1.instantiateViewController(withIdentifier: "MyFamilyViewController")as! MyFamilyViewController
+                myFamilyVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myFamilyVC, animated: false)
                 break
                 
@@ -542,6 +547,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 
             case "33":
                 let myFamilyVC = storyboard1.instantiateViewController(withIdentifier: "MyFamilyViewController")as! MyFamilyViewController
+                myFamilyVC.isComingFromNotification = true
                 self.navigationController?.pushViewController(myFamilyVC, animated: false)
                 break
                 
@@ -604,6 +610,10 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 paymentVC.isComingFromClass = "paymentFail"
                 paymentVC.failPaymentAmount = failPaymentAmount
                 self.navigationController?.pushViewController(paymentVC, animated: true)
+            
+            }else{
+                
+                self.getAllTestsByFamily("")
             
             }
         }
@@ -2561,6 +2571,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             bgView.removeFromSuperview()
             //set activity on view
             activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
+//            activityIndicator = ProgressViewController(inview: tableView, loadingViewColor: <#T##UIColor#>, indicatorColor: <#T##UIColor#>, msg: <#T##String#>, customHeight: <#T##CGFloat#>)
             activityIndicator?.frame = CGRect(x: tableView.frame.width/2 - 30, y: 100, width: 60, height: 60)
             //tblView.addSubview(activityIndicator!)
             activityIndicator?.start()

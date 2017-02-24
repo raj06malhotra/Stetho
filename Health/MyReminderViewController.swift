@@ -14,10 +14,13 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
     var arrMyReminderList = NSMutableArray()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     fileprivate var activityIndicator : ProgressViewController?
-    var isComingFromaddReminder = false
+    var isComingFromNotification = false
     var fullImageView = UIImageView()
     var scrollView: UIScrollView!
     let bgView = UIView()
+    var isComingFromaddReminder = false
+    
+    
     
     //MARK: ViewLifeCycleMethod
     override func viewDidLoad() {
@@ -26,9 +29,10 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        // self.view.addSubview(activityIndicator!) Comment Progress
-        
-        if Reachability.isConnectedToNetwork() == true {
+        self.view.addSubview(activityIndicator!)
+        // only load reminder when coming from notificaiton click
+        if Reachability.isConnectedToNetwork() == true && isComingFromNotification == true {
+            
             self.getRemindersFromSever()
         }else{
             self.getReminderList()
@@ -46,6 +50,7 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
         self.title = "MY REMINDERS"
         self.createALayout()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         // add back butotn on Navigaiton
         let barButtonBack  = UIBarButtonItem(image: UIImage(named: "back_icon3.png"),style: .done,target: self, action: #selector(self.barButtonBackClick(_:)))
