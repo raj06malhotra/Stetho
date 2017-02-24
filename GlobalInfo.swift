@@ -60,4 +60,13 @@ class GlobalInfo: NSObject {
     func getSelectedTest() -> NSMutableArray?{
         return selectedTest
     }
+    
+    class func isPushEnabled(){
+        let rnTypes = UIApplication.shared.isRegisteredForRemoteNotifications
+        print(rnTypes)
+//        NSUInteger rntypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+//        if (rntypes == UIRemoteNotificationTypeNote) {
+//            // application is not registered for any type of push notification
+//        }
+    }
 }
