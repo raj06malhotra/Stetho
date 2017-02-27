@@ -7,6 +7,9 @@ class ProgressViewController: UIView {
     var activityIndicator = JTMaterialSpinner()//UIActivityIndicatorView()
     var bgView = UIView()
     var progressToAddonView: UIView!
+    
+    
+    
     init(inview:UIView,loadingViewColor:UIColor,indicatorColor:UIColor,msg:String){
         //inview.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         self.indicatorColor = indicatorColor

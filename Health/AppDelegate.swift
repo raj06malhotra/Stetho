@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var walletBalance = ""
     var corporateAllDetailsDict = NSMutableDictionary()
     var bookedOrderId = NSMutableString()
-    
+    var isComingfromLaunching = false
     
     
     
@@ -72,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        isComingfromLaunching = true
         // Override point for customization after application launch.
         DBModel().createDataBase()
         
@@ -157,6 +159,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if GlobalInfo.sharedInfo.isNeedToShowPushAlert() {
+            let homeVC = HomeViewController()            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                homeVC.showPushNotificationAlert()
+            }
+        }
         notificatinOnBackground = "background"
         if forceUpdate == true {
             let homeVC = HomeViewController()
@@ -164,6 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
+    
+    
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -285,6 +295,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("Device Token:", tokenString)
         UserDefaults.standard.setValue(tokenString, forKey: "device_token")
+//        GlobalInfo.isPushEnabled()
+         let isLogin = UserDefaults.standard.bool(forKey: "loginstatus")
+        if isLogin {
+            let homeVC = HomeViewController()
+            homeVC.registerDeviceTone()
+        }
         
     }
     

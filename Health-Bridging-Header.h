@@ -25,6 +25,7 @@
 #import "GAITrackedViewController.h"
 #import "GAITracker.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "JivoSdk.h"
 //#import <Google/Analytics.h>
 
 
