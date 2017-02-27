@@ -145,39 +145,21 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
 //            return (docsdir as NSString).stringByAppendingPathComponent("HealthDatabase")
 //        }
 //    }
-    
-    
-    
+
     //MARK: - ViewLifeCycleMethod
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-       
-        
-       // self.showGuideLineView()
-//        if(UserDefaults.standard.value(forKey: "showguideline") == nil && UserDefaults.standard.value(forKey: "loginCustomerId") != nil ){
-//            UIApplication.shared.endIgnoringInteractionEvents()
-//            self.showGuideLineView()
-//            UserDefaults.standard.setValue("hide", forKey: "showguideline")
-//        }
 
         
-        
+        //Show Push Alert or Not
+        showPushNotificationAlert()
         
         // register DeviceToken
         let checkForceUpdate = UserDefaults.standard.bool(forKey: "forceupdate")
         if checkForceUpdate == true {
             self.registerDeviceTone()
         }
-        
-//        if(NSUserDefaults.standardUserDefaults().valueForKey("showguideline") == nil && NSUserDefaults.standardUserDefaults().valueForKey("loginCustomerId") != nil ){
-//            UIApplication.sharedApplication().endIgnoringInteractionEvents()
-//           // self.showGuideLineView()
-//            NSUserDefaults.standardUserDefaults().setValue("hide", forKey: "showguideline")
-//        }
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
@@ -187,94 +169,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         self.automaticallyAdjustsScrollViewInsets = false
        
         self .setStatusBarBackgroundColor( UIColor(red: 196/255.0, green: 35/255.0, blue: 24/255.0, alpha: 1))
-        
-       // set time for record syncing
-//         timerSyncRecordDataFromServerToLocal = Timer.scheduledTimer(timeInterval: 40, target: self, selector: #selector(HomeViewController.syncRecordData), userInfo: nil, repeats: false)
-//        appDelegate.timerArray.add(timerSyncRecordDataFromServerToLocal)
-//        syncRecordData()
-        
-//        let timerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(HomeViewController.getNonSyncDataFromDtabase), userInfo: nil, repeats: true)
-//        print(timerSycnLocalToServer)
-//         appDelegate.timerArray.add(timerSycnLocalToServer)
-        
-        
-//        let timerForDeletedReport = Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(HomeViewController.getListofDeletedReport), userInfo: nil, repeats: true)
-//        print(timerForDeletedReport)
-//         appDelegate.timerArray.add(timerForDeletedReport)
-
-        
-//        let timerSycnMyFamilyDataToServer = Timer.scheduledTimer(timeInterval: 35, target: self, selector: #selector(HomeViewController.getNonSyncDataFromMyFamilyTable), userInfo: nil, repeats: true)
-//        print(timerSycnMyFamilyDataToServer)
-//         appDelegate.timerArray.add(timerSycnMyFamilyDataToServer)
-
-       // self.getRemindersFromSever()
-        
-        
-//        reminderTimerSycnServerToLocal = Timer.scheduledTimer(timeInterval: 27, target: self, selector: #selector(HomeViewController.getRemindersFromSever), userInfo: nil, repeats: true)
-//        print(reminderTimerSycnServerToLocal)
-//         appDelegate.timerArray.add(reminderTimerSycnServerToLocal)
-//
-//        let reminderTimerSycnLocalToServer = Timer.scheduledTimer(timeInterval: 65, target: self, selector: #selector(HomeViewController.syncReminderFromDataBasetoServer), userInfo: nil, repeats: true)
-//        print(reminderTimerSycnLocalToServer)
-//         appDelegate.timerArray.add(reminderTimerSycnLocalToServer)
-//        
-//        let reminderTimerDeleteReminder = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(HomeViewController.getListofDeletedReminder), userInfo: nil, repeats: true)
-//        print(reminderTimerDeleteReminder)
-//         appDelegate.timerArray.add(reminderTimerDeleteReminder)
-        
-        
-        
-        
-        
-        
-//        //set activity on view
-//        activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.grayColor(), indicatorColor: UIColor.blackColor(), msg: "")
-//        // self.view.addSubview(activityIndicator!) Comment Progress
-      
-        
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             UIApplication.shared.endBackgroundTask(self.backgroundTaskIdentifier!)
         })
         
         self.pushOnNextView()
-//        self.getNotificatiosFromServer()
-        
-     // comment by anil for new
- /*       if(NSUserDefaults.standardUserDefaults().valueForKey("GetAllTests") == nil || NSUserDefaults.standardUserDefaults().valueForKey("showguideline") == nil ){
-//            activityIndicator?.start()
-            self.getAllTests()
-        }else{
-            arrGetAllTestList = NSUserDefaults.standardUserDefaults().valueForKey("GetAllTests") as! NSMutableArray
-            // Comment for new screen
-//            self.loadTestData()
-//            self.getAllTests()
-        }   */
-
-
-       
-//        else if (isComingFromClass == "myfamily"){
-//           let myFamilyVC = storyboard1.instantiateViewControllerWithIdentifier("MyFamilyViewController")as! MyFamilyViewController
-//            self.navigationController?.pushViewController(myFamilyVC, animated: false)
-//        }else if (isComingFromClass == "myrecords"){
-//            let homeTapSwipeVC = storyboard1.instantiateViewControllerWithIdentifier("HomeTabSwipeViewController") as! HomeTabSwipeViewController
-//            homeTapSwipeVC.identifires = "MY RECORDS"
-//            self.navigationController?.pushViewController(homeTapSwipeVC, animated: true)
-//        }else if(isComingFromClass == "notifications"){
-//           let homeTapSwipeVC = storyboard1.instantiateViewControllerWithIdentifier("HomeTabSwipeViewController") as! HomeTabSwipeViewController
-//           homeTapSwipeVC.identifires = "Notifications"
-//        self.navigationController?.pushViewController(homeTapSwipeVC, animated: true)
-//        }
-      
-        
-        //self.createALayout()
-        
-        // get all package in nsuserDefault
-        
-        
-      //  self.getAllTests()
-        
-        
-        
         
         // call new layout
         self.createNewLayout()
@@ -295,7 +194,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             self.tblView.reloadData()
             //self.getAllTestsByFamily("")
         }
-        
     }
     
     func makeInfoView(height: CGFloat, ypos:CGFloat){
@@ -585,7 +483,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 self.navigationController?.pushViewController(myAccountVC, animated: true)
             }else if(isComingFromClass == "Chat"){
                 // open chat window
-                ZDCChat.start(in: self.navigationController, withConfig: nil)
+               let chatViewController = KMAINSTORYBOARD.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                self.navigationController?.pushViewController(chatViewController, animated: true)
+//                ZvDCChat.start(in: self.navigationController, withConfig: nil)
             }else if(isComingFromClass == "callSupport"){
                 //call support
                 let phone = "tel://9810981073";
@@ -618,10 +518,8 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
         self.addBarButtonOnNavigation()
         self.getNotificatiosFromServer()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -1595,22 +1493,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                         print("some Sync problem")
                     }
                 }else{
-//                    if methodName == "GetRecordsFromServer" {
-//                        self.syncServertoLocalDB(allResponse as! NSArray)
-//                    }else if(methodName == "SaveRecord_New"){
-//                        self.updateLocalDBAfterSync(allResponse as! NSArray)
-//                    }
-//                    else if methodName == "UpdateMemberInfo" && allResponse .isEqual("1") {
-//                        self.updateMyFamilyDataAfterSync()
-//                    }else if(methodName == "GetReminders"){
-//                        self.reminderTimerSycnServerToLocal.invalidate()
-//                        self.deleteAllSyncReminderFromDataBase()
-//                        self.syncReminderFromServerToDatabase(allResponse as! NSArray)
-//                    }else if(methodName == "SaveReminder"){
-//                        self.updateDataBaseAfterSaveReminder(allResponse as! String)
-//                    }else if(methodName == "DeleteReminder"){
-//                        self.deleteReminderFromDataBase()
-//                    }
                      if (methodName == "GetAllTests"){
                         //set All test in NSUserDefault
                         self.arrGetAllTestList = allResponse as! NSMutableArray
@@ -2125,6 +2007,18 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             
         }
     }
+    
+    func showPushNotificationAlert(){
+        if GlobalInfo.sharedInfo.isNeedToShowPushAlert() {
+            let showPushViewController = KMAINSTORYBOARD.instantiateViewController(withIdentifier: "ShowPushViewController") as! ShowPushViewController
+        showPushViewController.modalPresentationStyle = .overFullScreen//.overCurrentContext
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {//3 Sec Delay
+                 self.present(showPushViewController, animated: true, completion: nil)
+            }
+            AppDelegate.getAppDelegate().isComingfromLaunching = false
+        }
+    }
+    
     func registerDeviceTone(){
         if Reachability.isConnectedToNetwork() == true {
             

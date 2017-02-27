@@ -156,9 +156,12 @@ class MyAccountViewController: UIViewController , UITableViewDelegate, UITableVi
                 print("failed: \(error.localizedDescription)")
             }
             database.close()
+            
            let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
-           let loginVC = storyboard1.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            self.navigationController?.pushViewController(loginVC, animated: true)
+            
+           let loginNavVC = storyboard1.instantiateViewController(withIdentifier: "LoginNavigationController") as! LoginNavigationController
+            AppDelegate.getAppDelegate().window?.rootViewController = loginNavVC
+//            self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

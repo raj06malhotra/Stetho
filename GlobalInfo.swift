@@ -5,7 +5,6 @@
 //  Created by HW-Anil on 1/31/17.
 //  Copyright © 2017 Hindustan Wellness. All rights reserved.
 //
-
 import UIKit
 
 class GlobalInfo: NSObject {
@@ -13,6 +12,16 @@ class GlobalInfo: NSObject {
     private var paymentNavigation: UINavigationController?
     private var selectedTest: NSMutableArray?
     static let sharedInfo = GlobalInfo()
+    var dateFormatter : DateFormatter!
+    var todayDateString: String!
+    
+    private override init() {
+        dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone.ReferenceType.local
+        let date = Date()
+        todayDateString = dateFormatter.string(from: date)
+    }
     
     func setValueInDefault(_ value:AnyObject, forKey:String){
         dafaults.set(value, forKey:forKey)
@@ -61,12 +70,34 @@ class GlobalInfo: NSObject {
         return selectedTest
     }
     
-    class func isPushEnabled(){
+     func isPushEnabled() -> Bool {
         let rnTypes = UIApplication.shared.isRegisteredForRemoteNotifications
-        print(rnTypes)
-//        NSUInteger rntypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-//        if (rntypes == UIRemoteNotificationTypeNote) {
-//            // application is not registered for any type of push notification
-//        }
+        return rnTypes
+    }
+    
+     func isNeedToShowPushAlert() -> Bool{
+        if !isPushEnabled() && AppDelegate.getAppDelegate().isComingfromLaunching {
+            if let _ = UserDefaults.standard.object(forKey: KALERTDATE){
+                if UserDefaults.standard.string(forKey: KALERTDATE) == todayDateString{
+                    return false
+                }else{
+                    UserDefaults.standard.set(todayDateString, forKey: KALERTDATE)
+                    return true
+                }
+            }else{
+                //Coming very first time
+                UserDefaults.standard.set(todayDateString, forKey: KALERTDATE)
+                return true
+            }
+        }
+        return false
+    }
+    
+    func getTodayDateString() -> String {
+        dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone.ReferenceType.local
+        let date = Date()
+        return dateFormatter.string(from: date)
     }
 }
