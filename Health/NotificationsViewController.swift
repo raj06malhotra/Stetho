@@ -262,7 +262,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         let database = appDelegate.openDataBase()
         var  mCount = 0
         do {
-            let rs = try database.executeQuery("SELECT COUNT(DISTINCT NotificationId) FROM Notifications NotificationType = 'M'", values: nil)
+            let rs = try database.executeQuery("SELECT COUNT(DISTINCT NotificationId) FROM Notifications where NotificationType = 'M'", values: nil)
             while rs.next() {
                 mCount = Int(rs.int(forColumn: "COUNT(DISTINCT NotificationId)"))
                 print(mCount)

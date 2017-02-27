@@ -43,6 +43,10 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
     let datePickerView  : UIDatePicker = UIDatePicker()
     let heightOFTopsScrollView = UIScreen.main.bounds.height/6
     
+    // selected memeber id from Myfamily
+    var selectedMemberId = ""
+    
+    
     
     
     //let A:UIViewController = UIViewController()
@@ -53,6 +57,11 @@ class HomeTabSwipeViewController: UIViewController, CarbonTabSwipeNavigationDele
         if !(identifires == "BOOK AN ORDER" && currentSelectedTapIndex == 1) {
            // when load pickup view need selected member on screen
            UserDefaults.standard.setValue(customerId, forKey: "selectedMemberId")
+        }
+        // coming from myFamilyView 
+        if (identifires == "MY RECORDS" && selectedMemberId.isEmpty == false) {
+            
+            UserDefaults.standard.setValue(selectedMemberId, forKey: "selectedMemberId")
         }
         // Do any additional setup after loading the view.
         self.addUpcomingView()
