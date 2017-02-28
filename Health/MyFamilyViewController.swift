@@ -317,9 +317,9 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
             let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(MyFamilyViewController.longPressOnView(_:))) //UIPanGestureRecognizer(target: self, action: #selector(MyFamilyViewController.longPressOnView(_:)))
             userView.addGestureRecognizer(longPressRecognizer)
             
-            let tapGesture = UITapGestureRecognizer(target: self , action: #selector(MyFamilyViewController.tapOnUserView(_:)))
+            let tapGesture = UITapGestureRecognizer(target: self , action: #selector(self.tapOnUserView(_:)))
             userImageView.addGestureRecognizer(tapGesture)
-            let tapGestureOnName = UITapGestureRecognizer(target: self , action: #selector(MyFamilyViewController.tapOnUserView(_:)))
+            let tapGestureOnName = UITapGestureRecognizer(target: self , action: #selector(self.tapOnUserName(_:)))
             lblName.addGestureRecognizer(tapGestureOnName)
             
             let tapGestureOnNotVerify = UITapGestureRecognizer(target: self , action: #selector(self.tapOnVerify(_:)))
@@ -923,20 +923,31 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
     }
     
     func tapOnUserView(_ gesture : UITapGestureRecognizer)  {
-        print(gesture.view?.tag)
+
+        let indexPath = gesture.view?.tag
+        var familymemberObject = MyFamilyInfo()
+        familymemberObject = arrMyFamilyRecord![indexPath! - 200] as! MyFamilyInfo
+        
+        
+        let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+        let homeTapSwipeVC = storyboard1.instantiateViewController(withIdentifier: "HomeTabSwipeViewController") as! HomeTabSwipeViewController
+        homeTapSwipeVC.identifires = "MY RECORDS"
+        homeTapSwipeVC.selectedMemberId = familymemberObject.memberId
+        self.navigationController?.pushViewController(homeTapSwipeVC, animated: true)
+       // navController = UINavigationController(rootViewController:homeTapSwipeVC)
+   
+    }
+    
+    
+    func tapOnUserName(_ gesture : UITapGestureRecognizer)  {
         
         let indexPath = gesture.view?.tag
         var familymemberObject = MyFamilyInfo()
         familymemberObject = arrMyFamilyRecord![indexPath! - 200] as! MyFamilyInfo
-//        if gesture.view?.tag == 4001  {
-//            self.openRelationPopup()
-//        }else if (gesture.view?.tag == 5001){
-//            self.openOTPView()
-//        }else{
-            let myFamilyMemberInfo = MyFamilyMemberInfoViewController()
-            myFamilyMemberInfo.familyMemberDetails = familymemberObject
-            self.navigationController?.pushViewController(myFamilyMemberInfo, animated: true)
-      //  }
+        let myFamilyMemberInfo = MyFamilyMemberInfoViewController()
+        myFamilyMemberInfo.familyMemberDetails = familymemberObject
+        self.navigationController?.pushViewController(myFamilyMemberInfo, animated: true)
+        
     }
     
     func tapOnVerify(_ gesture : UITapGestureRecognizer)  {
