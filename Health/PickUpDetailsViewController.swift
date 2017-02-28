@@ -440,7 +440,8 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
             placeType: .address
             
         )
-        
+            
+         gpaViewController.gpaService.country = "IN"
             
         gpaViewController.placeDelegate = self // Conforms to GooglePlacesAutocompleteDelegate
         
