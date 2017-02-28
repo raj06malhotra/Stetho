@@ -464,6 +464,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 break
                 
             case "38":// New Notification tobe Store
+                 self.getNotificatiosFromServer()
                 let notificationVC = NotificationsViewController()
                 self.navigationController?.pushViewController(notificationVC, animated: true)
                 
@@ -492,6 +493,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 let url:URL = URL(string:phone)!
                 UIApplication.shared.openURL(url)
             }else if (isComingFromClass == "notifications"){
+                 self.getNotificatiosFromServer()
                 let notificationVC = NotificationsViewController()
                 self.navigationController?.pushViewController(notificationVC, animated: true)
                
@@ -512,7 +514,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 self.navigationController?.pushViewController(paymentVC, animated: true)
             
             }else{
-                
+                 self.getNotificatiosFromServer()
                 self.getAllTestsByFamily("")
             
             }
@@ -521,7 +523,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     
     override func viewWillAppear(_ animated: Bool) {
         self.addBarButtonOnNavigation()
-        self.getNotificatiosFromServer()
+     //   self.getNotificatiosFromServer()
         self.navigationController?.navigationBar.isTranslucent = true
         self.view.backgroundColor = UIColor.white
         self.navigationController!.navigationBar.titleTextAttributes = appDelegate.navigationTitalFontSize
@@ -1959,7 +1961,23 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         }
     }
     
+    func deleteNotifications()  {
+        let database = appDelegate.openDataBase()
+        
+        do {
+            
+            try database.executeUpdate("delete from Notifications ", values: nil)
+            
+        } catch let error as NSError {
+            print("failed: \(error.localizedDescription)")
+        }
+        database.close()
+    }
+
+    
     internal  func syncNotificationsFromServerToLocal(_ arrNotifications : NSArray)  {
+        
+        self.deleteNotifications()
         
         for i in (0..<arrNotifications.count) {
             let database = appDelegate.openDataBase()
@@ -1981,9 +1999,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 let recordlink = (arrNotifications[i] as AnyObject).value(forKey: "recordlink")as! String
                 let notificationsType = (arrNotifications[i] as AnyObject).value(forKey: "n_type")as! String
                 
-                let rs = try database.executeQuery(String(format:"select * from Notifications where NotificationId == %@  ",notificationsId), values: nil)
+//                let rs = try database.executeQuery(String(format:"select * from Notifications where NotificationId == %@  ",notificationsId), values: nil)
                 
-                if rs.next() == false {
+             //   if rs.next() == false {
                     
                     
 //                    print( String(format:"insert into Notifications (NotificationId , NotificationText ,MemberPhoto, MemberName , Relation , MemberId , AcceptStatus, SeenStatus, RecordLink ,RecordType ,NotificationType) values (?,?,?,?,?,?,?,?,?,?,?)", values: [notificationsId,notificationsText,"",memberName,memberRelation,memberId,"","",recordlink,recordType,notificationsType]))
@@ -1992,7 +2010,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                     
                     try database.executeUpdate("insert into Notifications (NotificationId , NotificationText ,NotificationMessage, NotificationImage , NotificationTime , MemberPhoto , MemberName, MemberNumber, MemberEmail ,MemberGender ,MemberDOB,Relation,MemberId,AcceptStatus,SeenStatus,RecordLink,RecordType,NotificationType) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", values: [notificationsId,notificationsText,notificationsMessages,notificationsImage,notificationsTime!,memberPhoto,memberName,memberMobile,memberEmail,memberGender,memberDOB,memberRelation,memberId,1,1,recordlink,recordType,notificationsType])
                     
-                }
+           //     }
                 
             } catch let error as NSError {
                 print("failed: \(error.localizedDescription)")

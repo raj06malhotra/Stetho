@@ -312,6 +312,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // foreground (or if the app was in the background and the user clicks on the notification).
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
+        let isLogin = UserDefaults.standard.bool(forKey: "loginstatus")
+        if  !isLogin  { return }
         print("Message received")
         print(userInfo)
         
