@@ -76,6 +76,7 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
         let imageSize = self.view.frame.height/6 // for daynamic height & width
         
          userImageView = BaseUIController().AImageViewFrame(CGRect(x: (self.view.frame.width/2 - imageSize/2), y:yPos , width: imageSize ,height: imageSize), withImageName: "avatar1.png")as! UIImageView
+        userImageView.layer.masksToBounds = true
         userImageView.layer.cornerRadius = userImageView.frame.width/2
         userImageView.isUserInteractionEnabled = true
         userImageView.layer.borderColor = KRED_COLOR.cgColor

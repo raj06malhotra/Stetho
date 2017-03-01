@@ -57,6 +57,7 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate      =   self
         tableView.dataSource    =   self
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(self.tableView)
         //  self.navigationController?.navigationBar.hidden = true
