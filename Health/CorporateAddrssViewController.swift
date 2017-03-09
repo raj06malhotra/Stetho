@@ -10,7 +10,7 @@ import UIKit
 
 class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UIPickerViewDataSource ,serverTaskComplete ,GooglePlacesAutocompleteDelegate {
     //MARK: variableDecleration
-    var scrollView = UIScrollView()
+    var scrollView = TPKeyboardAvoidingScrollView()//UIScrollView()
     var txtPin1 = UITextField()
     var txtPin2 = UITextField()
     var txtPin3 = UITextField()
@@ -57,9 +57,9 @@ class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UI
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.init(red: (235.0/255.0), green: (236.0/255.0), blue: (236.0/255.0), alpha: 1)
         self.createALayout()
-        // show & hide keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        // show & hide keyboard
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         // self.view.addSubview(activityIndicator!) Comment Progress
@@ -85,7 +85,7 @@ class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UI
         lblCompanyName.font = UIFont.boldSystemFont(ofSize: 14)
         //self.view.addSubview(lblCompanyName)
         
-       scrollView = UIScrollView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height))
+       scrollView = TPKeyboardAvoidingScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height))
         scrollView.backgroundColor = UIColor.white
         self.view.addSubview(scrollView)
         
@@ -408,6 +408,7 @@ class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UI
     }
 
     // MARK: - KeyboardShow&Hide
+    /*
     func keyboardWillShow(_ notification:Notification){
         if activeTextField == txtTime || activeTextField == txtDate || activeTextField == txtLocality || activeTextField == txtCity {
              scrollView.frame = CGRect(x: 0 , y: -80 , width: scrollView.frame.width , height: scrollView.frame.height)
@@ -425,7 +426,7 @@ class CorporateAddrssViewController: UIViewController , UIPickerViewDelegate ,UI
             scrollView.frame = CGRect(x: 0 , y: 0 , width: scrollView.frame.width , height: scrollView.frame.height )
         
         }
-    }
+    }  */
     //MARK: - DatePicker
     func OpenDatePicker(_ sender: UITextField) {
         
