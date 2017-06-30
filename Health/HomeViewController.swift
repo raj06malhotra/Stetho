@@ -466,7 +466,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 break
                 
             case "38":// New Notification tobe Store
-                 self.getNotificatiosFromServer()
+                 //self.getNotificatiosFromServer()
                 let notificationVC = NotificationsViewController()
                 self.navigationController?.pushViewController(notificationVC, animated: true)
                 
@@ -495,7 +495,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 let url:URL = URL(string:phone)!
                 UIApplication.shared.openURL(url)
             }else if (isComingFromClass == "notifications"){
-                 self.getNotificatiosFromServer()
+               //  self.getNotificatiosFromServer()
                 let notificationVC = NotificationsViewController()
                 self.navigationController?.pushViewController(notificationVC, animated: true)
                
@@ -516,7 +516,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 self.navigationController?.pushViewController(paymentVC, animated: true)
             
             }else{
-                 self.getNotificatiosFromServer()
+               //  self.getNotificatiosFromServer()
                 self.getAllTestsByFamily("")
             
             }
@@ -525,7 +525,6 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     
     override func viewWillAppear(_ animated: Bool) {
         self.addBarButtonOnNavigation()
-     //   self.getNotificatiosFromServer()
         self.navigationController?.navigationBar.isTranslucent = true
         self.view.backgroundColor = UIColor.white
         self.navigationController!.navigationBar.titleTextAttributes = appDelegate.navigationTitalFontSize
@@ -1528,10 +1527,11 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
 //                        self.deleteReportFromDatabase()
 //                        }
 //                    }
-                    else if (methodName == "GetNotifications"){
-                        
-                        self.syncNotificationsFromServerToLocal(allResponse as! NSArray)
-                    }else if (methodName == "GCMRegisterationV2"){
+//                    else if (methodName == "GetNotifications"){
+//                        
+//                        self.syncNotificationsFromServerToLocal(allResponse as! NSArray)
+//                    }
+                     else if (methodName == "GCMRegisterationV2"){
                         
                     //    print(allResponse)
                         
@@ -1954,6 +1954,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         database.close()
         
     }  */
+    
+    
+/*
     //MARK: NotificationsSync
     func getNotificatiosFromServer(){
         if Reachability.isConnectedToNetwork() == true {
@@ -2028,7 +2031,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             }
             
         }
-    }
+    } */
     
     func showPushNotificationAlert(){
         if GlobalInfo.sharedInfo.isNeedToShowPushAlert() {

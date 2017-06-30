@@ -108,7 +108,7 @@ class SuccessViewController: UIViewController,serverTaskComplete {
     }
     
     func getAllResponse(_ allResponse: AnyObject, methodName: String) {
-        
+        AppDelegate.getAppDelegate().bookedOrderId = ""
         print(allResponse)
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             // do your background code here
