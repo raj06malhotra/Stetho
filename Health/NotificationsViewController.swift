@@ -13,7 +13,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
      var arrNotifications = NSMutableArray()
     var activityIndicator : ProgressViewController?
     var  notification_Id = ""
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     //MARK: viewLifeCycleMethod
     
@@ -25,7 +25,8 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         let barButtonBack  = UIBarButtonItem(image: UIImage(named: "back_icon3.png"),style: .done,target: self, action: #selector(self.barButtonBackClick(_:)))
         self.navigationItem.leftBarButtonItem = barButtonBack;
         // load local DB Data 
-        self.loadNotificationsData()
+      //  self.loadNotificationsData()
+        getNotificatiosFromServer()
         // create A tableView
         tableView = UITableView(frame:CGRect(x: 5, y: 10,width: (UIScreen.main.bounds.width) - 10, height: (UIScreen.main.bounds.height - 20)))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -38,7 +39,8 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         
         //add ActivityIndicator on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
-        // self.view.addSubview(activityIndicator!) Comment Progress
+//         self.view.addSubview(activityIndicator!) // Comment Progress
+        activityIndicator?.start()
     }
     override func viewWillAppear(_ animated: Bool) {
         // call google analytics for screen tracking
@@ -126,11 +128,20 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
             lblNotificationHeading.text = notificationsObj.notiText
             lblNotificationHeading.numberOfLines = 0
             cell.addSubview(lblNotificationHeading)
+            
             let lblLine = BaseUIController().ALabelFrame(CGRect(x: 10, y: 45, width: tableView.frame.width - 20, height: 1), withString: "")as! UILabel
             lblLine.backgroundColor = UIColor.gray
             cell.addSubview(lblLine)
             
-            let tipsImageView = BaseUIController().AImageViewFrame(CGRect(x: 10, y: 50, width: tableView.frame.width - 20, height: 190), withImageName: "")as! UIImageView
+            let lblNotificationText = BaseUIController().ALabelFrame(CGRect(x: 10, y: 47, width: tableView.frame.width - 20, height: 35), withString: "Order Booked")as! UILabel
+            lblNotificationText.font = UIFont().smallFont
+            lblNotificationText.text = notificationsObj.notiMessages
+            lblNotificationText.numberOfLines = 0
+            cell.addSubview(lblNotificationText)
+            
+            
+            
+            let tipsImageView = BaseUIController().AImageViewFrame(CGRect(x: 10, y: 85, width: tableView.frame.width - 20, height: 190), withImageName: "")as! UIImageView
             tipsImageView.layer.cornerRadius = 2
             cell.addSubview(tipsImageView)
             
@@ -181,7 +192,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         let notificationsObj = arrNotifications[(indexPath as NSIndexPath).section] as! NotificationsInfo
         
         if notificationsObj.notiType == "I" {
-             return  250;
+             return  285;
             
         }else if (notificationsObj.notiType == "T"){
              return  100;
@@ -238,6 +249,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
             print("failed: \(error.localizedDescription)")
         }
         database.close()
+        tableView.reloadData()
     }
     
     
@@ -298,6 +310,86 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
         self.saveNotificationsResponse(notiObj.notiId, _status: "0")
 
     }
+    
+    //MARK: NotificationsSync
+    func getNotificatiosFromServer(){
+        if Reachability.isConnectedToNetwork() == true {
+            activityIndicator?.start()
+            if (UserDefaults.standard.value(forKey: "loginCustomerId") != nil){
+                let customerId = (UserDefaults.standard.value(forKey: "loginCustomerId")as! String)
+                let allParameters = ["customerId":customerId]
+                ServerConnectivity().callWebservice(allParameters, resulttagname: "GetNotificationsResult" ,methodname: "GetNotifications", className: self)
+            }
+        }else{
+            self.present(BaseUIController().showAlertView("Please check the internet connection and try again."), animated: true, completion: nil)
+        }
+    }
+    
+    func deleteNotifications()  {
+        let database = appDelegate.openDataBase()
+        
+        do {
+            
+            try database.executeUpdate("delete from Notifications ", values: nil)
+            
+        } catch let error as NSError {
+            print("failed: \(error.localizedDescription)")
+        }
+        database.close()
+    }
+    
+    
+    internal  func syncNotificationsFromServerToLocal(_ arrNotifications : NSArray)  {
+        
+        self.deleteNotifications()
+        
+        for i in (0..<arrNotifications.count) {
+            let database = appDelegate.openDataBase()
+            do {
+                let notificationsId = (arrNotifications[i] as AnyObject).value(forKey: "id")as! String
+                let notificationsText = (arrNotifications[i] as AnyObject).value(forKey: "text")as! String
+                let notificationsMessages = (arrNotifications[i] as AnyObject).value(forKey: "message")as! String
+                let notificationsImage = (arrNotifications[i] as AnyObject).value(forKey: "image")as! String
+                let notificationsTime = (arrNotifications[i] as AnyObject).value(forKey: "Column1")as? String
+                let memberPhoto = (arrNotifications[i] as AnyObject).value(forKey: "photo")as! String
+                let memberName = (arrNotifications[i] as AnyObject).value(forKey: "name")as! String
+                let memberId = (arrNotifications[i] as AnyObject).value(forKey: "memberid")as! String
+                let memberRelation = (arrNotifications[i] as AnyObject).value(forKey: "relation")as! String
+                let memberDOB = (arrNotifications[i] as AnyObject).value(forKey: "dob")as! String
+                let memberEmail = (arrNotifications[i] as AnyObject).value(forKey: "email")as! String
+                let memberGender = (arrNotifications[i] as AnyObject).value(forKey: "gender")as! String
+                let memberMobile = (arrNotifications[i] as AnyObject).value(forKey: "number")as! String
+                let recordType = (arrNotifications[i] as AnyObject).value(forKey: "recordtype")as! String
+                let recordlink = (arrNotifications[i] as AnyObject).value(forKey: "recordlink")as! String
+                let notificationsType = (arrNotifications[i] as AnyObject).value(forKey: "n_type")as! String
+                
+                //                let rs = try database.executeQuery(String(format:"select * from Notifications where NotificationId == %@  ",notificationsId), values: nil)
+                
+                //   if rs.next() == false {
+                
+                
+                //                    print( String(format:"insert into Notifications (NotificationId , NotificationText ,MemberPhoto, MemberName , Relation , MemberId , AcceptStatus, SeenStatus, RecordLink ,RecordType ,NotificationType) values (?,?,?,?,?,?,?,?,?,?,?)", values: [notificationsId,notificationsText,"",memberName,memberRelation,memberId,"","",recordlink,recordType,notificationsType]))
+                
+                
+                
+                try database.executeUpdate("insert into Notifications (NotificationId , NotificationText ,NotificationMessage, NotificationImage , NotificationTime , MemberPhoto , MemberName, MemberNumber, MemberEmail ,MemberGender ,MemberDOB,Relation,MemberId,AcceptStatus,SeenStatus,RecordLink,RecordType,NotificationType) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", values: [notificationsId,notificationsText,notificationsMessages,notificationsImage,notificationsTime!,memberPhoto,memberName,memberMobile,memberEmail,memberGender,memberDOB,memberRelation,memberId,1,1,recordlink,recordType,notificationsType])
+                
+                //     }
+                
+            } catch let error as NSError {
+                print("failed: \(error.localizedDescription)")
+            }
+            database.close()
+            // update notification after response
+//            if NotificationsViewController().getNotificationsCount() != 0 {
+//                lblNotifications.isHidden = false
+//                lblNotifications.text = String(NotificationsViewController().getNotificationsCount())// get total  Notifications count
+//                
+//            }
+            
+        }
+        loadNotificationsData()
+    }
     //MARK: -RespondNotifications
     func saveNotificationsResponse(_ _noti_ID : String , _status : String)  {
         if Reachability.isConnectedToNetwork() == true {
@@ -314,10 +406,14 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
             DispatchQueue.main.sync(execute: {
                 self.activityIndicator?.stop()
                 // getMemberProfileInfo result
+                if (methodName == "GetNotifications"){
+                    self.syncNotificationsFromServerToLocal(allResponse as! NSArray)
+                }else{
                 if (allResponse as! String == "1"){
                 self.deleteNotificaionsAfterAcceptOrReject(self.notification_Id)
                 }else{
                  self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)
+                }
                 }
             });
         });
@@ -334,8 +430,8 @@ extension UIImageView {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: { (response, data, error) in
-                if error == nil{
-                self.image = UIImage(data: data!)
+                if error == nil {
+                    self.image = UIImage(data: data!)
                 }
             })
 //            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {
