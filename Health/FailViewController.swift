@@ -26,6 +26,8 @@ class FailViewController: UIViewController,serverTaskComplete {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FBEventClass.logEvent("Payment Gateway failed")
 
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(FailViewController.ResponseNew(_:)), name: NSNotification.Name(rawValue: "JSON_NEW"), object: nil)

@@ -24,7 +24,7 @@ class ForgotPasswordViewController: UIViewController,serverTaskComplete {
         // Do any additional setup after loading the view.
         //call popup method 
        // [self .CreateRecoveryPopup()]
-        
+        FBEventClass.logEvent("Forgot Password")
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         

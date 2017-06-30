@@ -70,6 +70,8 @@ class MyFamilyViewController: UIViewController ,serverTaskComplete , CNContactPi
   //  MARK: - viewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("My Family")
+
         // set activity Indicator on view
        
 //        self.loadMyFamilyData()

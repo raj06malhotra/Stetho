@@ -60,6 +60,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Payment Options")
         self.view.backgroundColor = UIColor.white
         
 //        if isComingFromClass == "paymentFail" {
@@ -507,7 +508,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     }
     
     func gothoughOnlinePayment()  {
-        
+        FBEventClass.logEvent("Payment Gateway")
         DispatchQueue.main.async{
             self.activityIndicator?.start()
             // code here
@@ -704,6 +705,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     }
 
     func showAlertView()  {
+        //FBEventClass.logEvent("Order Booking Success")
         //Create the AlertController
         let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "Your order placed successfully!", preferredStyle: .alert)
         //Create and add the Cancel action

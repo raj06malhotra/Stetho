@@ -54,6 +54,8 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
 //MARK: lifeCycleDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Corporate Profile")
+        
         if let _ = UserDefaults.standard.value(forKey: "department")as? NSArray {
             arrDepartmentList = UserDefaults.standard.value(forKey: "department")as! NSArray
         }else{

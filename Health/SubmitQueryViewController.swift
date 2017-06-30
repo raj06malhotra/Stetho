@@ -19,6 +19,8 @@ class SubmitQueryViewController: UIViewController , UITextViewDelegate ,UIImageP
 // MARK: ViewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Submit Query")
+        
         self.automaticallyAdjustsScrollViewInsets = false
 
         // Do any additional setup after loading the view.

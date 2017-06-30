@@ -133,6 +133,8 @@ class SuccessViewController: UIViewController,serverTaskComplete {
     
     func createSuccessView()  {
         
+        FBEventClass.logEvent("Payment Gateway successfull")
+        
             
             let lblSuccess = BaseUIController().ALabelFrame(CGRect(x: 0, y: ((self.view.frame.height)/2 - 55), width: self.view.frame.width,  height: 30), withString: "Success!")as! UILabel
             lblSuccess.font =  UIFont.boldSystemFont(ofSize: 30)
@@ -163,7 +165,7 @@ class SuccessViewController: UIViewController,serverTaskComplete {
     }
     
     func barButtonBackClick(_ button : UIButton)  {
-        
+       
         DispatchQueue.main.async(execute: {
             let homeVC = HomeViewController()
             //homeVC.registerDeviceTone()

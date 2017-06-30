@@ -39,6 +39,8 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
    // MARK: - ViewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("My Records")
+
         longPressActive = false
 
         // Do any additional setup after loading the view.
@@ -262,6 +264,7 @@ class MyRecordsViewController: UIViewController ,UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        FBEventClass.logEvent("View Report")
         var  reportObj = HealthInfo()
         reportObj = (arrFilterRecords.object(at: (indexPath as NSIndexPath).section)) as! HealthInfo
         if longPressActive {

@@ -40,6 +40,8 @@ class BookAnOrderViewController: UIViewController, UITableViewDataSource, UITabl
    // MARK: - ViewLifeCycleMethods
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Order Booking")
+        
       
 
         // Do any additional setup after loading the view.

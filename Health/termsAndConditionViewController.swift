@@ -13,6 +13,7 @@ class termsAndConditionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Terms And Conditions")
 
         // Do any additional setup after loading the view.
         webView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)

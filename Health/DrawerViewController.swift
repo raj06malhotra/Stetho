@@ -222,11 +222,13 @@ class DrawerViewController: UIViewController, UITableViewDataSource, UITableView
             let submitQueryVC = SubmitQueryViewController()
             navController = UINavigationController(rootViewController:submitQueryVC)
         }else if ((indexPath as NSIndexPath).row == 10){
+            FBEventClass.logEvent("Chat Support")
             let homeVC:HomeViewController = HomeViewController()
             homeVC.isComingFromClass = "Chat"
             navController = UINavigationController(rootViewController:homeVC )
         }
         else {
+            FBEventClass.logEvent("Call Support")
             let homeVC:HomeViewController = HomeViewController()
             homeVC.isComingFromClass = "callSupport"
             navController = UINavigationController(rootViewController:homeVC )

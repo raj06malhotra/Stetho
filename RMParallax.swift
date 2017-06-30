@@ -74,6 +74,7 @@ class RMParallax : UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("App Intro")
         self.setupRMParallax()
     }
     

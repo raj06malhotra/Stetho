@@ -34,7 +34,8 @@ class MyProfileViewController: UIViewController ,UIImagePickerControllerDelegate
     //MARK: viewLifeCycleDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        FBEventClass.logEvent("My Profile")
+
 
         // Do any additional setup after loading the view.
         mainView.layer.cornerRadius = 4

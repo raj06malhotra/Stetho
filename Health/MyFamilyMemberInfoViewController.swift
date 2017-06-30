@@ -43,6 +43,8 @@ class MyFamilyMemberInfoViewController: UIViewController , UITableViewDelegate ,
     //MARK: - ViewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Member Info")
+        
         self.view.backgroundColor = UIColor.white
         arrRelationCategory = ["Spouse" , "Father", "Mother" , "Sibling","Child","Others","You"]
         

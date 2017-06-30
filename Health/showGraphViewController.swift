@@ -40,6 +40,7 @@ class showGraphViewController: UIViewController ,serverTaskComplete ,LineChartDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Health Trends")
         self.view.backgroundColor = UIColor.white
         self.title = "HEALTH TRENDS"
 

@@ -26,6 +26,7 @@
 #import "GAITracker.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "JivoSdk.h"
+#import <FBSDKCoreKit/FBSDKAppEvents.h>
 //#import <Google/Analytics.h>
 
 

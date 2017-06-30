@@ -100,4 +100,6 @@ class GlobalInfo: NSObject {
         let date = Date()
         return dateFormatter.string(from: date)
     }
+    
+    
 }

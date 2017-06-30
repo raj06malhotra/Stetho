@@ -37,6 +37,7 @@ class BarCodeViewController : UIViewController , AVCaptureMetadataOutputObjectsD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Barcode Scanner")
         
         
         

@@ -269,6 +269,7 @@ class PickUpDetailsViewController: UIViewController  ,UIPickerViewDelegate , UIP
         
     }
     func createExtraTestLayout()  {
+        FBEventClass.logEvent("Extra Package Popup")
         bgView = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         bgView.tag = 500
         bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)

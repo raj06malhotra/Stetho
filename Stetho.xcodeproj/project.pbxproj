@@ -336,6 +336,8 @@
 		BBF834301D63542400BAC9F8 /* menu_orders.png in Resources */ = {isa = PBXBuildFile; fileRef = BBF8342F1D63542400BAC9F8 /* menu_orders.png */; };
 		BBFA0DB31D96D06100C24019 /* saveAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */; };
 		BBFA0DB41D96D06100C24019 /* saveAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */; };
+		C328D3891EEE570700235C9F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C328D3881EEE570700235C9F /* Bolts.framework */; };
+		C328D3931EEE785A00235C9F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C328D3921EEE785A00235C9F /* FBSDKCoreKit.framework */; };
 		C34049071E5EAF5B00DEF6FB /* JTMaterialSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */; };
 		C35D277D1E572BCC002C11BA /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */; };
 		C38F56EC1E545D2500BE1BEF /* FamilyMemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */; };
@@ -828,6 +830,8 @@
 		BBF8342F1D63542400BAC9F8 /* menu_orders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_orders.png; sourceTree = "<group>"; };
 		BBFA0DB11D96D06100C24019 /* saveAddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = saveAddressTableViewCell.swift; sourceTree = "<group>"; };
 		BBFA0DB21D96D06100C24019 /* saveAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = saveAddressTableViewCell.xib; sourceTree = "<group>"; };
+		C328D3881EEE570700235C9F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		C328D3921EEE785A00235C9F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTMaterialSpinner.swift; sourceTree = "<group>"; };
 		C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
 		C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberListViewController.swift; sourceTree = "<group>"; };
@@ -868,11 +872,13 @@
 				BBC7FE4C1E409E13004F363C /* Fabric.framework in Frameworks */,
 				BB61E0A71E0D3D640097C988 /* GoogleMapsBase.framework in Frameworks */,
 				BB2E7E501DFECF73006B92EE /* libsqlite3.tbd in Frameworks */,
+				C328D3891EEE570700235C9F /* Bolts.framework in Frameworks */,
 				BB1AD3BE1DF6AD9C002DFD83 /* CFNetwork.framework in Frameworks */,
 				BB61E0AB1E0D3D940097C988 /* GoogleMapsCore.framework in Frameworks */,
 				BB1AD3BC1DF6AD93002DFD83 /* SystemConfiguration.framework in Frameworks */,
 				BB9A23141D9BFA3E008BA6BB /* MobileCoreServices.framework in Frameworks */,
 				BB092B6D1D2A6F1000126475 /* libsqlite3.0.tbd in Frameworks */,
+				C328D3931EEE785A00235C9F /* FBSDKCoreKit.framework in Frameworks */,
 				BB5F40901D21325A001F8C73 /* libxml2.2.tbd in Frameworks */,
 				BB6B78261DFFFE4200317095 /* libGoogleAnalyticsServices.a in Frameworks */,
 				BB6B782A1E002AA200317095 /* libAdIdAccess.a in Frameworks */,
@@ -1381,6 +1387,8 @@
 		BB5F40881D212FD2001F8C73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C328D3921EEE785A00235C9F /* FBSDKCoreKit.framework */,
+				C328D3881EEE570700235C9F /* Bolts.framework */,
 				BBC7FE441E409C11004F363C /* Crashlytics.framework */,
 				BBC7FE451E409C11004F363C /* Fabric.framework */,
 				BB61E0C01E0D40FB0097C988 /* Accelerate.framework */,
@@ -2324,7 +2332,7 @@
 				CODE_SIGN_ENTITLEMENTS = Stetho/Stetho.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HINDUSTAN WELLNESS PRIVATE LIMITED (S3LE6CTDT8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S3LE6CTDT8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Frameworks",
@@ -2367,7 +2375,7 @@
 				CODE_SIGN_ENTITLEMENTS = Stetho/Stetho.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HINDUSTAN WELLNESS PRIVATE LIMITED (S3LE6CTDT8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S3LE6CTDT8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Frameworks",

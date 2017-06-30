@@ -24,6 +24,7 @@ class MyReminderViewController: UIViewController , UITableViewDelegate , UITable
     
     //MARK: ViewLifeCycleMethod
     override func viewDidLoad() {
+        FBEventClass.logEvent("Reminder Summery")
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         

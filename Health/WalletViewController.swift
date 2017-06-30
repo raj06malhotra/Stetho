@@ -15,6 +15,8 @@ class WalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Wallet")
+
         self.view.backgroundColor = UIColor.white
         self.title =  "WALLET"
         self.createALayout()

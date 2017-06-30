@@ -14,6 +14,7 @@ class OrderBookedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+         FBEventClass.logEvent("Order Booking Success")
         self.view.backgroundColor = UIColor.white
         self.createALayoutView()
         //set Tital
@@ -25,6 +26,8 @@ class OrderBookedViewController: UIViewController {
        
         // Do any additional setup after loading the view.
     }
+    
+
     override func viewWillAppear(_ animated: Bool) {
         // call google analytics for screen tracking
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

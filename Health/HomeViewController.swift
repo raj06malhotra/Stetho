@@ -150,8 +150,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+       FBEventClass.logEvent("My Home")
         //Show Push Alert or Not
         showPushNotificationAlert()
         
@@ -274,6 +273,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         
         if isComingFromClass == "remoteNotifications" {
              let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+             FBEventClass.logEvent("Push Notification")
             switch appDelegate.notification_type {
             case "1": // New Order Booked
                 let myOrdersVC = MyOrderViewController()
@@ -420,23 +420,25 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 break
                 
             case "9":// feedback view
+                FBEventClass.logEvent("FeedBack")
                 
                 break
                 
             case "28":// feedback view
+                FBEventClass.logEvent("FeedBack")
                 
                 break
                 
             case "29":// feedback view
-                
+                FBEventClass.logEvent("FeedBack")
                 break
                 
             case "30":// feedback view
-                
+                FBEventClass.logEvent("FeedBack")
                 break
                 
             case "31": // feedback view
-               
+               FBEventClass.logEvent("FeedBack")
                 break
                 
             case "32":
@@ -484,9 +486,9 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
                 self.navigationController?.pushViewController(myAccountVC, animated: true)
             }else if(isComingFromClass == "Chat"){
                 // open chat window
-               let chatViewController = KMAINSTORYBOARD.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-                self.navigationController?.pushViewController(chatViewController, animated: true)
-//                ZvDCChat.start(in: self.navigationController, withConfig: nil)
+//               let chatViewController = KMAINSTORYBOARD.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+//                self.navigationController?.pushViewController(chatViewController, animated: true)
+                ZDCChat.start(in: self.navigationController, withConfig: nil)
             }else if(isComingFromClass == "callSupport"){
                 //call support
                 let phone = "tel://9810981073";
@@ -1176,6 +1178,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
     }
     
     func didTapCartButton(_ sender: AnyObject){
+        FBEventClass.logEvent("Cart Click")
         print("btn cart  click")
         if self.getCartMemebrtCount() != 0 {
             self.navigationController?.navigationBar.isTranslucent = false
@@ -1187,7 +1190,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
         }
     }
     func didTapShareBarButton(_ sender: AnyObject){
-       
+        FBEventClass.logEvent("App Sharing")
         let refrralCode = appDelegate.referralCode
         let msg = "Being healthy made easier Download STETHO app " + "http://onelink.to/gae3x8 and use " + "'"+refrralCode+"'" + " and get 20% off on your first purchase.*T&C."
         
@@ -1337,6 +1340,7 @@ class HomeViewController: UIViewController, NSURLConnectionDelegate, XMLParserDe
             self.navigationController?.pushViewController(homeTapSwipeVC, animated: true)
             
         }else if(v!.tag == 1002){
+            FBEventClass.logEvent("Camera Record")
             let cameraVC = CameraViewController()
             self.navigationController?.pushViewController(cameraVC, animated: true)
         }else if(v!.tag == 1003){

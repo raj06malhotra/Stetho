@@ -39,6 +39,7 @@ class AddReminderViewController: UIViewController , UITableViewDelegate , UITabl
     //MARK: ViewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Add Reminder")
         self.view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
         if myReminderObj.r_ReminderId != "" {

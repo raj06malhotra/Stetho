@@ -120,6 +120,7 @@ class CheckOutViewController: UIViewController , UIPickerViewDelegate , UIPicker
   //MARK: viewLifeCycleMethod
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Check Out Summary")
         if isComingFrom == "myfamily" {
              self.navigationController?.navigationBar.isTranslucent = false
         }

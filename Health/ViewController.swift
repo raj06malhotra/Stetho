@@ -35,6 +35,7 @@ class ViewController: UIViewController , XMLParserDelegate , NSURLConnectionDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("Login Signup")
         self.view.backgroundColor = UIColor.white
         // open corporate page if iscoporate (yes) user
         self.pushForCorporateSignup()

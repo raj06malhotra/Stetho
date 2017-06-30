@@ -15,6 +15,7 @@ class MyAccountViewController: UIViewController , UITableViewDelegate, UITableVi
     //MARK: - lifeCycleDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("My Account")
         arrMyAccountItemList = ["My Profile" , "Save Addresses","Terms & Condition", "Log out"]
         self.view.backgroundColor = UIColor.white//UIColor.init(red: (236.0/255.0), green: (236.0/255.0), blue: (236.0/255.0), alpha: 1)
         // add back butotn on Navigaiton
@@ -117,6 +118,7 @@ class MyAccountViewController: UIViewController , UITableViewDelegate, UITableVi
             
         }else if((indexPath as NSIndexPath).section == 3){
             // stop all timer 
+            FBEventClass.logEvent("Logout")
             for timer in appDelegate.timerArray {
                 
                 (timer as AnyObject).invalidate()

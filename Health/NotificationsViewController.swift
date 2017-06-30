@@ -18,6 +18,7 @@ class NotificationsViewController: UIViewController,UITableViewDelegate,UITableV
     //MARK: viewLifeCycleMethod
     
     override func viewDidLoad() {
+        FBEventClass.logEvent("Notifications")
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.title = "NOTIFICATIONS"
@@ -334,7 +335,9 @@ extension UIImageView {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: { (response, data, error) in
-                self.image = UIImage(data: data!)
+                if error == nil {
+                    self.image = UIImage(data: data!)
+                }
             })
 //            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {
 //                (response: URLResponse?, data: Data?, error: NSError?) -> Void in

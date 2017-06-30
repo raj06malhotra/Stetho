@@ -26,6 +26,8 @@ class MyOrderViewController: UIViewController , UITableViewDelegate , UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBEventClass.logEvent("My Orders")
+
         
         self.view.backgroundColor = UIColor.white
 
@@ -266,6 +268,7 @@ class MyOrderViewController: UIViewController , UITableViewDelegate , UITableVie
     }
     
     func btnTrackOrderOnClikc(_ button : UIButton)  {
+        FBEventClass.logEvent("Track Order")
         if isHide == true {
             total = 10
             trackOrderstableView.frame = CGRect(x: 10, y: 0, width: (UIScreen.main.bounds.width) - 20, height: UIScreen.main.bounds.height)

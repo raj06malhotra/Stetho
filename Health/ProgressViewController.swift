@@ -18,6 +18,7 @@ class ProgressViewController: UIView {
         progressToAddonView = inview
 //        super.init(frame: CGRect(x: inview.frame.midX-37.5, y: inview.frame.midY-37.5  , width: 75, height: 75))
         super.init(frame: CGRect(x: 0, y: 0  , width: inview.frame.size.width, height: inview.frame.size.height))
+
         print(inview.frame.midX)
         print(inview.frame.midY)
         print(inview.frame.width)
