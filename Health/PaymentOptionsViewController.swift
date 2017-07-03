@@ -51,6 +51,16 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     var checkBackfromPayment = false
     var tempArr : NSMutableArray!
     
+    var fName = ""
+    var lName = ""
+    var mobileNo = ""
+    var email = ""
+    var  dob = ""
+    var gender = ""
+    var packages = [String]()
+    var packagePrices = [String]()
+    var packageNames = [String]()
+    var packagePriceperMember:Double = 0
     
     
     
@@ -215,8 +225,9 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         if arrMemberDetails.count == 0{
             if isComingFromClass == "paymentFail"{
                 for controller in self.navigationController!.viewControllers as Array {
-                    if controller.isKind(of: MyOrderViewController.self) {
-                        self.navigationController?.popToViewController(controller as UIViewController, animated: true)
+                    if controller.isKind(of: HomeViewController.self) {
+                        //self.navigationController?.popToViewController(controller as UIViewController, animated: true)
+                        loadMainview()
                         break
                     }
                     
@@ -236,6 +247,39 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
         }
         
 
+        
+    }
+    
+    func loadMainview()  {
+        
+        AppDelegate.getAppDelegate().loadRecordfromBackground()
+        
+        // Override point for customization after application launch.
+        
+        //  let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+        // let mainViewController = storyboard1.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        UserDefaults.standard.set(true, forKey: "shworeportspopup")
+        UserDefaults.standard.set(true, forKey: "forceupdate")
+        DispatchQueue.main.async(execute: {
+            let homeVC = HomeViewController()
+            //homeVC.registerDeviceTone()
+            let drawerViewController = DrawerViewController()
+            let drawerController     = KYDrawerController()
+            self.view.window?.backgroundColor = UIColor.white
+            drawerController.mainViewController = UINavigationController(
+                rootViewController: homeVC
+            )
+            drawerController.drawerViewController = drawerViewController
+            
+            /* Customize */
+            drawerController.drawerDirection = .left
+            drawerController.drawerWidth     = (UIScreen.main.bounds.width-50)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+            appDelegate.window!.rootViewController = drawerController
+            appDelegate.window!.makeKeyAndVisible()
+            
+        });
         
     }
     //MARK: DataBaseOperations
@@ -354,8 +398,9 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
           //  activityIndicator?.start()
         
             var member_name = ""
-            var packages = [String]()
-            var packagePrices = [String]()//"Tomorrow " "Today "
+        
+             packages = []
+             packagePrices = []//"Tomorrow " "Today "
         var pickupDate = ""
         
         let  todayDate = Date()
@@ -416,21 +461,26 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                 print(l_Name)
                 member_Id = myfamilyInfoObj.memberId
                 let memberId = (myfamilyInfoObj.memberId)
-                let fName = (f_Name)
-                let lName = (l_Name)
-                let mobileNo = (myfamilyInfoObj.memberMobileNo)
-                let email = (myfamilyInfoObj.memberEmail)
-                let  dob = (myfamilyInfoObj.memberDOB)
-                let gender = (myfamilyInfoObj.memberGender)
+                 fName = (f_Name)
+                 lName = (l_Name)
+                 mobileNo = (myfamilyInfoObj.memberMobileNo)
+                 email = (myfamilyInfoObj.memberEmail)
+                  dob = (myfamilyInfoObj.memberDOB)
+                 gender = (myfamilyInfoObj.memberGender)
                
                 
                 self.getSelectedPackages(member_Id)
                 packages.removeAll()
                 packagePrices.removeAll()
+        packageNames.removeAll()
+        packagePriceperMember = 0
+        
                 for k in 0..<arrSelectedPackges.count {
                     var packageOrderInfoObje = PackgeOrederInfo()
                     packageOrderInfoObje = arrSelectedPackges[k] as! PackgeOrederInfo
                     packages.append(packageOrderInfoObje.packageId)
+                    packageNames.append(packageOrderInfoObje.packageName)
+                    
                     if discout_Percentage != 0 {
                       var  discoutnPrice = Int(packageOrderInfoObje.packagePrice)! - (Int(packageOrderInfoObje.packagePrice)! * discout_Percentage/100)
                         
@@ -447,6 +497,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                             }
                         }
                        packagePrices.append(String(discoutnPrice))
+                        //packagePriceperMember += Double(packageOrderInfoObje.packagePrice) ?? 0
                     }else{
                         if (isUseWalletBalance == true && Int(remainingWalletBalance) > 0 ) {
                              var discoutnPrice = Int()
@@ -663,7 +714,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                     self.present(BaseUIController().showAlertView("Something went wrong. Please try again."), animated: true, completion: nil)
                     
                 }else{
-                    
+                    self.logFBEvent(infoDict: (allResponse as! NSArray)[0] as! Dictionary<String, String>)
                     if self.arrMemberDetails.count > 1 {
 //                        self.arrMemberDetails.removeObject(at: 0)
                         print(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "wallet_balance")as! String)
@@ -698,6 +749,72 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
             });
         });
     }
+    
+    func longPaymentEvent(){
+        
+    }
+    /*
+     (NSString *)orderId
+     
+     
+	    packageName:(NSString *)packageName
+     
+     
+	    packagePrice:(NSString *)packagePrice
+     
+     
+	    totalAmount:(NSInteger)totalAmount
+     
+     
+	    valueToSum:(double)valueToSum {
+     */
+    
+    func logFBEvent(infoDict: Dictionary<String, String>){//orderID: String, packageName: String, packagePrice: String, totalAmount: NSInteger, valuetoSum: Double) {
+        /*
+         params.putString("OrderId", jsonObject.getString("o_id"));
+         params.putString("PackageId", packages);
+         params.putString("PackageName", packageNames);
+         params.putString("PackagePrice", packagePrices);
+         params.putInt("TotalAmount", totalPackagePrice);
+         params.putString("PaymentMode", paymentMode);
+         params.putString("CustomerName", paymentRequestParam.getBillingName());
+         params.putString("PhoneNumber", paymentRequestParam.getBillingPhone());
+         params.putString("Email", paymentRequestParam.getBillingEmail());
+         params.putString("DOB", cursor.getString(2));
+         params.putString("City", paymentRequestParam.getBillingCity());
+         params.putString("Address", paymentRequestParam.getBillingAddress());
+         params.putString("Locality", cursor.getString(17));
+         */
+        var dict = Dictionary<String, Any>()
+        dict["OrderId"] = infoDict["o_id"]
+        
+        dict["PackageId"] = packages.joined(separator: ", ")
+        
+        dict["PackageName"] = packageNames.joined(separator: ", ")
+        dict["PackagePrice"] = packagePrices.joined(separator: ", ")
+        //packagePriceperMember
+        var totalPrice:Double = 0
+        for price in packagePrices{
+            totalPrice = totalPrice + (Double(price) ?? 0)
+        }
+        if selectedPaymetnTag == 204{
+            dict["PaymentMode"] = "Cash on Pickup"
+        }else{
+            dict["PaymentMode"] = "Online Payment"
+        }
+        dict["TotalAmount"] = totalPrice //totalAmount
+        dict["CustomerName"] = fName + lName
+        dict["PhoneNumber"] = mobileNo
+        dict["Email"] = email
+        dict["DOB"] = dob
+        dict["City"] = pickupAddressObj.City
+        dict["Address"] = pickupAddressObj.AddressLine1
+        dict["Locality"] = pickupAddressObj.GeoAddress
+// Double(totalAmount) ?? 0
+       FBEventClass.logEvent("OrderBook", valueToSum: totalPrice, parameters: dict)
+        FBEventClass.logPurchase(totalPrice, currency: "INR", parameters: dict)
+    }
+    
     // MARK: paymentDetails
     func getDetails(_ message: Notification)
     {

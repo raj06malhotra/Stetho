@@ -147,6 +147,13 @@ class FailViewController: UIViewController,serverTaskComplete {
             print(jsonResponse.value(forKey: "PaymentMode") as! String)
             
             totalamount = jsonResponse.value(forKey: "Amount") as! String
+            
+            
+            
+            
+            
+            
+            
             if let dotRange = totalamount.range(of: ".") {
                 totalamount.removeSubrange(dotRange.lowerBound..<totalamount.endIndex)
             }
@@ -164,6 +171,18 @@ class FailViewController: UIViewController,serverTaskComplete {
             let status = (payment_status)
             let paymentMode = (jsonResponse.value(forKey: "PaymentMode") as! String)
             let customerId = (UserDefaults.standard.value(forKey: "loginCustomerId")as! String)
+            
+            
+            
+            
+            var dictInfo = Dictionary<String, Any>()
+            dictInfo["OrderId"] = orderId
+            dictInfo["PaymentMode"] = paymentMode
+            dictInfo["PaymentStatus"] = "Failed"
+            dictInfo["TotalAmount"] = amount
+            dictInfo["PaymentId"] = paymentId
+            
+            FBEventClass.logEvent("PaymentGateway", valueToSum: 0, parameters: dictInfo)
             
             let allParameters = ["OrderId" : orderId , "Payment_id": paymentId ,"amount": amount , "Paymentdate" : paymentDate, "status" : status,"PaymentMode": paymentMode , "customerId": customerId]
             

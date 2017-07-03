@@ -102,4 +102,6 @@ class GlobalInfo: NSObject {
     }
     
     
+    
+    
 }

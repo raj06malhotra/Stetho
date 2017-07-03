@@ -260,8 +260,6 @@
 		BBCE26E51E1BC09100C2C4D0 /* add_packages_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCE26E31E1BC09100C2C4D0 /* add_packages_icon.png */; };
 		BBCE26E61E1BC09100C2C4D0 /* arrow_down_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCE26E41E1BC09100C2C4D0 /* arrow_down_icon.png */; };
 		BBCE26E81E1BC71C00C2C4D0 /* menu_barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCE26E71E1BC71C00C2C4D0 /* menu_barcode.png */; };
-		BBCE26EA1E1BDFE100C2C4D0 /* CorporateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCE26E91E1BDFE100C2C4D0 /* CorporateViewController.swift */; };
-		BBCE26EC1E1BFE1100C2C4D0 /* CorporateAddrssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCE26EB1E1BFE1100C2C4D0 /* CorporateAddrssViewController.swift */; };
 		BBDCA2821DDAD03F0076D278 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDCA2811DDAD03F0076D278 /* WalletViewController.swift */; };
 		BBDDFEBF1DD48D7800EA35AB /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDDFEBD1DD48D7700EA35AB /* HomeTableViewCell.swift */; };
 		BBDDFEC01DD48D7800EA35AB /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDDFEBE1DD48D7700EA35AB /* HomeTableViewCell.xib */; };
@@ -340,6 +338,8 @@
 		C328D3931EEE785A00235C9F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C328D3921EEE785A00235C9F /* FBSDKCoreKit.framework */; };
 		C34049071E5EAF5B00DEF6FB /* JTMaterialSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */; };
 		C35D277D1E572BCC002C11BA /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */; };
+		C37C68E91F0648F1009FB156 /* CorporateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C68E71F0648F1009FB156 /* CorporateViewController.swift */; };
+		C37C68EA1F0648F1009FB156 /* CorporateAddrssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C68E81F0648F1009FB156 /* CorporateAddrssViewController.swift */; };
 		C38F56EC1E545D2500BE1BEF /* FamilyMemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */; };
 		C38F56EF1E54653000BE1BEF /* FamilyMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */; };
 		C38F56F11E547DB500BE1BEF /* FamilyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F56F01E547DB500BE1BEF /* FamilyHeaderCell.swift */; };
@@ -749,8 +749,6 @@
 		BBCE26E31E1BC09100C2C4D0 /* add_packages_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_packages_icon.png; sourceTree = "<group>"; };
 		BBCE26E41E1BC09100C2C4D0 /* arrow_down_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down_icon.png; sourceTree = "<group>"; };
 		BBCE26E71E1BC71C00C2C4D0 /* menu_barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_barcode.png; sourceTree = "<group>"; };
-		BBCE26E91E1BDFE100C2C4D0 /* CorporateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateViewController.swift; sourceTree = "<group>"; };
-		BBCE26EB1E1BFE1100C2C4D0 /* CorporateAddrssViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateAddrssViewController.swift; sourceTree = "<group>"; };
 		BBDCA2811DDAD03F0076D278 /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		BBDDFEBD1DD48D7700EA35AB /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTableViewCell.swift; path = ../HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BBDDFEBE1DD48D7700EA35AB /* HomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeTableViewCell.xib; path = ../HomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -834,6 +832,8 @@
 		C328D3921EEE785A00235C9F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C34049061E5EAF5B00DEF6FB /* JTMaterialSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTMaterialSpinner.swift; sourceTree = "<group>"; };
 		C35D277C1E572BCC002C11BA /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
+		C37C68E71F0648F1009FB156 /* CorporateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateViewController.swift; sourceTree = "<group>"; };
+		C37C68E81F0648F1009FB156 /* CorporateAddrssViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateAddrssViewController.swift; sourceTree = "<group>"; };
 		C38F56EB1E545D2500BE1BEF /* FamilyMemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberListViewController.swift; sourceTree = "<group>"; };
 		C38F56EE1E54653000BE1BEF /* FamilyMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberTableViewCell.swift; sourceTree = "<group>"; };
 		C38F56F01E547DB500BE1BEF /* FamilyHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHeaderCell.swift; sourceTree = "<group>"; };
@@ -1479,8 +1479,8 @@
 				BB3773A31D116E8F00E80B54 /* ForgotPasswordViewController.swift */,
 				BB3773A51D116EC900E80B54 /* RegisterViewController.swift */,
 				BB3773A71D116F0900E80B54 /* OTPVarificationViewController.swift */,
-				BBCE26E91E1BDFE100C2C4D0 /* CorporateViewController.swift */,
-				BBCE26EB1E1BFE1100C2C4D0 /* CorporateAddrssViewController.swift */,
+				C37C68E71F0648F1009FB156 /* CorporateViewController.swift */,
+				C37C68E81F0648F1009FB156 /* CorporateAddrssViewController.swift */,
 			);
 			name = Signup_login;
 			sourceTree = "<group>";
@@ -1726,7 +1726,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = S3LE6CTDT8;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2050,6 +2050,7 @@
 				BBAAB74C1D96590F006580AA /* SaveAddressViewController.swift in Sources */,
 				BBFA0DB31D96D06100C24019 /* saveAddressTableViewCell.swift in Sources */,
 				BB7147AC1D140A6A0011BC62 /* KYEmbedDrawerControllerSegue.swift in Sources */,
+				C37C68EA1F0648F1009FB156 /* CorporateAddrssViewController.swift in Sources */,
 				BB5F40821D210C6F001F8C73 /* AESEncryptionDecryption.swift in Sources */,
 				BB383CF41DCB819400B7ABFE /* AGPushNoteView.m in Sources */,
 				BB3DC1DE1D58A4B400BDF65E /* PickupAddressInfo.swift in Sources */,
@@ -2109,7 +2110,7 @@
 				BBA23BF31D4B765F00387912 /* MedicalHistorySecondViewController.swift in Sources */,
 				BB092B681D2A6E7900126475 /* FMDatabaseAdditions.m in Sources */,
 				BBF158F31D152FA10053398E /* CarbonTabSwipeNavigation.m in Sources */,
-				BBCE26EA1E1BDFE100C2C4D0 /* CorporateViewController.swift in Sources */,
+				C37C68E91F0648F1009FB156 /* CorporateViewController.swift in Sources */,
 				BBA6F80D1D9A2D0B00ED4EE0 /* termsAndConditionViewController.swift in Sources */,
 				BBE9F56B1E5E99C0003C1725 /* SyncReportData.swift in Sources */,
 				BB5CCE4C1D807A8300699991 /* ELCAssetTablePicker.m in Sources */,
@@ -2125,7 +2126,6 @@
 				BBDCA2821DDAD03F0076D278 /* WalletViewController.swift in Sources */,
 				C3A171F41E60463300916ECB /* ShowPushViewController.swift in Sources */,
 				BB34D90B1E55CC9C00A503CE /* TPKeyboardAvoidingTableView.m in Sources */,
-				BBCE26EC1E1BFE1100C2C4D0 /* CorporateAddrssViewController.swift in Sources */,
 				BB5579B11E165A74005D544F /* BarCodeViewController.swift in Sources */,
 				BBF8342E1D634C4700BAC9F8 /* OrderBookedViewController.swift in Sources */,
 				BB41385F1D2FC8700045AF8C /* MyRecordPrescriptionViewController.swift in Sources */,
@@ -2331,8 +2331,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Stetho/Stetho.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: HINDUSTAN WELLNESS PRIVATE LIMITED (S3LE6CTDT8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = S3LE6CTDT8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Frameworks",
@@ -2356,8 +2356,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Com.HindustanWellness.Stetho;
 				PRODUCT_NAME = Stetho;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "85af7739-01c7-4c46-bf00-0d1dd7d835a3";
+				PROVISIONING_PROFILE_SPECIFIER = stetho141116;
 				SWIFT_OBJC_BRIDGING_HEADER = "Health-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

@@ -35,10 +35,9 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
     var txtOfficial_EmailId = UITextField()
     var txtDepartment = UITextField()
     var txtCompanyName = UITextField()
-    var txtEmpId = UITextField()
     
     var txtPackage = UITextField()
-    var scrollView = TPKeyboardAvoidingScrollView() // var scrollView = UIScrollView()
+    var scrollView = UIScrollView()
     var activityIndicator : ProgressViewController?
     var selectedSegIndex = "0"
     var departmentPicker : UIPickerView = UIPickerView()
@@ -79,9 +78,9 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         }
          */
         
-//        // show & hide keyboard
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        // show & hide keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         // add activity on view
         activityIndicator = ProgressViewController(inview:self.view,loadingViewColor: UIColor.gray, indicatorColor: UIColor.black, msg: "")
         // self.view.addSubview(activityIndicator!) Comment Progress
@@ -142,7 +141,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
        // lblCompanyName.font = UIFont.boldSystemFontOfSize(14)
         self.view.addSubview(lblCompanyName)
         
-        scrollView = TPKeyboardAvoidingScrollView(frame: CGRect(x: 5, y: 124, width: self.view.frame.width - 10, height: UIScreen.main.bounds.height - 164)) 
+        scrollView = UIScrollView.init(frame: CGRect(x: 5, y: 124, width: self.view.frame.width - 10, height: UIScreen.main.bounds.height - 164))
         scrollView.backgroundColor = UIColor.white
         self.view.addSubview(scrollView)
         
@@ -160,12 +159,12 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         var arrLableName : [String]!
         var iconeName : [String]!
         if isComingfromCheckinBarCode == true{
-            arrLableName = ["First Name" ,"Last Name","Date of Birth","", "Mobile Number", "Personal Email Id","Official Email Id", "Company Name", "Department","Employee Id","","Package Name"]
-            iconeName = ["corp_name_icon.png" , "corp_name_icon.png","corp_date_icon.png", "", "corp_mobile_icon.png","corp_mail_icon.png","corp_mail_icon.png", "ic_corp_company", "corp_department_icon.png","employeeid_icon","","corp_package_icon.png"]
+            arrLableName = ["First Name" ,"Last Name","Date of Birth","", "Mobile Number", "Personal Email Id","Official Email Id", "Company Name", "Department","","Package Name"]
+            iconeName = ["corp_name_icon.png" , "corp_name_icon.png","corp_date_icon.png", "", "corp_mobile_icon.png","corp_mail_icon.png","corp_mail_icon.png", "ic_corp_company", "corp_department_icon.png","","corp_package_icon.png"]
             //ic_corp_company
         }else{
-            arrLableName = ["First Name" ,"Last Name","Date of Birth","", "Mobile Number", "Personal Email Id","Official Email Id","Department","Employee Id","","Package Name"]
-            iconeName = ["corp_name_icon.png" , "corp_name_icon.png","corp_date_icon.png", "", "corp_mobile_icon.png","corp_mail_icon.png","corp_mail_icon.png","corp_department_icon.png","employeeid_icon","","corp_package_icon.png"]
+            arrLableName = ["First Name" ,"Last Name","Date of Birth","", "Mobile Number", "Personal Email Id","Official Email Id","Department","","Package Name"]
+            iconeName = ["corp_name_icon.png" , "corp_name_icon.png","corp_date_icon.png", "", "corp_mobile_icon.png","corp_mail_icon.png","corp_mail_icon.png","corp_department_icon.png","","corp_package_icon.png"]
         }
         
 //        var iconeName: [String] = ["corp_name_icon.png" , "corp_name_icon.png","corp_date_icon.png", "", "corp_mobile_icon.png","corp_mail_icon.png","corp_mail_icon.png","corp_department_icon.png","","corp_package_icon.png"]
@@ -173,7 +172,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         if isComingfromCheckinBarCode == true {
             for i in (0..<arrLableName.count) {
                 
-                if (i == 0 || i == 1 || i == 2  || i == 4 || i == 5 || i == 6 || i == 7 || i == 8 || i == 9 || i == 11) {
+                if (i == 0 || i == 1 || i == 2  || i == 4 || i == 5 || i == 6 || i == 7 || i == 8 || i == 10) {
                     
                     let textField = BaseUIController().ATextFiedlFrame(CGRect(x:xPos , y: yPos ,width: scrollView.frame.width - 20 , height: 40 ), withPlaceHolder: arrLableName[i])as! UITextField
                     textField.tag = 200 + i
@@ -220,7 +219,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
                     
                 }
                 
-                if i == 10 {
+                if i == 9 {
                     
                     let segmentController = UISegmentedControl.init(frame: CGRect(x: xPos, y: yPos, width: scrollView.frame.width - 20, height: 40))
                     // yourSegControl.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "YourFont", size: 18.0)! ], forState: .Normal)
@@ -284,23 +283,16 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
             
             txtDepartment = scrollView.viewWithTag(208) as! UITextField
             txtDepartment.font = UIFont(name: "Roboto-Light", size: 17)
-            
-            
-            txtEmpId = scrollView.viewWithTag(209) as! UITextField
-            txtEmpId.font = KROBOTO_Light_17
-            
-            txtPackage = scrollView.viewWithTag(211)as! UITextField
+            txtPackage = scrollView.viewWithTag(210)as! UITextField
             txtPackage.font = UIFont(name: "Roboto-Light", size: 17)
             
-            
             txtMobileNo.isUserInteractionEnabled = true
-            txtMobileNo.textColor = UIColor.black
             txtMobileNo.font = UIFont(name: "Roboto-Light", size: 17)
             addToolBar(txtMobileNo)
         }else{
             for i in (0..<arrLableName.count) {
                 
-                if (i == 0 || i == 1 || i == 2  || i == 4 || i == 5 || i == 6 || i == 7 || i == 8 || i == 10) {
+                if (i == 0 || i == 1 || i == 2  || i == 4 || i == 5 || i == 6 || i == 7 || i == 9) {
                     
                     let textField = BaseUIController().ATextFiedlFrame(CGRect(x:xPos , y: yPos ,width: scrollView.frame.width - 20 , height: 40 ), withPlaceHolder: arrLableName[i])as! UITextField
                     textField.tag = 200 + i
@@ -346,7 +338,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
                     
                 }
                 
-                if i == 9 {
+                if i == 8 {
                     
                     let segmentController = UISegmentedControl.init(frame: CGRect(x: xPos, y: yPos, width: scrollView.frame.width - 20, height: 40))
                     // yourSegControl.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "YourFont", size: 18.0)! ], forState: .Normal)
@@ -392,15 +384,10 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
             txtDepartment = scrollView.viewWithTag(207) as! UITextField
             txtDepartment.font = UIFont(name: "Roboto-Light", size: 17)
             
-            txtEmpId = scrollView.viewWithTag(208) as! UITextField
-            txtEmpId.font = KROBOTO_Light_17
-            
-            txtPackage = scrollView.viewWithTag(210)as! UITextField
+            txtPackage = scrollView.viewWithTag(209)as! UITextField
             txtPackage.font = UIFont(name: "Roboto-Light", size: 17)
-           
             
             txtMobileNo.isUserInteractionEnabled = false
-            txtMobileNo.textColor = KDISABLE_TEXTCOLOR
             txtMobileNo.font = UIFont(name: "Roboto-Light", size: 17)
         }
         
@@ -441,7 +428,6 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
 //        txtMobileNo.font = UIFont(name: "Roboto-Light", size: 17)
 
         txtPackage.isUserInteractionEnabled = false
-        txtPackage.textColor = KDISABLE_TEXTCOLOR
 
         
         
@@ -499,7 +485,7 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         let pickerLabel = UILabel()
         pickerLabel.textColor = UIColor.black
         pickerLabel.text = (arrDepartmentList[row] as AnyObject).value(forKey: "departmentName") as? String
-        pickerLabel.font = KROBOTO_Regular_17
+        pickerLabel.font = UIFont().mediumFont
         
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
@@ -606,25 +592,25 @@ class CorporateViewController: UIViewController,UIPickerViewDelegate ,UIPickerVi
         return true
     }
     
-  /*  // MARK: - KeyboardShow&Hide
+    // MARK: - KeyboardShow&Hide
     func keyboardWillShow(_ notification:Notification){
-        if activeTextField == txtPersonal_EmailId ||  activeTextField ==  txtOfficial_EmailId || activeTextField ==  txtDepartment || activeTextField == txtCompanyName || activeTextField == txtMobileNo || activeTextField == txtEmpId {
-            scrollView.frame = CGRect(x: 5 , y: -80 , width: self.view.frame.width - 10 , height: scrollView.frame.height)
+        if activeTextField == txtPersonal_EmailId ||  activeTextField ==  txtOfficial_EmailId || activeTextField ==  txtDepartment || activeTextField == txtCompanyName || activeTextField == txtMobileNo{
+            scrollView.frame = CGRect(x: 0 , y: -80 , width: scrollView.frame.width , height: scrollView.frame.height)
         }else{
-            scrollView.frame = CGRect(x: 5 , y: 124 , width: self.view.frame.width - 10 , height: scrollView.frame.height )
+            scrollView.frame = CGRect(x: 0 , y: 124 , width: scrollView.frame.width , height: scrollView.frame.height )
             
         }
     }
     
     func keyboardWillHide(_ notification:Notification){
         
-//        if activeTextField == txtPersonal_EmailId ||  activeTextField ==  txtOfficial_EmailId || activeTextField ==  txtDepartment || activeTextField == txtCompanyName || activeTextField == txtMobileNo || activeTextField == txtEmpId {
-//            scrollView.frame = CGRect(x: 5 , y: 124 , width: self.view.frame.width - 10 , height: scrollView.frame.height )
-//        }else{
-            scrollView.frame = CGRect(x: 5 , y: 124 , width: self.view.frame.width - 10 , height: scrollView.frame.height )
+        if activeTextField == txtPersonal_EmailId ||  activeTextField ==  txtOfficial_EmailId || activeTextField ==  txtDepartment || activeTextField == txtCompanyName || activeTextField == txtMobileNo {
+            scrollView.frame = CGRect(x: 0 , y: 124 , width: scrollView.frame.width , height: scrollView.frame.height )
+        }else{
+            scrollView.frame = CGRect(x: 0 , y: 124 , width: scrollView.frame.width , height: scrollView.frame.height )
             
-       // }
-    } */
+        }
+    }
     //MARK: - DatePicker
     func OpenDatePicker(_ sender: UITextField) {
         

@@ -58,7 +58,6 @@ class SuccessViewController: UIViewController,serverTaskComplete {
             activityIndicator?.start()
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
            
-            
             print(appDelegate.bookedOrderId)
             
             print(jsonResponse.value(forKey: "Amount") as! String)
@@ -97,7 +96,21 @@ class SuccessViewController: UIViewController,serverTaskComplete {
             let status = (payment_status)
             let paymentMode = (jsonResponse.value(forKey: "PaymentMode") as! String)
             let customerId = (UserDefaults.standard.value(forKey: "loginCustomerId")as! String)
-            
+            /*
+             params.putString("OrderId", orderId);
+             params.putString("PaymentMode", paymentMode);
+             params.putString("PaymentStatus", paymentStatus);
+             params.putInt("TotalAmount", totalAmount);
+             params.putString("PaymentId", paymentId);
+             */
+            var dictInfo = Dictionary<String, Any>()
+            dictInfo["OrderId"] = orderId
+            dictInfo["PaymentMode"] = paymentMode
+            dictInfo["PaymentStatus"] = "Success"
+            dictInfo["TotalAmount"] = amount
+            dictInfo["PaymentId"] = paymentId
+
+            FBEventClass.logEvent("PaymentGateway", valueToSum: Double(jsonResponse.value(forKey: "Amount") as! String) ?? 0, parameters: dictInfo)
             let allParameters = ["OrderId" : orderId , "Payment_id": paymentId ,"amount": amount , "Paymentdate" : paymentDate, "status" : status,"PaymentMode": paymentMode , "customerId": customerId]
             
             ServerConnectivity().callWebservice(allParameters , resulttagname: "OnlinePaymentResult" ,methodname: "OnlinePayment", className: self)
