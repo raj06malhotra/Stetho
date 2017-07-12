@@ -43,7 +43,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     var totalAmount = ""
     var discout_Percentage : Int = 0
     var isUseWalletBalance : Bool = Bool()
-    var remainingWalletBalance = ""
+    var remainingWalletBalance = "0"
     var selectedPaymetnTag : Int = 204
     var btnPlaceOrder = UIButton()
     var isComingFromClass = ""
@@ -70,6 +70,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.appDelegate.bookedOrderNo = []
         FBEventClass.logEvent("Payment Options")
         self.view.backgroundColor = UIColor.white
         
@@ -603,11 +604,18 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
             paymentView.strDisplayCurrency = "USD";
             
             
-            if myFamilyObj.memberMobileNo.isEmpty{
-                paymentView.reference_no = "9810981073"
-            }else{
-                paymentView.reference_no = myFamilyObj.memberMobileNo
-            }
+            //if myFamilyObj.memberMobileNo.isEmpty{
+            
+                if self.appDelegate.bookedOrderNo.count > 0 {
+                    paymentView.reference_no = self.appDelegate.bookedOrderNo.last
+                }else{
+                    paymentView.reference_no = self.member_Id
+                }
+               // paymentView.reference_no = self.appDelegate.bookedOrderId "9810981073"
+           // }
+//            else{
+//                paymentView.reference_no = myFamilyObj.memberMobileNo
+//            }
             
             if String(self.appDelegate.bookedOrderId).isEmpty{
                  paymentView.strDescription = "Hindustanwellness"
@@ -722,6 +730,7 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                        self.deletedPackageOrder(self.member_Id)
                         // set booked order
                         self.appDelegate.bookedOrderId.append(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "o_id")as! String)
+                        self.appDelegate.bookedOrderNo.append(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "orderno")as! String)
                         self.appDelegate.bookedOrderId.append(",")
                         self.bookAnOrder()
                     }else{
@@ -741,6 +750,8 @@ class PaymentOptionsViewController: UIViewController , serverTaskComplete {
                         }else{
                             // online payment
                             self.appDelegate.bookedOrderId.append(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "o_id")as! String)
+                            self.appDelegate.bookedOrderNo.append(((allResponse as! NSArray)[0] as AnyObject).value(forKey: "orderno")as! String)
+
                             print(self.appDelegate.bookedOrderId)
                             self.gothoughOnlinePayment()
                         }

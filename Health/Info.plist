@@ -15,22 +15,20 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6</string>
+	<string>2.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleURLName</key>
-			<string>Com.HW.PushNotificationDemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>Stetho</string>
+				<string>fb767036333458874</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -45,6 +43,10 @@
 			</dict>
 		</array>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>767036333458874</string>
+	<key>FacebookDisplayName</key>
+	<string>Stetho App</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb</string>
@@ -102,18 +104,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb767036333458874</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>767036333458874</string>
-    <key>FacebookDisplayName</key>
-    <string>Stetho App</string>
 </dict>
 </plist>

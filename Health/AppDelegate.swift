@@ -46,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var corporateAllDetailsDict = NSMutableDictionary()
     var bookedOrderId = NSMutableString()
     var isComingfromLaunching = false
+    var bookedOrderNo:[String] = []
+
     
     
     
