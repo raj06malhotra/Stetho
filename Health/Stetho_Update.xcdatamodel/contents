@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="KMsDayMO" representedClassName="KMsDayMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalKMs" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalKMsTraget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="kmsTimeInterval" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="KMsTimeIntervalMO" syncable="YES"/>
+    </entity>
+    <entity name="KMsTimeIntervalMO" representedClassName="KMsTimeIntervalMO" parentEntity="PedometerMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kms" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedometerMO" representedClassName="PedometerMO" isAbstract="YES" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeIntervalSecs" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="StepDayMO" representedClassName="StepDayMO" syncable="YES">
+        <attribute name="activeSeconds" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="resultStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="targetSteps" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalSteps" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stepTimeInterval" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StepTimeIntervalMO" inverseName="stepsDay" inverseEntity="StepTimeIntervalMO" syncable="YES"/>
+    </entity>
+    <entity name="StepTimeIntervalMO" representedClassName="StepTimeIntervalMO" parentEntity="PedometerMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="steps" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stepsDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StepDayMO" inverseName="stepTimeInterval" inverseEntity="StepDayMO" syncable="YES"/>
+    </entity>
+    <entity name="SugarDayMO" representedClassName="SugarDayMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSugarIntake" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalSugarTarget" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="SugarTimeIntervalMO" representedClassName="SugarTimeIntervalMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="qunatityGram" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WaterDayMO" representedClassName="WaterDayMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalWaterDrink" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalWaterTarget" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="WaterTimeIntervalMO" representedClassName="WaterTimeIntervalMO" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="qunatityLitre" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="KMsDayMO" positionX="322" positionY="237" width="128" height="120"/>
+        <element name="KMsTimeIntervalMO" positionX="18" positionY="354" width="128" height="105"/>
+        <element name="PedometerMO" positionX="34" positionY="-189" width="128" height="90"/>
+        <element name="StepDayMO" positionX="7" positionY="132" width="128" height="178"/>
+        <element name="StepTimeIntervalMO" positionX="243" positionY="-9" width="128" height="120"/>
+        <element name="SugarDayMO" positionX="430" positionY="99" width="128" height="105"/>
+        <element name="SugarTimeIntervalMO" positionX="592" positionY="108" width="128" height="90"/>
+        <element name="WaterDayMO" positionX="448" positionY="-45" width="128" height="105"/>
+        <element name="WaterTimeIntervalMO" positionX="637" positionY="-36" width="128" height="90"/>
+    </elements>
+</model>
